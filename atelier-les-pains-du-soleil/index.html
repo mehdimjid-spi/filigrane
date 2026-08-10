@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les Pains du Soleil · La Mie du Goût · les maquettes</title>
+<meta name="description" content="Espace de consultation des maquettes réalisées par Filigrane.">
+<meta name="theme-color" content="#1A1714">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#1A1714; --encre-doux:#4A4239; --ivoire:#FBF7F0; --papier:#FFFDF9;
+  --or:#C8912E; --or-clair:#E3BC72; --ligne:rgba(26,23,20,.12);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--ivoire); color:var(--encre);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+.wrap{width:100%; max-width:1080px; margin:0 auto; padding:0 24px}
+
+/* ---------------------------------------------------------------- en-tete */
+.top{padding:38px 0 0}
+.marque{
+  font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:500;
+  font-size:26px; letter-spacing:.01em; line-height:1;
+}
+.marque .f{color:var(--or)}
+.marque small{
+  display:block; font-family:'Inter',sans-serif; font-style:normal; font-weight:500;
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--encre-doux); margin-top:8px;
+}
+
+/* ------------------------------------------------------------------- hero */
+.hero{padding:56px 0 14px; border-bottom:1px solid var(--ligne)}
+.hero h1{
+  font-family:'Playfair Display',Georgia,serif; font-weight:600;
+  font-size:clamp(34px,7vw,58px); line-height:1.08; letter-spacing:-.015em; margin:0 0 22px;
+}
+.hero h1 em{font-style:italic; color:var(--or)}
+.hero p{max-width:60ch; color:var(--encre-doux); margin:0 0 18px; font-size:clamp(16px,2.2vw,18px)}
+.hero p strong{color:var(--encre); font-weight:600}
+.rappel{
+  display:inline-flex; align-items:center; gap:10px; margin:12px 0 44px;
+  padding:11px 18px 11px 14px; border:1px solid var(--ligne); border-radius:999px;
+  background:var(--papier); font-size:14px; color:var(--encre-doux);
+}
+.rappel .pt{width:8px; height:8px; border-radius:50%; background:var(--or); flex:none}
+
+/* ------------------------------------------------------------------ carte */
+.grille{display:grid; gap:26px; padding:52px 0 8px}
+.carte{
+  background:var(--papier); border:1px solid var(--ligne); border-radius:18px;
+  overflow:hidden; display:grid; grid-template-columns:minmax(0,42%) minmax(0,58%);
+}
+.carte .vis{position:relative; background:var(--encre); overflow:hidden; min-height:230px}
+.carte .vis img{width:100%; height:100%; object-fit:cover; object-position:50% 0}
+.carte .corps{padding:32px 34px 30px; display:flex; flex-direction:column}
+.etiq{
+  display:inline-block; align-self:flex-start; font-size:11px; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--or);
+  border:1px solid var(--or-clair); border-radius:999px; padding:5px 12px; margin-bottom:16px;
+}
+.etiq.attente{color:var(--encre-doux); border-color:var(--ligne)}
+.carte h2{
+  font-family:'Playfair Display',Georgia,serif; font-weight:600;
+  font-size:clamp(25px,3.4vw,31px); line-height:1.14; margin:0 0 12px;
+}
+.carte h2 span{display:block; font-family:'Inter',sans-serif; font-size:13px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--encre-doux); margin-top:9px}
+.carte p{margin:0 0 20px; color:var(--encre-doux); font-size:15.5px}
+.btn{
+  display:inline-flex; align-items:center; gap:9px; align-self:flex-start;
+  background:var(--encre); color:var(--ivoire); text-decoration:none;
+  padding:14px 24px; border-radius:999px; font-weight:600; font-size:15px;
+  transition:transform .18s ease, background .18s ease;
+}
+.btn:hover{background:var(--or); transform:translateY(-2px)}
+.btn .fl{transition:transform .18s ease}
+.btn:hover .fl{transform:translateX(4px)}
+.pages{
+  margin:22px 0 0; padding:20px 0 0; border-top:1px solid var(--ligne);
+  display:flex; flex-wrap:wrap; gap:8px; list-style:none;
+}
+.pages li{margin:0}
+.pages a{
+  display:inline-block; text-decoration:none; font-size:13.5px; color:var(--encre-doux);
+  border:1px solid var(--ligne); border-radius:8px; padding:6px 12px;
+  transition:border-color .16s ease, color .16s ease, background .16s ease;
+}
+.pages a:hover{color:var(--encre); border-color:var(--or-clair); background:#FFF9EC}
+
+/* ------------------------------------------------------------------ bonus */
+.bonus{
+  margin:26px 0 0; padding:38px 40px; border-radius:18px;
+  background:var(--encre); color:var(--ivoire);
+  display:grid; grid-template-columns:1fr auto; gap:30px; align-items:center;
+}
+.bonus .etiq{color:var(--or-clair); border-color:rgba(227,188,114,.42)}
+.bonus h2{
+  font-family:'Playfair Display',Georgia,serif; font-weight:600;
+  font-size:clamp(24px,3.2vw,30px); line-height:1.16; margin:0 0 12px; color:var(--ivoire);
+}
+.bonus h2 em{font-style:italic; color:var(--or-clair)}
+.bonus p{margin:0; color:rgba(251,247,240,.74); font-size:15.5px; max-width:62ch}
+.bonus .btn{background:var(--or); color:var(--encre); white-space:nowrap}
+.bonus .btn:hover{background:var(--or-clair)}
+
+/* ------------------------------------------------------------- bon a savoir */
+.notes{margin:60px 0 0; padding:38px 0 0; border-top:1px solid var(--ligne)}
+.notes h3{
+  font-family:'Playfair Display',Georgia,serif; font-weight:600;
+  font-size:24px; margin:0 0 22px;
+}
+.notes ul{margin:0; padding:0; list-style:none; display:grid; gap:16px}
+.notes li{position:relative; padding-left:30px; color:var(--encre-doux); font-size:15.5px; max-width:72ch}
+.notes li::before{
+  content:""; position:absolute; left:6px; top:.62em;
+  width:9px; height:9px; border-radius:50%; border:2px solid var(--or);
+}
+.notes li b{color:var(--encre); font-weight:600}
+
+/* -------------------------------------------------------------- propriete */
+.propriete{
+  margin:44px 0 0; padding:28px 32px; border-radius:16px;
+  background:var(--papier); border:1px solid var(--ligne);
+  border-left:3px solid var(--or);
+}
+.propriete h4{
+  font-family:'Playfair Display',Georgia,serif; font-weight:600;
+  font-size:19px; margin:0 0 10px; line-height:1.3;
+}
+.propriete p{margin:0; color:var(--encre-doux); font-size:15px; max-width:78ch}
+.propriete p+p{margin-top:10px}
+
+/* ----------------------------------------------------------------- footer */
+.pied{margin-top:66px; padding:40px 0 56px; border-top:1px solid var(--ligne)}
+.pied h4{font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:22px; margin:0 0 10px}
+.pied p{color:var(--encre-doux); margin:0 0 22px; font-size:15.5px; max-width:52ch}
+.coord{display:flex; flex-wrap:wrap; gap:10px}
+.coord a{
+  text-decoration:none; font-weight:500; font-size:15px;
+  border:1px solid var(--ligne); border-radius:999px; padding:11px 20px; background:var(--papier);
+  transition:border-color .16s ease, background .16s ease;
+}
+.coord a:hover{border-color:var(--or-clair); background:#FFF9EC}
+.sign{
+  margin-top:34px; padding-top:22px; border-top:1px solid var(--ligne);
+  font-size:13px; color:var(--encre-doux);
+}
+.sign em{font-family:'Playfair Display',Georgia,serif; font-style:italic; color:var(--encre)}
+
+/* ------------------------------------------------------------- responsive */
+@media (max-width:860px){
+  .carte{grid-template-columns:1fr}
+  .carte .vis{min-height:0; aspect-ratio:16/9}
+  .carte .corps{padding:28px 24px 26px}
+}
+@media (max-width:860px){
+  .bonus{grid-template-columns:1fr; padding:30px 26px; gap:22px}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .wrap{padding:0 20px}
+  .hero{padding:44px 0 10px}
+  .rappel{margin-bottom:34px}
+  .grille{gap:20px; padding:40px 0 4px}
+  .btn{width:100%; justify-content:center}
+  .coord a{flex:1 1 100%; text-align:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="marque"><span class="f">F</span>iligrane<small>Studio de création numérique</small></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Raphaël, voilà<br>tout ce qu'on a <em>construit</em>.</h1>
+    <p>Les deux sites et la maquette du CRM sont réunis sur cette page. Tu peux tout ouvrir depuis ton téléphone comme depuis ton ordinateur, à n'importe quel moment, et revenir dessus autant de fois que tu veux.</p>
+    <p><strong>Ce sont des maquettes de travail.</strong> Elles ne sont pas visibles sur Google et elles ne remplacent pas encore ton site. Clique partout, teste, et note ce que tu veux changer : on ajustera ensemble.</p>
+    <div class="rappel"><span class="pt"></span> Lien privé, à ne pas diffuser publiquement pour l'instant.</div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="grille">
+
+    <!-- ------------------------------------------------ site 1 -->
+    <article class="carte">
+      <div class="vis"><img src="assets/pds-home.jpg" alt="Aperçu de la page d'accueil des Pains du Soleil" loading="lazy" width="1440" height="900"></div>
+      <div class="corps">
+        <span class="etiq">Site n° 1 · grand public</span>
+        <h2>Les Pains du Soleil<span>8 pages + ton espace d'administration</span></h2>
+        <p>Le site de tes boulangeries. L'accueil raconte la maison, puis une page par boutique pour que Google te trouve sur « boulangerie Perpignan », « boulangerie Saint-Estève » et « boulangerie Cabestany. » S'y ajoutent la revue de presse, la carte de fidélité, et un espace recrutement que tu gères toi-même.</p>
+        <a class="btn" href="pains-du-soleil/index.html" target="_blank" rel="noopener">Ouvrir le site <span class="fl">→</span></a>
+        <ul class="pages">
+          <li><a href="pains-du-soleil/index.html" target="_blank" rel="noopener">Accueil</a></li>
+          <li><a href="pains-du-soleil/boulangerie-perpignan.html" target="_blank" rel="noopener">Perpignan</a></li>
+          <li><a href="pains-du-soleil/boulangerie-saint-esteve.html" target="_blank" rel="noopener">Saint-Estève</a></li>
+          <li><a href="pains-du-soleil/boulangerie-cabestany.html" target="_blank" rel="noopener">Cabestany</a></li>
+          <li><a href="pains-du-soleil/vu-a-m6.html" target="_blank" rel="noopener">Presse</a></li>
+          <li><a href="pains-du-soleil/fidelite.html" target="_blank" rel="noopener">Fidélité</a></li>
+          <li><a href="pains-du-soleil/recrutement.html" target="_blank" rel="noopener">Recrutement</a></li>
+          <li><a href="pains-du-soleil/recrutement.html?sans-offre" target="_blank" rel="noopener">Recrutement, sans poste ouvert</a></li>
+          <li><a href="pains-du-soleil/apercu-admin.html" target="_blank" rel="noopener">Ton espace d'administration</a></li>
+          <li><a href="pains-du-soleil/mentions-legales.html" target="_blank" rel="noopener">Mentions légales</a></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------ site 2 -->
+    <article class="carte">
+      <div class="vis"><img src="assets/lmdg-home.jpg" alt="Aperçu de la page d'accueil de La Mie du Goût" loading="lazy" width="1440" height="900"></div>
+      <div class="corps">
+        <span class="etiq">Site n° 2 · professionnels</span>
+        <h2>La Mie du Goût<span>2 pages</span></h2>
+        <p>Le site des pains burger, réservé aux professionnels. Une page qui présente la gamme, les formats et les garanties techniques, puis un espace pro dédié aux comptes clients et aux commandes. Le ton est volontairement différent du premier site : ce ne sont pas les mêmes clients.</p>
+        <a class="btn" href="la-mie-du-gout/index.html" target="_blank" rel="noopener">Ouvrir le site <span class="fl">→</span></a>
+        <ul class="pages">
+          <li><a href="la-mie-du-gout/index.html" target="_blank" rel="noopener">Accueil</a></li>
+          <li><a href="la-mie-du-gout/espace-pro.html" target="_blank" rel="noopener">Espace Pro</a></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------ le CRM -->
+    <article class="carte">
+      <div class="vis"><img src="assets/crm-dashboard.jpg" alt="Aperçu du tableau de bord du CRM" loading="lazy" width="1440" height="900"></div>
+      <div class="corps">
+        <span class="etiq attente">Maquette · pour plus tard</span>
+        <h2>Le CRM<span>9 écrans cliquables</span></h2>
+        <p>L'outil qui regrouperait tout au même endroit : les chiffres de tes boutiques, les prévisions de vente selon la météo, les feuilles de production, les réponses aux avis Google et l'analyse de tes factures fournisseurs. Rien n'est développé à ce stade : c'est une maquette cliquable, faite pour que tu voies concrètement à quoi ça ressemblerait avant d'engager quoi que ce soit.</p>
+        <a class="btn" href="crm/index.html" target="_blank" rel="noopener">Ouvrir la maquette <span class="fl">→</span></a>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ------------------------------------------------------ bonus -->
+  <section class="bonus">
+    <div>
+      <span class="etiq">En bonus · offert</span>
+      <h2>Prendre <em>Claude</em> en main.</h2>
+      <p>Un guide court et concret pour te servir de l'intelligence artificielle au quotidien : répondre à tes avis Google, lire une facture prise en photo, écrire une annonce d'emploi. Neuf usages, avec les textes prêts à copier. Environ 25 minutes, et tu peux commencer sans rien installer.</p>
+    </div>
+    <a class="btn" href="cours-claude.html" target="_blank" rel="noopener">Ouvrir le guide <span class="fl">→</span></a>
+  </section>
+
+  <!-- --------------------------------------------------- bon a savoir -->
+  <section class="notes">
+    <h3>À savoir avant de regarder</h3>
+    <ul>
+      <li><b>Les formulaires ne partent pas encore par mail.</b> Contact, candidature, ouverture de compte pro : ils réagissent et vérifient bien ce qu'on saisit, mais l'envoi réel se branche le jour de la mise en ligne, avec tes vraies adresses.</li>
+      <li><b>Tous les chiffres du CRM sont inventés.</b> Chiffre d'affaires, marges, prévisions, prix des matières : ce sont des exemples plausibles, pas tes vrais chiffres. Ils servent uniquement à montrer la forme que ça prendrait.</li>
+      <li><b>Ce qu'il reste à compléter est signalé en pointillés dorés</b> directement sur les pages. Ce sont les informations que toi seul peux donner, par exemple ton adresse mail officielle dans les mentions légales.</li>
+      <li><b>Pense à regarder sur ton téléphone.</b> Tout a été conçu pour s'afficher aussi bien sur mobile que sur ordinateur, et la plupart de tes clients viendront du mobile.</li>
+    </ul>
+  </section>
+
+  <aside class="propriete">
+    <h4>Ces maquettes restent la propriété de Filigrane</h4>
+    <p>Le design, les textes et le code de ces pages ont été créés pour toi, mais ils appartiennent au studio jusqu'à la livraison du projet.</p>
+    <p>Ils te sont confiés pour que tu les regardes tranquillement et que tu me fasses tes retours. Merci de ne pas diffuser ce lien publiquement et de ne pas faire reproduire ces pages par quelqu'un d'autre. Les droits d'usage te sont cédés à la mise en ligne, comme prévu au devis.</p>
+  </aside>
+</main>
+
+<footer class="pied">
+  <div class="wrap">
+    <h4>Une question, une correction, une idée ?</h4>
+    <p>Note tout ce qui te passe par la tête pendant que tu regardes, même les petits détails. On fait le point quand tu veux.</p>
+    <div class="coord">
+      <a href="mailto:mehdi.mjid@icloud.com">mehdi.mjid@icloud.com</a>
+      <a href="tel:+33614092383">06 14 09 23 83</a>
+    </div>
+    <p class="sign">Maquettes réalisées par <em>Filigrane</em>, studio de création numérique. Page privée, non référencée.</p>
+  </div>
+</footer>
+
+</body>
+</html>

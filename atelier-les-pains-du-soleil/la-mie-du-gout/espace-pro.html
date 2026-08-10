@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace Pro · Commandez en ligne | La Mie du Goût</title>
+<meta name="description" content="Espace professionnel La Mie du Goût : commandez vos pains burger artisanaux en ligne 24h/24, consultez vos factures, vos tarifs et votre historique de commandes.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="canonical" href="https://www.lamiedugout.fr/espace-pro.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Espace Pro · La Mie du Goût">
+<meta property="og:description" content="Commandez vos pains burger artisanaux en ligne, 24h/24. Réservé aux professionnels.">
+<meta property="og:url" content="https://www.lamiedugout.fr/espace-pro.html">
+<meta property="og:image" content="https://www.lamiedugout.fr/assets/photos/burgers-trio.jpg">
+<link rel="icon" type="image/png" href="assets/logo/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Mouse+Memoirs&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --creme:#F5E6CA;
+  --papier:#FBF2DE;
+  --encre:#1B1410;
+  --rouge:#E8380D;
+  --rouge-fonce:#C42B08;
+  --cheddar:#FFC933;
+  --curcuma:#F0A70A;
+  --dore:#E9C58A;
+  --seiche:#221D18;
+  --b:3px solid var(--encre);
+  --shadow:8px 8px 0 var(--encre);
+  --shadow-s:5px 5px 0 var(--encre);
+  --font-title:'Anton', Impact, sans-serif;
+  --font-fun:'Mouse Memoirs', 'Arial Narrow', sans-serif;
+  --font-body:'Space Grotesk', 'Helvetica Neue', sans-serif;
+  --nav-h:66px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--font-body);background:var(--creme);color:var(--encre);line-height:1.55;overflow-x:hidden}
+::selection{background:var(--cheddar);color:var(--encre)}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{line-height:1;font-weight:400}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+
+/* NAV */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);
+  display:grid;grid-template-columns:auto 1fr repeat(4,auto);
+  background:var(--papier);border-bottom:var(--b);
+}
+.topbar>*{
+  display:flex;align-items:center;justify-content:center;
+  padding:0 26px;border-right:var(--b);text-decoration:none;
+  font-family:var(--font-fun);font-size:22px;letter-spacing:.05em;text-transform:uppercase;
+  white-space:nowrap;transition:background .15s,color .15s;
+}
+.topbar .brand{gap:12px;padding:0 18px}
+.topbar .brand img{height:46px;width:auto}
+.topbar .brand span{font-size:24px}
+.topbar .spacer{border-right:none;pointer-events:none}
+.topbar a.cell:hover{background:var(--cheddar)}
+.topbar a.cell.on{background:var(--encre);color:var(--papier)}
+.topbar a.cta{background:var(--rouge);color:var(--papier);border-right:none}
+.topbar a.cta:hover{background:var(--rouge-fonce)}
+.burger-btn{display:none;border:none;background:var(--papier);cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center;width:66px}
+.burger-btn span{display:block;width:28px;height:4px;background:var(--encre);transition:.25s}
+.mobile-menu{position:fixed;inset:var(--nav-h) 0 0 0;z-index:999;background:var(--creme);display:none;flex-direction:column}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-title);font-size:clamp(30px,8vw,54px);text-transform:uppercase;
+  text-decoration:none;border-bottom:var(--b);
+}
+.mobile-menu a:nth-child(odd){background:var(--papier)}
+.mobile-menu a.dark{background:var(--encre);color:var(--papier)}
+.mobile-menu a.red{background:var(--rouge);color:var(--papier)}
+@media(max-width:1080px){
+  .topbar{grid-template-columns:auto 1fr auto}
+  .topbar .cell,.topbar .cta{display:none}
+  .burger-btn{display:flex}
+  body.menu-open .burger-btn span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+  body.menu-open .burger-btn span:nth-child(2){opacity:0}
+  body.menu-open .burger-btn span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+}
+/* tres petits ecrans : meme reduction du bloc de marque que sur l'accueil */
+@media(max-width:350px){
+  .topbar .brand{padding:0 12px;gap:8px}
+  .topbar .brand img{height:36px}
+  .topbar .brand span{font-size:19px}
+  .burger-btn{width:56px}
+  .burger-btn span{width:25px}
+}
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 5vw}
+.btn{
+  display:inline-block;text-decoration:none;cursor:pointer;text-align:center;
+  font-family:var(--font-fun);font-size:clamp(20px,2vw,26px);text-transform:uppercase;letter-spacing:.06em;
+  padding:14px 30px;border:var(--b);box-shadow:var(--shadow-s);
+  transition:transform .15s,box-shadow .15s,background .15s;
+  background:var(--papier);color:var(--encre);
+}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--encre)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--encre)}
+.btn.red{background:var(--rouge);color:var(--papier)}
+.btn.dark{background:var(--encre);color:var(--papier)}
+.btn.yellow{background:var(--cheddar)}
+.sec-tag{
+  display:inline-block;font-family:var(--font-fun);font-size:clamp(18px,1.8vw,24px);
+  text-transform:uppercase;letter-spacing:.1em;background:var(--papier);color:var(--encre);
+  border:var(--b);box-shadow:var(--shadow-s);padding:4px 14px;margin-bottom:20px;transform:rotate(-1.5deg);
+}
+.sec-title{font-family:var(--font-title);font-size:clamp(38px,5.5vw,78px);text-transform:uppercase;line-height:.98}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* champs à compléter par le client */
+.acompleter{
+  background:rgba(255,201,51,.35);border:2px dashed var(--curcuma);
+  padding:1px 8px;font-weight:700;border-radius:3px;
+}
+
+/* HERO */
+.pro-hero{
+  padding:calc(var(--nav-h) + 70px) 5vw 70px;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+  border-bottom:var(--b);position:relative;overflow:hidden;
+}
+.pro-hero .kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-fun);font-size:clamp(18px,2vw,24px);text-transform:uppercase;letter-spacing:.08em;
+  background:var(--cheddar);border:var(--b);box-shadow:var(--shadow-s);
+  padding:6px 16px;margin-bottom:24px;transform:rotate(-2deg);
+}
+.pro-hero h1{
+  font-family:var(--font-title);font-size:clamp(46px,7vw,104px);
+  text-transform:uppercase;line-height:.94;margin-bottom:24px;
+}
+.pro-hero h1 .red{color:var(--rouge)}
+.pro-hero .sub{font-size:clamp(16px,1.5vw,20px);max-width:48ch;margin-bottom:30px}
+.pro-hero .sub strong{background:var(--cheddar);padding:0 6px}
+
+/* CARTE CONNEXION */
+.login-card{
+  background:var(--encre);color:var(--creme);border:var(--b);box-shadow:var(--shadow);
+  padding:34px 32px 36px;position:relative;
+}
+.login-card h2{
+  font-family:var(--font-title);font-size:clamp(28px,3vw,40px);text-transform:uppercase;
+  margin-bottom:8px;color:var(--cheddar);
+}
+.login-card .lead{font-size:15px;color:#EDE0C5;margin-bottom:26px}
+.login-card label{display:block;margin-bottom:16px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--cheddar)}
+.login-card input{
+  width:100%;margin-top:7px;padding:13px 14px;border:3px solid var(--creme);background:var(--papier);
+  color:var(--encre);font-family:var(--font-body);font-size:16px;outline:none;transition:box-shadow .15s;
+}
+.login-card input:focus{box-shadow:4px 4px 0 var(--cheddar)}
+.login-card .btn{display:block;width:100%;margin-top:8px;font-size:clamp(19px,1.9vw,24px)}
+.login-card .secure{
+  margin-top:18px;padding:12px 14px;border:2px dashed rgba(245,230,202,.4);
+  font-size:13.5px;color:#D8CBAE;line-height:1.6;display:flex;gap:10px;align-items:flex-start;
+}
+.login-card .help{margin-top:18px;font-size:14px;color:#C9BB9D;line-height:1.7}
+.login-card .help a{color:var(--cheddar)}
+.login-card .lock{
+  position:absolute;top:-20px;right:-16px;width:64px;height:64px;background:var(--cheddar);
+  border:var(--b);display:flex;align-items:center;justify-content:center;transform:rotate(6deg);
+  font-size:30px;
+}
+@media(max-width:900px){
+  .pro-hero{grid-template-columns:1fr;padding-top:calc(var(--nav-h) + 40px)}
+  .login-card .lock{display:none}
+}
+
+/* MARQUEE */
+.marquee{
+  overflow:hidden;background:var(--rouge);color:var(--papier);
+  border-bottom:var(--b);
+  font-family:var(--font-fun);text-transform:uppercase;letter-spacing:.06em;
+  font-size:clamp(20px,2.4vw,30px);padding:10px 0;
+}
+.marquee.yellow{background:var(--cheddar);color:var(--encre)}
+/* --shift = largeur d'UN groupe (posee en JS) et le JS clone assez de groupes
+   pour couvrir l'ecran : la bande ne se vide jamais en fin de cycle.
+   Sans JS, on retombe sur -50% et les deux groupes du HTML. */
+.marquee .track{
+  display:flex;width:max-content;
+  animation:scrollx var(--dur,24s) linear infinite;
+  will-change:transform;
+}
+.marquee .grp{display:flex;flex:none}
+.marquee .track span{display:inline-block;padding:0 18px;white-space:nowrap}
+@keyframes scrollx{
+  from{transform:translateX(0)}
+  to{transform:translateX(calc(var(--shift,50%) * -1))}
+}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none}}
+
+/* AVANTAGES */
+.avantages{padding:100px 0 90px}
+.av-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.av{
+  border:var(--b);background:var(--papier);box-shadow:var(--shadow-s);
+  padding:26px 24px 30px;transition:transform .18s,box-shadow .18s;
+}
+.av:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--encre)}
+.av .ico{font-size:38px;line-height:1;margin-bottom:14px}
+.av h3{font-family:var(--font-fun);font-size:25px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:9px}
+.av p{font-size:15px}
+.av:nth-child(2){background:var(--cheddar)}
+.av:nth-child(6){background:var(--dore)}
+@media(max-width:980px){.av-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.av-grid{grid-template-columns:1fr}}
+
+/* ETAPES */
+.etapes{background:var(--encre);color:var(--creme);padding:100px 0}
+.etapes .sec-tag{background:var(--encre);color:var(--creme);border-color:var(--creme);box-shadow:5px 5px 0 var(--rouge)}
+.et-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:50px;border:var(--b);border-color:var(--creme)}
+.et{padding:34px 30px 38px;border-right:3px solid var(--creme)}
+.et:last-child{border-right:none}
+.et .n{
+  font-family:var(--font-title);font-size:62px;color:transparent;
+  -webkit-text-stroke:2px var(--cheddar);line-height:1;margin-bottom:14px;
+}
+.et h3{font-family:var(--font-fun);font-size:26px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px;color:var(--cheddar)}
+.et p{font-size:15px;color:#EDE0C5}
+@media(max-width:900px){
+  .et-grid{grid-template-columns:1fr}
+  .et{border-right:none;border-bottom:3px solid var(--creme)}
+  .et:last-child{border-bottom:none}
+}
+
+/* DEMANDE DE COMPTE */
+.demande{background:var(--rouge);color:var(--papier);border-top:var(--b);padding:100px 0}
+.demande .cols{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.demande .sec-title{color:var(--papier)}
+.demande .pitch{font-size:clamp(16px,1.5vw,20px);margin-top:24px;max-width:46ch}
+.demande .pitch strong{background:var(--encre);padding:0 8px}
+.demande .direct{margin-top:30px;font-family:var(--font-fun);font-size:23px;text-transform:uppercase;letter-spacing:.04em;line-height:1.5}
+.demande .direct a{color:var(--cheddar);text-decoration:none;border-bottom:3px solid var(--cheddar)}
+.form-card{background:var(--papier);color:var(--encre);border:var(--b);box-shadow:var(--shadow);padding:32px 30px}
+.form-card .note{
+  font-family:var(--font-fun);font-size:20px;text-transform:uppercase;letter-spacing:.06em;
+  background:var(--cheddar);border:var(--b);display:inline-block;padding:2px 12px;margin-bottom:22px;transform:rotate(-1deg);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.form-card label{display:block;margin-bottom:15px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.form-card input,.form-card textarea,.form-card select{
+  width:100%;margin-top:6px;padding:12px 14px;border:var(--b);background:#fff;
+  font-family:var(--font-body);font-size:16px;outline:none;transition:box-shadow .15s;
+}
+.form-card input:focus,.form-card textarea:focus,.form-card select:focus{box-shadow:4px 4px 0 var(--cheddar)}
+.form-card textarea{resize:vertical;min-height:84px}
+.form-card .btn{width:100%;margin-top:6px}
+.form-card .sent{display:none;margin-top:16px;font-weight:700;background:var(--cheddar);border:var(--b);padding:10px 14px}
+.form-card .rgpd{margin-top:14px;font-size:12.5px;line-height:1.6;opacity:.75}
+@media(max-width:900px){.demande .cols{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq{padding:100px 0}
+.faq-item{border:var(--b);background:var(--papier);margin-bottom:14px;box-shadow:var(--shadow-s)}
+.faq-item summary{
+  list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:18px 22px;font-family:var(--font-fun);font-size:clamp(20px,2vw,26px);text-transform:uppercase;letter-spacing:.03em;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary .pl{font-family:var(--font-title);font-size:26px;transition:transform .25s;flex:none}
+.faq-item[open] summary .pl{transform:rotate(45deg)}
+.faq-item[open] summary{background:var(--cheddar)}
+.faq-item .a{padding:18px 22px;border-top:var(--b);font-size:16px;max-width:78ch}
+
+/* FOOTER */
+footer{background:var(--encre);color:var(--creme);border-top:var(--b)}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.2fr}
+.foot-grid>div{padding:44px 34px;border-right:2px solid rgba(245,230,202,.2)}
+.foot-grid>div:last-child{border-right:none}
+.foot-grid h4{font-family:var(--font-fun);font-size:22px;text-transform:uppercase;letter-spacing:.08em;color:var(--cheddar);margin-bottom:16px}
+.foot-grid p,.foot-grid a{font-size:15px;color:#EDE0C5;text-decoration:none;line-height:1.9}
+.foot-grid a:hover{color:var(--cheddar)}
+.foot-logo img{width:150px;background:var(--papier);border:var(--b);padding:10px;transform:rotate(-2deg);box-shadow:6px 6px 0 rgba(245,230,202,.25)}
+.foot-bottom{
+  border-top:2px solid rgba(245,230,202,.2);padding:18px 5vw;display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:space-between;font-size:13px;color:#B9AB8D;
+}
+@media(max-width:980px){.foot-grid{grid-template-columns:1fr 1fr}.foot-grid>div{border-bottom:2px solid rgba(245,230,202,.2)}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand" aria-label="La Mie du Goût, accueil">
+    <img src="assets/logo/logo-officiel.png" alt="La Mie du Goût, la Tradition du Bon">
+    <span>La Mie du Goût.</span>
+  </a>
+  <div class="spacer"></div>
+  <a class="cell" href="index.html#gamme">La gamme.</a>
+  <a class="cell" href="index.html#specs">Les specs.</a>
+  <a class="cell on" href="espace-pro.html">Espace Pro.</a>
+  <a class="cta" href="index.html#echantillon">Échantillon gratuit.</a>
+  <button class="burger-btn" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<nav class="mobile-menu" aria-label="Menu mobile">
+  <a href="index.html#gamme">La gamme.</a>
+  <a href="index.html#specs">Les specs.</a>
+  <a href="index.html#artisan">L'artisan.</a>
+  <a href="espace-pro.html" class="dark">Espace Pro.</a>
+  <a href="index.html#echantillon" class="red">Échantillon gratuit.</a>
+</nav>
+
+<main>
+
+<!-- HERO + CONNEXION -->
+<section class="pro-hero">
+  <div>
+    <span class="kicker">✶ Clients professionnels ✶</span>
+    <h1>Votre espace<br><span class="red">commandes</span>.</h1>
+    <p class="sub">
+      Vos pains burger, commandés <strong>quand vous voulez</strong>, depuis votre téléphone
+      ou votre ordinateur. Fini les appels à 6 h du matin et les commandes oubliées :
+      votre commande part directement en production.
+    </p>
+    <p style="font-size:15px;max-width:46ch">
+      Vous n'avez pas encore de compte ? Descendez un peu, on vous ouvre ça en deux minutes.
+    </p>
+  </div>
+
+  <!--
+    Pas de champs identifiant/mot de passe ici : la saisie doit se faire sur la
+    plateforme de commande elle-même, jamais sur cette page. Relayer les mots de
+    passe des clients depuis notre site serait à la fois fragile et dangereux.
+    Ce bloc est donc une porte d'entrée qui redirige, pas un formulaire.
+  -->
+  <div class="login-card">
+    <div class="lock" aria-hidden="true">🔒</div>
+    <h2>Je me connecte</h2>
+    <p class="lead">
+      Vous êtes déjà client ? Accédez à votre espace de commande avec le numéro de client
+      et le mot de passe qui vous ont été communiqués.
+    </p>
+    <a class="btn yellow" id="loginBtn" href="#ouvrir-compte">Accéder à mon espace de commande →</a>
+    <p class="secure">
+      <span aria-hidden="true">🛡️</span>
+      Connexion sécurisée sur notre plateforme de commande. Vos identifiants ne
+      transitent jamais par ce site.
+    </p>
+    <p class="help">
+      Identifiants perdus, ou envie de commander par téléphone ?
+      Appelez le <a href="tel:+33614671859">06 14 67 18 59</a>
+      ou écrivez à <a href="mailto:contact@lamiedugout.fr">contact@lamiedugout.fr</a>.
+      On répond vite.
+    </p>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <div class="grp"><span>Commande 24h/24 ✶</span><span>Commandes récurrentes ✶</span><span>Historique et factures ✶</span><span>Tarifs personnalisés ✶</span><span>Réservé aux pros ✶</span></div>
+    <div class="grp"><span>Commande 24h/24 ✶</span><span>Commandes récurrentes ✶</span><span>Historique et factures ✶</span><span>Tarifs personnalisés ✶</span><span>Réservé aux pros ✶</span></div>
+  </div>
+</div>
+
+<!-- AVANTAGES -->
+<section class="avantages">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-tag">Ce que vous pouvez faire</span>
+      <h2 class="sec-title">Votre compte, votre carnet de commandes.</h2>
+    </div>
+    <div class="av-grid">
+      <article class="av reveal">
+        <div class="ico" aria-hidden="true">🕐</div>
+        <h3>Commander 24h/24</h3>
+        <p>Passez votre commande le soir après le service, le dimanche, quand ça vous arrange. Plus besoin d'attendre l'ouverture du fournil.</p>
+      </article>
+      <article class="av reveal">
+        <div class="ico" aria-hidden="true">🔁</div>
+        <h3>Commandes récurrentes</h3>
+        <p>Vous prenez la même chose chaque semaine ? Enregistrez votre commande type, elle se reproduit toute seule. Vous n'y touchez que si ça change.</p>
+      </article>
+      <article class="av reveal">
+        <div class="ico" aria-hidden="true">📖</div>
+        <h3>Tout votre historique</h3>
+        <p>Retrouvez ce que vous avez commandé, quand, et en quelle quantité. Pratique pour ajuster vos volumes d'un mois sur l'autre.</p>
+      </article>
+      <article class="av reveal">
+        <div class="ico" aria-hidden="true">🧾</div>
+        <h3>Vos factures en ligne</h3>
+        <p>Toutes vos factures consultables depuis votre compte. Votre comptable vous dira merci, et vous ne les chercherez plus dans un tiroir.</p>
+      </article>
+      <article class="av reveal">
+        <div class="ico" aria-hidden="true">🏷️</div>
+        <h3>Vos tarifs à vous</h3>
+        <p>Vos prix négociés s'appliquent automatiquement. Vous voyez ce que vous payez, sans avoir à ressortir le dernier devis.</p>
+      </article>
+      <article class="av reveal">
+        <div class="ico" aria-hidden="true">📦</div>
+        <h3>Signaler un écart</h3>
+        <p>Une palette incomplète, un sachet manquant ? Signalez la différence de livraison directement depuis votre espace, c'est tracé.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPES -->
+<section class="etapes" id="fonctionnement">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-tag">Comment ça marche</span>
+      <h2 class="sec-title">Trois étapes, et c'est réglé.</h2>
+    </div>
+    <div class="et-grid reveal">
+      <div class="et">
+        <div class="n">01</div>
+        <h3>On ouvre votre compte</h3>
+        <p>Vous remplissez la demande ci-dessous. On vous rappelle, on cale vos tarifs et vos jours de livraison, et on vous envoie vos identifiants.</p>
+      </div>
+      <div class="et">
+        <div class="n">02</div>
+        <h3>Vous commandez</h3>
+        <p>Vous vous connectez, vous choisissez vos goûts et vos formats, vous validez. Avant <span class="acompleter">[heure limite à confirmer]</span> pour une livraison le lendemain.</p>
+      </div>
+      <div class="et">
+        <div class="n">03</div>
+        <h3>On produit et on livre</h3>
+        <p>Votre commande part directement sur la liste de production du fournil. Les pains sont fabriqués, conditionnés, et livrés <span class="acompleter">[jours et zones à confirmer]</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMANDE DE COMPTE -->
+<section class="demande" id="ouvrir-compte">
+  <div class="wrap cols">
+    <div class="reveal">
+      <span class="sec-tag">Nouveau client</span>
+      <h2 class="sec-title">Ouvrez votre compte pro.</h2>
+      <p class="pitch">
+        Restaurant, fast-food, food truck, brasserie, traiteur : dites-nous qui vous êtes,
+        on revient vers vous <strong>sous 48 h ouvrées</strong> avec vos tarifs et vos identifiants.
+        Et on en profite pour vous envoyer un échantillon gratuit.
+      </p>
+      <p class="direct">
+        Vous préférez le téléphone ?<br>
+        <a href="tel:+33614671859">06 14 67 18 59</a>
+      </p>
+    </div>
+
+    <form class="form-card reveal" id="compteForm" novalidate>
+      <span class="note">Réservé aux professionnels</span>
+      <div class="form-row">
+        <label>Établissement *
+          <input type="text" name="etablissement" required autocomplete="organization" placeholder="Nom commercial">
+        </label>
+        <label>Type d'établissement *
+          <select name="type" required>
+            <option value="">Choisissez...</option>
+            <option>Restaurant</option>
+            <option>Fast-food / snack</option>
+            <option>Food truck</option>
+            <option>Brasserie / bar</option>
+            <option>Traiteur</option>
+            <option>Collectivité</option>
+            <option>Autre</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>Votre nom *
+          <input type="text" name="nom" required autocomplete="name" placeholder="Prénom Nom">
+        </label>
+        <label>Votre fonction
+          <input type="text" name="fonction" placeholder="Gérant, chef, acheteur...">
+        </label>
+      </div>
+      <div class="form-row">
+        <label>Téléphone *
+          <input type="tel" name="tel" required autocomplete="tel" placeholder="06 12 34 56 78">
+        </label>
+        <label>Email *
+          <input type="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr">
+        </label>
+      </div>
+      <label>Adresse de livraison *
+        <input type="text" name="adresse" required autocomplete="street-address" placeholder="N° et rue">
+      </label>
+      <div class="form-row">
+        <label>Code postal *
+          <input type="text" name="cp" required autocomplete="postal-code" placeholder="66000">
+        </label>
+        <label>Ville *
+          <input type="text" name="ville" required autocomplete="address-level2" placeholder="Perpignan">
+        </label>
+      </div>
+      <div class="form-row">
+        <label>SIRET
+          <input type="text" name="siret" placeholder="Facultatif, accélère l'ouverture">
+        </label>
+        <label>Volume estimé / semaine
+          <input type="text" name="volume" placeholder="ex : 200 pains">
+        </label>
+      </div>
+      <label>Vos besoins (goûts, formats, fréquence)
+        <textarea name="message" placeholder="ex : sésame 125 mm et nature 104 mm, livraison les mardis et vendredis"></textarea>
+      </label>
+      <button type="submit" class="btn red">Demander l'ouverture de mon compte</button>
+      <p class="sent" id="sentMsg">Merci ! Votre messagerie va s'ouvrir pour envoyer la demande. Sinon, écrivez-nous à contact@lamiedugout.fr</p>
+      <p class="rgpd">
+        Les informations transmises servent uniquement à traiter votre demande d'ouverture de compte.
+        Elles ne sont ni revendues ni cédées. Vous pouvez demander leur suppression à tout moment
+        en écrivant à contact@lamiedugout.fr.
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-tag">Questions de pros</span>
+      <h2 class="sec-title">Ce qu'on nous demande le plus.</h2>
+    </div>
+
+    <details class="faq-item reveal">
+      <summary>Qui peut ouvrir un compte ? <span class="pl">+</span></summary>
+      <div class="a">L'espace pro est réservé aux professionnels de la restauration : restaurants, fast-foods, food trucks, brasseries, traiteurs et collectivités. Nous ne vendons pas aux particuliers.</div>
+    </details>
+
+    <details class="faq-item reveal">
+      <summary>Y a-t-il une commande minimum ? <span class="pl">+</span></summary>
+      <div class="a">Le minimum de commande est de <span class="acompleter">[à confirmer avec Raphaël]</span>. En dessous, on trouve toujours une solution : appelez-nous, on s'arrange.</div>
+    </details>
+
+    <details class="faq-item reveal">
+      <summary>Jusqu'à quand puis-je commander pour être livré demain ? <span class="pl">+</span></summary>
+      <div class="a">Toute commande passée avant <span class="acompleter">[heure limite à confirmer]</span> part en production pour une livraison le lendemain. Passé cette heure, elle bascule sur la tournée suivante.</div>
+    </details>
+
+    <details class="faq-item reveal">
+      <summary>Quelles zones livrez-vous ? <span class="pl">+</span></summary>
+      <div class="a">Nous livrons <span class="acompleter">[zones et jours de tournée à confirmer]</span>. Vous êtes en limite de zone ? Demandez quand même, on regarde au cas par cas.</div>
+    </details>
+
+    <details class="faq-item reveal">
+      <summary>Puis-je modifier ou annuler une commande ? <span class="pl">+</span></summary>
+      <div class="a">Tant que la commande n'est pas partie en production, vous pouvez la corriger depuis votre espace. Ensuite, un coup de fil au 06 14 67 18 59 et on voit ce qui est encore possible.</div>
+    </details>
+
+    <details class="faq-item reveal">
+      <summary>Comment se passe la facturation ? <span class="pl">+</span></summary>
+      <div class="a">Vos factures sont consultables directement depuis votre espace, avec vos tarifs négociés. Les conditions de règlement sont définies à l'ouverture du compte : <span class="acompleter">[conditions à confirmer]</span>.</div>
+    </details>
+
+    <details class="faq-item reveal">
+      <summary>Je peux tester avant de m'engager ? <span class="pl">+</span></summary>
+      <div class="a">Évidemment. On vous envoie un sachet de pains fraîchement préparés, gratuitement et sans engagement. Demandez votre <a href="index.html#echantillon" style="border-bottom:3px solid var(--rouge)">échantillon gratuit</a>, puis on ouvre le compte si le pain vous plaît.</div>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-logo">
+      <img src="assets/logo/logo-officiel.png" alt="La Mie du Goût, la Tradition du Bon" loading="lazy">
+      <p style="margin-top:18px">Pains burger artisanaux pour les professionnels. La Tradition du Bon, depuis le Pays Catalan.</p>
+    </div>
+    <div>
+      <h4>Adresse</h4>
+      <p>Boulevard Jacques Albert<br>66200 Elne<br>Pyrénées-Orientales</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>
+        <a href="tel:+33614671859">06 14 67 18 59</a><br>
+        <a href="mailto:contact@lamiedugout.fr">contact@lamiedugout.fr</a>
+      </p>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <p>
+        <a href="index.html">Accueil</a><br>
+        <a href="index.html#gamme">La gamme</a><br>
+        <a href="index.html#specs">Les spécifications</a><br>
+        <a href="espace-pro.html">Espace Pro</a><br>
+        <a href="index.html#echantillon">Échantillon gratuit</a>
+      </p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© <span id="year">2026</span> La Mie du Goût · Tous droits réservés</span>
+    <span>Pain burger artisanal · Réservé aux professionnels</span>
+  </div>
+</footer>
+
+<script>
+/* MENU MOBILE */
+(function(){
+  var btn = document.querySelector('.burger-btn');
+  var menu = document.querySelector('.mobile-menu');
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    document.body.classList.toggle('menu-open', open);
+    btn.setAttribute('aria-expanded', open);
+  });
+})();
+
+/* ANCRE : les polices et images décalent la mise en page, on rejoue le saut */
+(function(){
+  if(!location.hash) return;
+  var jump = function(){
+    var t = document.querySelector(location.hash);
+    if(t) t.scrollIntoView();
+  };
+  window.addEventListener('load', function(){ setTimeout(jump, 60); });
+})();
+
+/* REVEALS */
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+
+/* MARQUEE (boucle sans trou) */
+(function(){
+  var bandes = [].slice.call(document.querySelectorAll('.marquee'));
+  if(!bandes.length) return;
+  var VITESSE = 72; /* px par seconde */
+  var occupe = false;
+
+  function caler(m){
+    var track = m.querySelector('.track');
+    var grp = m._grp;
+    if(!track || !grp || occupe) return;
+    var w = grp.getBoundingClientRect().width;
+    var dispo = m.clientWidth;
+    /* tant qu'on ne peut pas mesurer (onglet masque, fontes en vol), on ne
+       touche a rien : le HTML garde ses 2 groupes et le repli CSS -50% */
+    if(!w || !dispo) return;
+    /* la piste se decale au maximum d'un groupe : il en faut assez pour
+       couvrir un ecran EN PLUS de ce decalage, sinon trou en fin de cycle */
+    var n = Math.max(2, Math.ceil(dispo / w) + 1);
+    occupe = true;
+    while(track.children.length > n) track.removeChild(track.lastElementChild);
+    while(track.children.length < n) track.appendChild(grp.cloneNode(true));
+    track.style.setProperty('--shift', w.toFixed(2) + 'px');
+    track.style.setProperty('--dur', Math.max(8, w / VITESSE).toFixed(2) + 's');
+    occupe = false;
+  }
+
+  bandes.forEach(function(m){
+    var t = m.querySelector('.track');
+    m._grp = t ? t.querySelector('.grp') : null;
+    if(!m._grp) return;
+    caler(m);
+    /* couvre le chargement des fontes Google, le resize et le zoom */
+    if(window.ResizeObserver){
+      var ro = new ResizeObserver(function(){ caler(m); });
+      ro.observe(m._grp);
+      ro.observe(m);
+    }
+  });
+
+  function calerTout(){ bandes.forEach(caler); }
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(calerTout);
+  if(!window.ResizeObserver){
+    var tempo;
+    addEventListener('resize', function(){
+      clearTimeout(tempo);
+      tempo = setTimeout(calerTout, 200);
+    });
+  }
+})();
+
+/* ------------------------------------------------------------------
+   CONNEXION : redirection, jamais de relais d'identifiants
+   ------------------------------------------------------------------
+   Le portail de commande réel est fourni par Aurore Solution
+   (module « Aurore Commande Web B2B »). Le client saisit ses
+   identifiants SUR LEUR PLATEFORME, pas sur cette page.
+
+   Pourquoi : leur portail est une application WEBDEV à état, avec le
+   jeton de session dans l'URL et des noms de champs obfusqués (A7, A10)
+   qui changent à chaque recompilation. Rejouer leur formulaire depuis
+   notre site serait fragile, cassé au premier update, bloqué par CORS,
+   et surtout ferait transiter les mots de passe des clients chez nous.
+
+   À FAIRE : coller ci-dessous l'URL du portail une fois le module
+   activé par Raphaël, par exemple :
+   var PORTAIL_AURORE = 'https://lamiedugout.pcscloud.net/AuroreB2B';
+   Tant que la valeur est vide, le bouton renvoie vers l'ouverture de compte.
+   ------------------------------------------------------------------ */
+var PORTAIL_AURORE = '';
+
+(function(){
+  var btn = document.getElementById('loginBtn');
+  if(PORTAIL_AURORE){
+    btn.setAttribute('href', PORTAIL_AURORE);
+    btn.setAttribute('target', '_blank');
+    btn.setAttribute('rel', 'noopener');
+    return;
+  }
+  btn.addEventListener('click', function(ev){
+    ev.preventDefault();
+    alert("L'espace de commande en ligne ouvre très bientôt.\n\nEn attendant, passez commande au 06 14 67 18 59 ou à contact@lamiedugout.fr.\n\nPas encore de compte ? On vous ouvre ça juste en dessous.");
+    document.getElementById('ouvrir-compte').scrollIntoView({behavior:'smooth'});
+  });
+})();
+
+/* DEMANDE DE COMPTE (mailto) */
+(function(){
+  var form = document.getElementById('compteForm');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if(!form.reportValidity()) return;
+    var d = new FormData(form);
+    var body = [
+      'Bonjour,','',
+      "Je souhaite ouvrir un compte professionnel chez La Mie du Goût.",'',
+      'Établissement : ' + d.get('etablissement'),
+      "Type : " + d.get('type'),
+      'Contact : ' + d.get('nom') + (d.get('fonction') ? ' (' + d.get('fonction') + ')' : ''),
+      'Téléphone : ' + d.get('tel'),
+      'Email : ' + d.get('email'),
+      'Adresse de livraison : ' + d.get('adresse') + ', ' + d.get('cp') + ' ' + d.get('ville'),
+      'SIRET : ' + (d.get('siret') || 'Non communiqué'),
+      'Volume estimé par semaine : ' + (d.get('volume') || 'Non précisé'),
+      '','Besoins :', d.get('message') || 'Non précisé',
+      '','Envoyé depuis lamiedugout.fr / Espace Pro'
+    ].join('\n');
+    var url = 'mailto:contact@lamiedugout.fr?subject=' +
+      encodeURIComponent('Ouverture de compte pro · ' + d.get('etablissement')) +
+      '&body=' + encodeURIComponent(body);
+    document.getElementById('sentMsg').style.display = 'block';
+    location.href = url;
+  });
+})();
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

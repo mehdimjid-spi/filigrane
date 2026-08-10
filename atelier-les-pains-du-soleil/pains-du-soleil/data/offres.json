@@ -1,0 +1,26 @@
+{
+  "offres": [
+    {
+      "id": "boulanger-perpignan",
+      "titre": "Boulanger (H/F)",
+      "boutique": "Perpignan, Halles Vauban",
+      "contrat": "CDI",
+      "temps": "Temps plein",
+      "description": "Vous préparez et cuisez sur place nos pains au levain naturel, nos baguettes de tradition et notre pain-signature le Soleillou. Vous travaillez en équipe, dans un fournil neuf, avec des produits que nous choisissons avec soin.",
+      "profil": "CAP Boulanger ou expérience équivalente. Rigueur, ponctualité et goût du travail bien fait. Débutant motivé accepté, nous formons volontiers.",
+      "publiee": true,
+      "date": "2026-07-30"
+    },
+    {
+      "id": "vendeur-cabestany",
+      "titre": "Vendeur en boulangerie (H/F)",
+      "boutique": "Cabestany",
+      "contrat": "CDI",
+      "temps": "Temps partiel",
+      "description": "Vous accueillez nos clients, conseillez sur nos pains et nos viennoiseries, préparez les commandes et participez à la mise en valeur de la vitrine. Vous êtes le premier sourire de la maison.",
+      "profil": "Sens du contact, sourire et dynamisme. Une première expérience en vente ou en restauration est un plus, mais votre motivation compte davantage.",
+      "publiee": true,
+      "date": "2026-07-30"
+    }
+  ]
+}

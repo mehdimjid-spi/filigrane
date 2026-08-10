@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prendre Claude en main · guide pour la boulangerie</title>
+<meta name="description" content="Guide pratique pour utiliser Claude au quotidien dans une boulangerie.">
+<meta name="theme-color" content="#1A1714">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#1A1714; --encre-doux:#4A4239; --ivoire:#FBF7F0; --papier:#FFFDF9;
+  --or:#C8912E; --or-clair:#E3BC72; --or-pale:#FFF6E4; --ligne:rgba(26,23,20,.12);
+  --vert:#3E7C4F; --rouge:#B3261E;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+body{
+  margin:0; background:var(--ivoire); color:var(--encre);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block}
+a{color:var(--or)}
+.wrap{width:100%; max-width:820px; margin:0 auto; padding:0 24px}
+
+/* ---------------------------------------------------------------- en-tete */
+.top{padding:34px 0 0}
+.retour{
+  display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+  font-size:14px; font-weight:500; color:var(--encre-doux);
+}
+.retour:hover{color:var(--or)}
+.marque{
+  margin-top:26px;
+  font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:500;
+  font-size:24px; line-height:1;
+}
+.marque .f{color:var(--or)}
+.marque small{
+  display:block; font-family:'Inter',sans-serif; font-style:normal; font-weight:500;
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--encre-doux); margin-top:8px;
+}
+
+/* ------------------------------------------------------------------- hero */
+.hero{padding:46px 0 40px; border-bottom:1px solid var(--ligne)}
+.hero h1{
+  font-family:'Playfair Display',Georgia,serif; font-weight:600;
+  font-size:clamp(32px,6.4vw,52px); line-height:1.1; letter-spacing:-.015em; margin:0 0 20px;
+}
+.hero h1 em{font-style:italic; color:var(--or)}
+.hero p{color:var(--encre-doux); margin:0 0 16px}
+.duree{
+  display:inline-flex; align-items:center; gap:9px; margin-top:8px;
+  padding:10px 18px; border:1px solid var(--ligne); border-radius:999px;
+  background:var(--papier); font-size:14px; color:var(--encre-doux);
+}
+.duree .pt{width:8px; height:8px; border-radius:50%; background:var(--or); flex:none}
+
+/* --------------------------------------------------------------- sommaire */
+.sommaire{margin:38px 0 0; padding:26px 28px; background:var(--papier);
+  border:1px solid var(--ligne); border-radius:16px}
+.sommaire h2{font-family:'Inter',sans-serif; font-size:11px; font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--encre-doux); margin:0 0 16px}
+.sommaire ol{margin:0; padding:0; list-style:none; counter-reset:s}
+.sommaire li{counter-increment:s; margin-bottom:9px}
+.sommaire li:last-child{margin-bottom:0}
+.sommaire a{
+  display:flex; gap:14px; text-decoration:none; color:var(--encre);
+  font-size:15.5px; font-weight:500;
+}
+.sommaire a::before{
+  content:counter(s); flex:none; width:24px; color:var(--or);
+  font-variant-numeric:tabular-nums; font-weight:600;
+}
+.sommaire a:hover{color:var(--or)}
+
+/* ---------------------------------------------------------------- chapitre */
+.chap{padding:56px 0 0}
+.chap-num{
+  font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--or); margin-bottom:10px;
+}
+.chap h2{
+  font-family:'Playfair Display',Georgia,serif; font-weight:600;
+  font-size:clamp(26px,4.2vw,36px); line-height:1.16; margin:0 0 20px;
+}
+.chap h2 em{font-style:italic; color:var(--or)}
+.chap h3{
+  font-family:'Inter',sans-serif; font-size:18px; font-weight:600;
+  margin:32px 0 12px;
+}
+.chap p{margin:0 0 16px; color:var(--encre-doux)}
+.chap p strong, .chap li strong{color:var(--encre); font-weight:600}
+.chap ul{margin:0 0 16px; padding-left:0; list-style:none}
+.chap ul li{position:relative; padding-left:26px; margin-bottom:10px; color:var(--encre-doux)}
+.chap ul li::before{
+  content:""; position:absolute; left:5px; top:.68em;
+  width:7px; height:7px; border-radius:50%; background:var(--or-clair);
+}
+
+/* ------------------------------------------------------------- comparaison */
+.duo{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:22px 0}
+.duo .col{border:1px solid var(--ligne); border-radius:14px; padding:20px 22px; background:var(--papier)}
+.duo .col.mauvais{border-left:3px solid var(--rouge)}
+.duo .col.bon{border-left:3px solid var(--vert)}
+.duo .lbl{
+  font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  margin-bottom:10px;
+}
+.duo .mauvais .lbl{color:var(--rouge)}
+.duo .bon .lbl{color:var(--vert)}
+.duo p{margin:0; font-size:14.5px; color:var(--encre-doux)}
+.duo p+p{margin-top:10px}
+
+/* ------------------------------------------------------------------ usage */
+.usages{display:grid; gap:18px; margin-top:26px}
+.usage{background:var(--papier); border:1px solid var(--ligne); border-radius:16px; overflow:hidden}
+.usage-tete{padding:22px 24px 0}
+.usage h3{margin:0 0 6px; font-size:18.5px}
+.usage-quand{font-size:14px; color:var(--encre-doux); margin:0 0 16px}
+
+/* ------------------------------------------------------------------ bloc a copier */
+.copie{position:relative; margin:0; background:#221D18; color:#F2EAD9}
+.copie pre{
+  margin:0; padding:22px 24px 22px; overflow-x:auto;
+  font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:13.5px; line-height:1.62; white-space:pre-wrap; word-break:break-word;
+}
+.copie .btn-copie{
+  position:absolute; top:12px; right:12px;
+  background:rgba(255,255,255,.10); color:#F2EAD9; border:1px solid rgba(255,255,255,.20);
+  border-radius:8px; padding:7px 13px; font-family:'Inter',sans-serif;
+  font-size:12.5px; font-weight:600; cursor:pointer;
+  transition:background .18s ease, color .18s ease, border-color .18s ease;
+}
+.copie .btn-copie:hover{background:var(--or); color:#1A1714; border-color:var(--or)}
+.copie .btn-copie.ok{background:var(--vert); border-color:var(--vert); color:#fff}
+.a-remplir{color:var(--or-clair)}
+
+/* ----------------------------------------------------------------- encart */
+.encart{
+  margin:26px 0; padding:24px 28px; border-radius:16px;
+  background:var(--or-pale); border:1px solid var(--or-clair);
+}
+.encart.rouge{background:#FCEDEB; border-color:#F0C4BE}
+.encart h3{margin:0 0 10px; font-size:17px}
+.encart p{margin:0; color:var(--encre-doux); font-size:15.5px}
+.encart p+p{margin-top:10px}
+.encart ul{margin:12px 0 0}
+
+/* ----------------------------------------------------------------- etapes */
+.etapes{counter-reset:e; margin:22px 0 0; padding:0; list-style:none}
+.etapes li{
+  counter-increment:e; position:relative; padding-left:52px; margin-bottom:20px;
+  color:var(--encre-doux);
+}
+.etapes li::before{
+  content:counter(e); position:absolute; left:0; top:-2px;
+  width:34px; height:34px; border-radius:50%; background:var(--encre); color:var(--ivoire);
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px; font-weight:600;
+}
+.etapes li b{display:block; color:var(--encre); margin-bottom:3px}
+
+/* ----------------------------------------------------------------- footer */
+.pied{margin-top:70px; padding:40px 0 60px; border-top:1px solid var(--ligne)}
+.pied h4{font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:21px; margin:0 0 10px}
+.pied p{color:var(--encre-doux); margin:0 0 20px; font-size:15.5px; max-width:52ch}
+.coord{display:flex; flex-wrap:wrap; gap:10px}
+.coord a{
+  text-decoration:none; color:var(--encre); font-weight:500; font-size:15px;
+  border:1px solid var(--ligne); border-radius:999px; padding:11px 20px; background:var(--papier);
+}
+.coord a:hover{border-color:var(--or-clair); background:var(--or-pale)}
+.sign{margin-top:32px; padding-top:20px; border-top:1px solid var(--ligne);
+  font-size:13px; color:var(--encre-doux)}
+.sign em{font-family:'Playfair Display',Georgia,serif; font-style:italic; color:var(--encre)}
+
+/* ------------------------------------------------------------- responsive */
+@media (max-width:660px){
+  body{font-size:16px}
+  .wrap{padding:0 20px}
+  .duo{grid-template-columns:1fr}
+  .copie pre{font-size:12.5px; padding:52px 18px 20px}
+  .copie .btn-copie{top:10px; right:10px}
+  .sommaire{padding:22px 20px}
+  .encart{padding:20px 22px}
+  .coord a{flex:1 1 100%; text-align:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="retour" href="index.html">← Revenir au sommaire</a>
+    <div class="marque"><span class="f">F</span>iligrane<small>Studio de création numérique</small></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Prendre <em>Claude</em> en main.</h1>
+    <p>Raphaël, ce guide sert à une seule chose : que tu gagnes du temps dès cette semaine. Pas de théorie sur l'intelligence artificielle, uniquement ce qui sert dans une boulangerie.</p>
+    <p>Tu peux le lire d'une traite, ou piocher directement le chapitre qui t'intéresse. Tous les textes en cadre noir se copient d'un clic et se collent tels quels dans Claude.</p>
+    <div class="duree"><span class="pt"></span> Environ 25 minutes de lecture, et tu peux commencer sans rien installer.</div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <nav class="sommaire" aria-label="Sommaire">
+    <h2>Au sommaire</h2>
+    <ol>
+      <li><a href="#c1">Ce qu'il sait faire</a></li>
+      <li><a href="#c2">Fluidifier ce que tu as déjà</a></li>
+      <li><a href="#c3">La règle qui change tout</a></li>
+      <li><a href="#c4">Neuf usages pour tes boutiques</a></li>
+      <li><a href="#c5">Ton projet, pour ne plus jamais te répéter</a></li>
+      <li><a href="#c6">Les cinq réflexes à garder</a></li>
+      <li><a href="#c7">Tes trois exercices de la semaine</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============================================================ 1 -->
+  <section class="chap" id="c1">
+    <div class="chap-num">Chapitre 1</div>
+    <h2>Ce qu'il <em>sait faire</em>.</h2>
+    <p>Claude est un assistant qui lit, écrit, cherche et analyse. Tu lui parles normalement, comme à quelqu'un d'un peu plus rapide que toi sur le clavier. Voilà les sept choses qu'il fait le mieux, et qui te concernent directement.</p>
+
+    <ul>
+      <li><strong>Rédiger.</strong> Une réponse à un avis, une annonce d'emploi, un mail à un fournisseur, une légende Instagram. C'est là qu'il est le plus fort.</li>
+      <li><strong>Lire ce que tu lui donnes.</strong> Une facture photographiée, un contrat en PDF, dix candidatures d'un coup. Il te sort l'essentiel en quelques secondes.</li>
+      <li><strong>Chercher sur le web.</strong> Il va vérifier une information en ligne et te donne ses sources, pour que tu puisses cliquer et contrôler toi-même.</li>
+      <li><strong>Comparer et calculer.</strong> Deux devis fournisseurs, trois mois de prix sur le beurre, deux mois de chiffres. Il repère les écarts que tu n'aurais pas vus.</li>
+      <li><strong>Trier et ranger.</strong> Tu lui donnes du désordre, il te rend une liste claire. Des CV, des notes de fin de journée, une boîte mail en vrac.</li>
+      <li><strong>Reformuler.</strong> Ton message écrit vite entre deux fournées devient un message propre, sans changer ce que tu voulais dire.</li>
+      <li><strong>Traduire.</strong> Un mail d'un fournisseur étranger, une réponse à un client anglais ou espagnol de passage. Et il garde ton ton, pas celui d'un traducteur automatique.</li>
+    </ul>
+
+    <div class="encart">
+      <h3>La seule chose à comprendre pour bien démarrer</h3>
+      <p>Il est brillant, mais <strong>amnésique</strong>. À chaque nouvelle conversation il repart de zéro : il ne sait plus qui tu es, ni combien tu as de boutiques, ni comment tu parles à tes clients.</p>
+      <p>C'est exactement le problème que règle le chapitre 5, une fois pour toutes.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ 2 -->
+  <section class="chap" id="c2">
+    <div class="chap-num">Chapitre 2</div>
+    <h2>Fluidifier ce que tu as <em>déjà</em>.</h2>
+    <p>Tu as déjà un compte Team et l'application sur ton Mac, donc on saute la partie installation. Deux choses valent le détour : régler le ralentissement, et prendre le bon réflexe sur le téléphone.</p>
+
+    <h3>Si l'application rame sur ton Mac</h3>
+    <p>Dans la quasi-totalité des cas, ce n'est pas la machine, c'est <strong>la longueur de la conversation</strong>. Plus un échange s'allonge, plus il devient lourd à afficher et long à traiter, parce que tout l'historique est relu à chaque message.</p>
+
+    <ol class="etapes">
+      <li><b>Ouvre une conversation par sujet.</b> C'est le remède principal. Une pour les avis Google, une pour les factures du mois, une pour le recrutement. Pas une seule conversation géante où tout s'empile depuis des semaines.</li>
+      <li><b>Referme et repars à neuf quand un sujet est réglé.</b> Rien ne se perd, tout reste dans ton historique. Et si le contexte compte, c'est le projet du chapitre 5 qui le porte, pas la conversation.</li>
+      <li><b>Si ça rame encore, ouvre claude.ai dans ton navigateur</b> et compare. Si c'est fluide là, le souci vient de l'application et tu peux simplement travailler dans le navigateur. Si c'est lent aussi, c'est que la conversation est trop longue : reviens au point 1.</li>
+    </ol>
+
+    <div class="encart">
+      <h3>Le geste qui vaut le plus, et il est sur ton téléphone</h3>
+      <p>Si tu ne dois retenir qu'une chose de ce chapitre : installe aussi l'application sur ton téléphone, et prends l'habitude de <strong>photographier</strong> plutôt que de retaper.</p>
+      <p>Une facture, une fiche technique, une note manuscrite, un écran de caisse : tu envoies la photo dans la conversation et tu poses ta question dessus. Tu peux photographier une facture au fournil et l'avoir dépouillée avant d'avoir remonté l'escalier. C'est là que tu gagnes le plus de temps, bien plus que devant l'ordinateur.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ 3 -->
+  <section class="chap" id="c3">
+    <div class="chap-num">Chapitre 3</div>
+    <h2>La règle qui <em>change tout</em>.</h2>
+    <p>Il n'y a qu'une seule chose à retenir de tout ce guide : <strong>la qualité de ce que tu reçois dépend de la matière que tu donnes.</strong> La plupart des gens sont déçus parce qu'ils demandent trop peu.</p>
+
+    <div class="duo">
+      <div class="col mauvais">
+        <div class="lbl">Ce qui donne un résultat plat</div>
+        <p>« Écris-moi une annonce pour recruter un boulanger. »</p>
+        <p>Résultat : une annonce générique qui pourrait être celle de n'importe quelle boulangerie de France. Tu ne l'utiliseras pas.</p>
+      </div>
+      <div class="col bon">
+        <div class="lbl">Ce qui donne un résultat utilisable</div>
+        <p>« Je cherche un boulanger en CDI temps plein pour ma boutique des Halles Vauban à Perpignan. Fournil neuf, levain naturel, cuisson sur place, tout est fait maison. Équipe jeune. Débutant motivé accepté, on forme. Écris une annonce chaleureuse, tutoiement, 200 mots maximum. »</p>
+      </div>
+    </div>
+
+    <h3>Les quatre ingrédients d'une bonne demande</h3>
+    <ul>
+      <li><strong>Le contexte</strong> : qui tu es, quelle boutique, quelle situation.</li>
+      <li><strong>La matière</strong> : le texte de l'avis, la photo de la facture, les chiffres réels.</li>
+      <li><strong>Le résultat attendu</strong> : un mail, une annonce, un tableau, trois propositions.</li>
+      <li><strong>Les contraintes</strong> : la longueur, le ton, le vouvoiement ou le tutoiement.</li>
+    </ul>
+
+    <h3>Et surtout : réponds-lui</h3>
+    <p>Ce n'est pas un distributeur, c'est une conversation. Si la première version ne va pas, dis-le simplement : « trop long », « trop commercial », « refais avec plus de chaleur », « garde le deuxième paragraphe et change le reste ». La deuxième version est presque toujours la bonne.</p>
+  </section>
+
+  <!-- ============================================================ 4 -->
+  <section class="chap" id="c4">
+    <div class="chap-num">Chapitre 4</div>
+    <h2>Neuf usages pour <em>tes boutiques</em>.</h2>
+    <p>Chaque cadre noir se copie d'un clic. Les passages <span class="a-remplir">en doré</span> sont à remplacer par ta situation du jour.</p>
+
+    <div class="usages">
+
+      <!-- 1 -->
+      <article class="usage">
+        <div class="usage-tete">
+          <h3>1. Répondre à un avis Google</h3>
+          <p class="usage-quand">Le plus rentable de tous. Répondre à tous ses avis fait remonter une fiche, et les clients lisent les réponses autant que les avis.</p>
+        </div>
+        <div class="copie">
+          <button class="btn-copie" type="button">Copier</button>
+          <pre>Tu es le gérant des Pains du Soleil, boulangerie artisanale à Perpignan,
+Saint-Estève et Cabestany. Tout est fait maison, levain naturel, cuisson
+sur place. Ton chaleureux, jamais commercial, jamais de formule toute faite.
+
+Voici un avis Google reçu sur la boutique de PERPIGNAN :
+
+"COLLE ICI LE TEXTE EXACT DE L'AVIS"
+
+Note donnée : ★ SUR 5
+
+Écris une réponse publique de 3 ou 4 phrases maximum.
+Si l'avis est négatif : reconnais le problème sans te justifier, dis ce que
+tu vas faire, propose de me contacter directement. Jamais de "nous sommes
+désolés que vous ayez ressenti".
+Si l'avis est positif : remercie sincèrement, rebondis sur un détail précis
+de son message, sans en faire trop.
+
+Propose-moi deux versions, une courte et une un peu plus longue.</pre>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="usage">
+        <div class="usage-tete">
+          <h3>2. Lire une facture fournisseur et repérer les hausses</h3>
+          <p class="usage-quand">Photographie la facture avec ton téléphone, envoie l'image dans la conversation, puis colle ce texte.</p>
+        </div>
+        <div class="copie">
+          <button class="btn-copie" type="button">Copier</button>
+          <pre>Voici la photo d'une facture fournisseur.
+
+1. Reprends chaque ligne dans un tableau : produit, quantité, prix unitaire
+   hors taxes, total de la ligne.
+2. Vérifie que la somme des lignes correspond bien au total de la facture.
+   Si ça ne tombe pas juste, dis-le moi clairement, ne corrige pas tout seul.
+3. Donne-moi le total hors taxes, la TVA et le total à payer.
+4. Signale-moi tout ce qui te paraît anormal : une remise disparue, une
+   quantité qui ne colle pas, un prix arrondi bizarrement.
+
+Ne devine rien. Si un chiffre est illisible sur la photo, écris "illisible"
+plutôt que d'inventer.</pre>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="usage">
+        <div class="usage-tete">
+          <h3>3. Comparer deux prix sur trois mois</h3>
+          <p class="usage-quand">Envoie plusieurs photos de factures du même fournisseur, prises à des dates différentes.</p>
+        </div>
+        <div class="copie">
+          <button class="btn-copie" type="button">Copier</button>
+          <pre>Voici trois factures du même fournisseur, prises à trois mois différents.
+
+Compare produit par produit le prix unitaire hors taxes.
+Donne-moi un tableau avec : produit, prix du mois 1, du mois 2, du mois 3,
+et la variation en pourcentage entre le premier et le dernier.
+
+Classe du plus fort au plus faible et dis-moi en une phrase sur quels
+produits je devrais aller renégocier en priorité.</pre>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="usage">
+        <div class="usage-tete">
+          <h3>4. Rédiger une offre d'emploi</h3>
+          <p class="usage-quand">Le texte obtenu se colle directement dans ton espace d'administration du site.</p>
+        </div>
+        <div class="copie">
+          <button class="btn-copie" type="button">Copier</button>
+          <pre>Je recrute un(e) POSTE en CONTRAT, TEMPS DE TRAVAIL,
+pour ma boutique de BOUTIQUE.
+
+Ce qu'on offre : fournil neuf, levain naturel, cuisson sur place, 100 % fait
+maison, équipe jeune et soudée, une maison qui monte (passage à La Meilleure
+Boulangerie de France sur M6).
+Profil : PROFIL RECHERCHÉ. Débutant motivé accepté, on forme.
+
+Écris-moi :
+1. Un titre de poste court.
+2. Un paragraphe "Le poste" de 3 phrases.
+3. Un paragraphe "Le profil" de 2 phrases.
+
+Ton chaleureux et direct, vouvoiement, pas de jargon RH, pas de "rejoignez
+une équipe dynamique". Parle du métier, pas de l'entreprise.</pre>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="usage">
+        <div class="usage-tete">
+          <h3>5. Trier les candidatures reçues</h3>
+          <p class="usage-quand">Envoie les CV reçus par mail dans la conversation, en pièces jointes.</p>
+        </div>
+        <div class="copie">
+          <button class="btn-copie" type="button">Copier</button>
+          <pre>Voici plusieurs CV reçus pour un poste de POSTE à BOUTIQUE.
+
+Fais-moi un tableau : prénom, années d'expérience en boulangerie, diplôme,
+dernier employeur, distance approximative si l'adresse est indiquée.
+
+Ajoute une colonne "à voir en premier" avec oui ou non, et une phrase qui
+explique pourquoi.
+
+Ne juge pas la personne, juge seulement l'adéquation avec le poste. Si une
+information manque sur un CV, écris "non précisé".</pre>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="usage">
+        <div class="usage-tete">
+          <h3>6. Écrire un post Instagram</h3>
+          <p class="usage-quand">Envoie la photo du produit, puis colle ce texte. Tu auras plusieurs propositions d'un coup.</p>
+        </div>
+        <div class="copie">
+          <button class="btn-copie" type="button">Copier</button>
+          <pre>Voici la photo d'un produit qu'on vient de sortir : NOM DU PRODUIT.
+
+Écris trois légendes Instagram différentes pour Les Pains du Soleil :
+- une courte et gourmande, deux lignes maximum,
+- une qui raconte le geste de fabrication,
+- une qui donne envie de passer aujourd'hui.
+
+Tutoiement, ton chaleureux et solaire, un peu catalan mais sans folklore.
+Pas plus de deux émojis par légende. Termine chacune par 5 hashtags
+pertinents et locaux.</pre>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="usage">
+        <div class="usage-tete">
+          <h3>7. Répondre à un client professionnel</h3>
+          <p class="usage-quand">Pour La Mie du Goût, quand un restaurateur demande un tarif ou un échantillon.</p>
+        </div>
+        <div class="copie">
+          <button class="btn-copie" type="button">Copier</button>
+          <pre>Je fabrique des pains burger artisanaux pour les professionnels sous la
+marque La Mie du Goût : 4 goûts (nature, sésame, curcuma, encre de seiche),
+2 formats (104 et 125 mm), sans conservateurs, sous vide et gaz neutre,
+21 jours de DLUO, 24 à 48 h après ouverture, filière Agri-Éthique.
+
+Un professionnel m'écrit ceci :
+
+"COLLE ICI SON MESSAGE"
+
+Écris ma réponse par mail. Vouvoiement, professionnel mais chaleureux, court.
+Réponds précisément à sa question, propose l'envoi d'un échantillon gratuit,
+et termine en demandant le seul renseignement qui me manque pour avancer.
+
+N'invente aucun prix ni aucun délai de livraison : si c'est nécessaire,
+laisse un blanc que je remplirai.</pre>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="usage">
+        <div class="usage-tete">
+          <h3>8. Vérifier une information avant de t'engager</h3>
+          <p class="usage-quand">Là, il va vraiment chercher en ligne. Utile avant de signer avec un fournisseur que tu ne connais pas, ou quand tu as un doute sur une règle.</p>
+        </div>
+        <div class="copie">
+          <button class="btn-copie" type="button">Copier</button>
+          <pre>Cherche sur le web avant de me répondre, et donne-moi tes sources avec
+les liens pour que je puisse vérifier moi-même.
+
+MA QUESTION : COLLE ICI TA QUESTION
+
+Réponds en trois parties :
+1. La réponse courte, en deux phrases, sans jargon.
+2. Ce sur quoi elle repose, avec les liens.
+3. Ce dont tu n'es pas certain, ou ce qui a pu changer récemment.
+
+Si tes sources se contredisent, dis-le moi au lieu de trancher à ma place.
+Si tu ne trouves pas, dis "je n'ai pas trouvé" plutôt que de deviner.</pre>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="usage">
+        <div class="usage-tete">
+          <h3>9. Vider ta tête en fin de journée</h3>
+          <p class="usage-quand">Celui qu'on sous-estime. Tu dictes en vrac, tu récupères une liste claire.</p>
+        </div>
+        <div class="copie">
+          <button class="btn-copie" type="button">Copier</button>
+          <pre>Je te dicte en vrac tout ce que j'ai en tête après ma journée. C'est
+désordonné, il y aura des répétitions.
+
+Range tout ça en trois listes :
+- à faire demain sans faute,
+- à faire cette semaine,
+- à ne pas oublier un jour.
+
+Pour chaque point, une ligne, un verbe à l'infinitif au début. Si quelque
+chose n'est pas clair, pose-moi la question au lieu de deviner.
+
+Voici : COLLE OU DICTE ICI</pre>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ 5 -->
+  <section class="chap" id="c5">
+    <div class="chap-num">Chapitre 5</div>
+    <h2>Ton projet, pour ne plus <em>te répéter</em>.</h2>
+    <p>Souviens-toi du stagiaire amnésique. Le remède s'appelle un <strong>Projet</strong> : un espace où tu écris une bonne fois pour toutes qui tu es, et où Claude s'en souvient dans toutes les conversations que tu y ouvres.</p>
+    <p>Avec ton offre Team, tu peux en créer autant que tu veux. Tu n'en as besoin que d'un pour commencer.</p>
+
+    <ol class="etapes">
+      <li><b>Dans Claude, clique sur « Projets », puis sur « Nouveau projet »</b> et appelle-le « Les Pains du Soleil ».</li>
+      <li><b>Ouvre les instructions du projet</b> et colle le texte ci-dessous.</li>
+      <li><b>Complète les quelques trous</b> qui te concernent, et corrige tout ce qui ne serait plus à jour.</li>
+      <li><b>Ouvre désormais toutes tes conversations depuis ce projet.</b> Tu n'auras plus jamais à réexpliquer qui tu es.</li>
+    </ol>
+
+    <div class="copie" style="margin-top:26px;border-radius:16px">
+      <button class="btn-copie" type="button">Copier les instructions</button>
+      <pre>QUI JE SUIS
+Je m'appelle Raphaël Bonneau, je suis boulanger et je dirige Les Pains du
+Soleil, une maison familiale de boulangeries artisanales dans les
+Pyrénées-Orientales. J'ai aussi une activité de pains burger pour les
+professionnels sous la marque La Mie du Goût.
+
+MES BOUTIQUES
+- Perpignan, 37 quai Sébastien Vauban, aux Halles Vauban
+- Saint-Estève, 46 avenue de Rivesaltes
+- Cabestany, 1 rue Ambroise Croizat
+
+CE QUI FAIT LA MAISON
+Levain naturel, cuisson sur place, 100 % fait maison. Notre signature
+s'appelle le Soleillou. Nos autres créations : La Ruche, Le Rayon d'Or,
+l'Albercoc. Notre baseline est "l'Artisan de vos Envies". Nous sommes passés
+dans La Meilleure Boulangerie de France sur M6.
+
+COMMENT JE VEUX QUE TU M'AIDES
+- Tu me tutoies, je te tutoie.
+- Tu écris simplement. Pas de jargon, pas de mots à la mode, pas de
+  superlatifs. Je suis boulanger, pas communicant.
+- Quand tu écris pour mes clients : chaleureux, direct, jamais commercial.
+- N'utilise JAMAIS de tiret cadratin (le trait long "—") dans tes textes.
+  Utilise une virgule, un point, deux points, ou le séparateur "·".
+- Si tu as besoin d'une information que je ne t'ai pas donnée, demande-la.
+  N'invente jamais un chiffre, un prix, un horaire ou une date.
+- Quand tu n'es pas sûr, dis-le franchement plutôt que de broder.
+- Propose-moi toujours deux versions quand il s'agit d'un texte public.
+
+CE QUE TU NE FAIS PAS
+Tu ne publies rien et tu n'envoies rien. Tu prépares, je relis, je décide.</pre>
+    </div>
+
+    <div class="encart">
+      <h3>Astuce</h3>
+      <p>Tu peux aussi déposer des fichiers dans le projet : ta carte des produits, tes horaires, un modèle de contrat. Claude s'en servira automatiquement au lieu de te poser la question à chaque fois.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ 6 -->
+  <section class="chap" id="c6">
+    <div class="chap-num">Chapitre 6</div>
+    <h2>Les cinq réflexes à <em>garder</em>.</h2>
+
+    <ol class="etapes">
+      <li><b>Tu relis toujours avant de publier.</b> Un avis Google, un post, une annonce : c'est ta maison qui parle, pas une machine. Rien ne sort sans que tu l'aies lu.</li>
+      <li><b>Tu vérifies les chiffres.</b> C'est le point faible. Sur une facture, refais l'addition. Sur un pourcentage, garde ton bon sens de commerçant.</li>
+      <li><b>Tu ne colles pas de données personnelles.</b> Pas de coordonnées de salariés, pas de bulletins de paie, pas de fichier clients. Un CV pour un tri ponctuel, oui. Toute ta base, non.</li>
+      <li><b>Tu te méfies des textes venus de l'extérieur.</b> Si tu colles un mail ou un avis d'inconnu, considère que c'est de la matière à lire, pas des consignes à suivre. Claude peut se laisser embarquer par un texte qui lui donne des ordres.</li>
+      <li><b>Tu lui dis quand c'est raté.</b> « Non, c'est trop lisse », « tu inventes », « reprends ». C'est comme ça qu'on obtient le bon résultat, et ça ne vexe personne.</li>
+    </ol>
+
+    <div class="encart rouge">
+      <h3>Le seul vrai piège</h3>
+      <p>C'est quand la réponse est <strong>bien écrite mais fausse</strong>. Un texte fluide et sûr de lui donne envie d'y croire. Sur tout ce qui est chiffré, daté ou juridique, vérifie systématiquement. Sur tout ce qui est rédactionnel, fie-toi à ton oreille : si ça ne te ressemble pas, ça ne passera pas non plus auprès de tes clients.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ 7 -->
+  <section class="chap" id="c7">
+    <div class="chap-num">Chapitre 7</div>
+    <h2>Tes trois exercices de la <em>semaine</em>.</h2>
+    <p>Trois quarts d'heure en tout, étalés sur la semaine. C'est ce qui fait la différence entre avoir lu un guide et savoir s'en servir.</p>
+
+    <ol class="etapes">
+      <li><b>Lundi : crée ton projet.</b> L'application sur ton téléphone, un projet « Les Pains du Soleil », et les instructions du chapitre 5 collées dedans. Un quart d'heure, une fois pour toutes.</li>
+      <li><b>Mercredi : réponds à cinq avis Google.</b> Prends-en cinq que tu n'as jamais traités, dont au moins un négatif. Utilise le premier usage du chapitre 4. Chronomètre-toi, tu vas être surpris.</li>
+      <li><b>Vendredi : photographie ta plus grosse facture de la semaine.</b> Demande-lui le tableau et la vérification du total. Regarde s'il repère quelque chose que tu n'avais pas vu.</li>
+    </ol>
+
+    <div class="encart">
+      <h3>Après ça</h3>
+      <p>Si au bout de deux semaines tu ouvres Claude sans y penser, c'est gagné. Si tu l'as oublié, c'est que le moment n'était pas le bon, et ce n'est pas grave : le guide reste ici et ne bougera pas.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="wrap">
+    <h4>Une question sur un point du guide ?</h4>
+    <p>Appelle-moi, on le fait ensemble en direct. C'est souvent plus rapide que d'écrire.</p>
+    <div class="coord">
+      <a href="mailto:mehdi.mjid@icloud.com">mehdi.mjid@icloud.com</a>
+      <a href="tel:+33614092383">06 14 09 23 83</a>
+    </div>
+    <p class="sign">Guide rédigé par <em>Filigrane</em>, studio de création numérique. Page privée, non référencée.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  document.querySelectorAll('.btn-copie').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var texte = btn.parentElement.querySelector('pre').textContent;
+      var initial = btn.textContent;
+      function confirme(){
+        btn.textContent = 'Copié';
+        btn.classList.add('ok');
+        setTimeout(function(){ btn.textContent = initial; btn.classList.remove('ok'); }, 1800);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texte).then(confirme, repli);
+      } else { repli(); }
+      function repli(){
+        /* navigateurs anciens ou page ouverte sans HTTPS */
+        var z = document.createElement('textarea');
+        z.value = texte;
+        z.setAttribute('readonly', '');
+        z.style.position = 'fixed';
+        z.style.left = '-9999px';
+        document.body.appendChild(z);
+        z.select();
+        try { document.execCommand('copy'); confirme(); }
+        catch (e) { btn.textContent = 'Copie manuelle'; setTimeout(function(){ btn.textContent = initial; }, 2200); }
+        document.body.removeChild(z);
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

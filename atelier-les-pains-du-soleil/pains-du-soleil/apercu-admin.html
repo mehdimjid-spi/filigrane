@@ -1,0 +1,147 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Aperçu · Espace admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#F3E9D7;--cream:#FCF7EC;--paper:#FFFDF8;--ink:#241C12;--ink-soft:#6E6455;--line:#E2D4BC;
+  --or:#C98A1E;--or-deep:#A5700F;--or-bright:#E8A83A;--miel:#EAB94F;--noir:#1C150D;
+  --vert:#3F6224;--vert-bg:#EAF3E2;--rouge:#9C2C21;--rouge-bg:#FBE9E7;
+  --disp:"Bricolage Grotesque",system-ui,sans-serif;--body:"Instrument Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--disp);font-weight:500;letter-spacing:-.02em;margin:0;line-height:1.1}
+a{color:var(--or-deep)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+.topbar{background:var(--noir);color:var(--sand);padding:16px 0}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.topbar .brand{display:flex;align-items:center;gap:12px;font-family:var(--disp);font-size:1.1rem}
+.topbar .brand .soleil{width:38px;height:38px;object-fit:contain;flex:none;filter:drop-shadow(0 0 14px rgba(232,168,58,.35))}
+.topbar .brand small{display:block;font-family:var(--body);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--miel)}
+.topbar form{margin:0}
+
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--body);font-weight:600;font-size:.88rem;
+  padding:11px 20px;border-radius:100px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;
+  transition:transform .25s var(--ease),background .25s,box-shadow .25s}
+.btn-gold{color:var(--noir);background:linear-gradient(135deg,var(--miel),var(--or-bright) 60%,var(--or));
+  box-shadow:0 6px 18px rgba(201,138,30,.3)}
+.btn-gold:hover{transform:translateY(-2px)}
+.btn-ghost{color:var(--ink);border-color:var(--line);background:var(--paper)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-light{color:var(--noir);background:var(--sand)}
+.btn-sm{padding:8px 15px;font-size:.8rem}
+.btn-danger{color:var(--rouge);background:var(--rouge-bg);border-color:#F2C9C3}
+
+.page{padding:38px 0 70px}
+.entete{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:26px}
+.entete h1{font-size:clamp(1.7rem,3.4vw,2.4rem)}
+.entete p{color:var(--ink-soft);font-size:.95rem;margin:.4em 0 0}
+
+.msg{border-radius:12px;padding:13px 16px;font-weight:600;font-size:.9rem;margin-bottom:20px}
+.msg.ok{background:var(--vert-bg);color:var(--vert);border:1px solid #CBE0B8}
+.msg.err{background:var(--rouge-bg);color:var(--rouge);border:1px solid #F2C9C3}
+
+.carte{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:16px}
+.carte h2{font-size:1.3rem;margin-bottom:16px}
+
+.champ{margin-bottom:15px}
+.champ label{display:block;font-weight:600;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--or-deep);margin-bottom:6px}
+.champ input[type=text],.champ input[type=password],.champ select,.champ textarea{
+  width:100%;background:var(--sand);border:1px solid var(--line);border-radius:11px;padding:12px 14px;
+  font-family:var(--body);font-size:16px;color:var(--ink)}
+.champ textarea{min-height:100px;resize:vertical}
+.champ input:focus,.champ select:focus,.champ textarea:focus{outline:2px solid var(--or);outline-offset:1px}
+.champ .aide{font-size:.78rem;color:var(--ink-soft);margin-top:5px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.bascule{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.9rem;cursor:pointer}
+.bascule input{width:19px;height:19px;accent-color:var(--or)}
+
+.liste{display:grid;gap:12px}
+.item{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.item.off{opacity:.62;background:var(--cream)}
+.item h3{font-size:1.15rem}
+.item .meta{color:var(--ink-soft);font-size:.86rem;margin-top:3px}
+.item .actions{display:flex;gap:8px;flex-wrap:wrap}
+.item form{margin:0}
+.badge{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:4px 10px;border-radius:100px;margin-left:8px;vertical-align:middle}
+.badge.on{background:var(--vert-bg);color:var(--vert)}
+.badge.off{background:#EFE7D6;color:var(--ink-soft)}
+.vide{background:var(--cream);border:1px dashed var(--line);border-radius:16px;padding:34px;text-align:center;color:var(--ink-soft)}
+
+.connexion{max-width:430px;margin:9vh auto;padding:0 20px}
+.connexion .carte{padding:32px;text-align:center}
+.connexion .carte form{text-align:left}
+.connexion .soleil-login{width:74px;height:auto;margin:0 auto 16px;display:block}
+.connexion h1{font-size:1.65rem;margin-bottom:.3em}
+.connexion p.sous{color:var(--ink-soft);font-size:.92rem;margin:0 0 22px}
+.connexion .btn{width:100%;justify-content:center;margin-top:6px}
+.retour{display:block;text-align:center;margin-top:20px;font-size:.85rem;color:var(--ink-soft)}
+@media(max-width:640px){.duo{grid-template-columns:1fr}.item{flex-direction:column}}
+
+.sep-apercu{max-width:960px;margin:0 auto;padding:34px 20px 6px;font-family:var(--body);font-size:.7rem;
+letter-spacing:.18em;text-transform:uppercase;color:var(--or-deep);font-weight:700}
+</style></head><body>
+<p class="sep-apercu">Écran 1 · la toute première fois (clé exigée)</p>
+<div class="connexion"><div class="carte">
+  <img class="soleil-login" src="assets/logo/soleil-logo.png" alt="Les Pains du Soleil">
+  <h1>Bienvenue</h1>
+  <p class="sous">Première connexion : saisissez la clé d'installation qui vous a été remise, puis choisissez votre mot de passe.</p>
+  <form onsubmit="return false">
+  <div class="champ"><label>Clé d'installation</label>
+    <input type="text" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" style="letter-spacing:.08em">
+    <p class="aide">Elle vous a été communiquée par votre prestataire. Elle n'est demandée que cette fois.</p></div>
+  <div class="champ"><label>Mot de passe</label><input type="password" placeholder="••••••••••">
+    <p class="aide">10 caractères minimum. Notez-le en lieu sûr, il n'est pas récupérable.</p></div>
+  <div class="champ"><label>Confirmer le mot de passe</label><input type="password" placeholder="••••••••••"></div>
+  <button class="btn btn-gold" type="button">Créer mon accès</button></form>
+</div></div>
+
+<p class="sep-apercu">Écran 2 · toutes les fois suivantes</p>
+<div class="connexion"><div class="carte">
+  <img class="soleil-login" src="assets/logo/soleil-logo.png" alt="Les Pains du Soleil">
+  <h1>Espace admin</h1>
+  <p class="sous">Gestion des offres d'emploi des Pains du Soleil.</p>
+  <form onsubmit="return false"><div class="champ"><label>Mot de passe</label><input type="password" placeholder="••••••••••"></div>
+  <button class="btn btn-gold" type="button">Se connecter</button></form>
+</div></div>
+
+<p class="sep-apercu">Écran 3 · une fois connecté</p>
+<header class="topbar"><div class="wrap">
+  <div class="brand"><img class="soleil" src="assets/logo/soleil-logo.png" alt=""><span>Les Pains du Soleil<small>Espace admin</small></span></div>
+  <button class="btn btn-light btn-sm">Se déconnecter</button></div></header>
+<div class="page"><div class="wrap">
+  <div class="entete"><div><h1>Offres d'emploi</h1>
+    <p>Ce que vous publiez ici apparaît aussitôt sur la page Recrutement du site.</p></div>
+    <a class="btn btn-ghost btn-sm" href="recrutement.html" target="_blank">Voir la page ↗</a></div>
+  <div class="carte"><h2>Nouvelle offre</h2>
+    <div class="champ"><label>Intitulé du poste *</label><input type="text" placeholder="Boulanger (H/F)"></div>
+    <div class="duo"><div class="champ"><label>Boutique</label><input type="text" placeholder="Perpignan, Halles Vauban"></div>
+    <div class="champ"><label>Type de contrat</label><select><option>CDI</option><option>CDD</option></select></div></div>
+    <div class="champ"><label>Temps de travail</label><select><option>Temps plein</option></select></div>
+    <div class="champ"><label>Le poste</label><textarea placeholder="Décrivez les missions au quotidien."></textarea></div>
+    <div class="champ"><label class="bascule"><input type="checkbox" checked><span>Visible sur le site</span></label></div>
+    <button class="btn btn-gold" type="button">Publier l'offre</button></div>
+  <h2 style="margin:30px 0 14px;font-size:1.2rem">Offres enregistrées <span style="color:var(--ink-soft);font-family:var(--body);font-size:.85rem">(2)</span></h2>
+  <div class="liste">
+      <div class="item ">
+        <div><h3>Boulanger (H/F) <span class="badge on">En ligne</span></h3>
+        <p class="meta">Perpignan, Halles Vauban · CDI · Temps plein · créée le 30/07/2026</p></div>
+        <div class="actions"><a class="btn btn-ghost btn-sm" href="#">Modifier</a>
+        <button class="btn btn-ghost btn-sm">Masquer</button>
+        <button class="btn btn-danger btn-sm">Supprimer</button></div>
+      </div>
+      <div class="item ">
+        <div><h3>Vendeur en boulangerie (H/F) <span class="badge on">En ligne</span></h3>
+        <p class="meta">Cabestany · CDI · Temps partiel · créée le 30/07/2026</p></div>
+        <div class="actions"><a class="btn btn-ghost btn-sm" href="#">Modifier</a>
+        <button class="btn btn-ghost btn-sm">Masquer</button>
+        <button class="btn btn-danger btn-sm">Supprimer</button></div>
+      </div>
+  </div>
+</div></div></body></html>
