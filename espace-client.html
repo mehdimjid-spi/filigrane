@@ -291,6 +291,62 @@
     margin-top:16px; font-size:13.5px; line-height:1.7; color:var(--slate);
   }
 
+  /* devis modulaire : prestations à cocher */
+  .dv-intro{ margin:16px 0 4px; font-size:15px; line-height:1.7; color:var(--ivory-dim); }
+  .lots{ display:flex; flex-direction:column; gap:12px; margin:16px 0 4px; }
+  .lot{
+    position:relative; display:flex; gap:14px; align-items:flex-start;
+    padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+    cursor:pointer; background:rgba(10,9,16,.35);
+    transition:border-color .3s, opacity .3s, background .3s;
+  }
+  .lot:hover{ border-color:rgba(212,169,78,.45); }
+  .lot input{ position:absolute; opacity:0; width:1px; height:1px; }
+  .lot input:focus-visible ~ .lot-box{ outline:2px solid var(--gold); outline-offset:3px; }
+  .lot-box{
+    flex:none; width:20px; height:20px; margin-top:2px; border-radius:5px;
+    border:1px solid rgba(212,169,78,.55);
+    display:flex; align-items:center; justify-content:center;
+    transition:background .25s, border-color .25s;
+  }
+  .lot-box::after{
+    content:''; width:9px; height:5px; margin-top:-2px;
+    border-left:2px solid #181203; border-bottom:2px solid #181203;
+    transform:rotate(-45deg); opacity:0; transition:opacity .2s;
+  }
+  .lot.on .lot-box{ background:var(--gold); border-color:var(--gold); }
+  .lot.on .lot-box::after{ opacity:1; }
+  .maint-opt .lot-box{ border-radius:50%; }
+  .lot.off{ opacity:.52; }
+  .lot.off:hover{ opacity:.8; }
+  .lot.locked{ cursor:default; }
+  .lot.locked:hover{ border-color:var(--line); }
+  .lot.locked.off{ opacity:.35; }
+  .lot-main{ flex:1; min-width:0; }
+  .lot-head{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .lot-code{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    font-size:15px; color:var(--gold-soft); min-width:22px;
+  }
+  .lot-titre{ font-family:var(--font-display); font-weight:500; font-size:18.5px; color:var(--ivory); flex:1; }
+  .lot-prix{ font-variant-numeric:tabular-nums; font-size:16px; color:var(--gold-soft); white-space:nowrap; }
+  .lot-details{ list-style:none; margin:8px 0 0; padding:0; }
+  .lot-details li{
+    font-size:14px; line-height:1.65; color:var(--ivory-dim);
+    padding-left:16px; position:relative;
+  }
+  .lot-details li::before{ content:'·'; position:absolute; left:2px; color:var(--gold-soft); }
+  .dv-remise{
+    display:flex; justify-content:flex-end; align-items:baseline; gap:22px;
+    padding:16px 0 0; font-size:16px; color:var(--gold-soft); font-variant-numeric:tabular-nums;
+  }
+  .dv-remise .lbl{ font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--ivory-dim); }
+  .dv-acompte{ text-align:right; font-size:13.5px; line-height:1.7; color:var(--ivory-dim); margin-top:4px; }
+  .dv-acompte b{ color:var(--gold-soft); font-weight:600; font-variant-numeric:tabular-nums; }
+  .dv-count{ font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--slate); margin-top:12px; }
+  .maint{ margin-top:24px; padding-top:20px; border-top:1px solid var(--line); }
+  .maint h5{ font-family:var(--font-display); font-weight:500; font-size:18px; margin:0 0 12px; color:var(--ivory); }
+
   /* zone signature */
   .dv-sign{ margin-top:26px; padding-top:24px; border-top:1px solid var(--line); }
   .dv-sign h4{
@@ -456,8 +512,8 @@
      (fichier local) et coller ici le bloc généré.
      ============================================================ */
   var VAULT = [
-    {v:1,salt:"O8Z4fJHckih4p1HQb3qEZQ==",iv:"p3QKS0AS71L/+8xH",ct:"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"},
-    {v:1,salt:"we9zwn9RHSYYpiY+hjv9lA==",iv:"Rm0utzfOavNJXKjQ",ct:"JZXlYrWD8uNEdNnoFzfJNxUSI/z5fhTrC8kvhsEaf6dUgOh0Z+r/RrNKdwIqy0HViKDo7xz+O/VlXEUGP+SOO0LDv5fMxzJ9KPmUEUQnqUQnT6XZS/y2wiM0BOFsefNGK80qHwRjx+2zDj3LGGkaDTOxeA02u3PBkRJDwS6DFea9iPJtKOf+fHCHsWV/3rCOxz1qyvhy30g0X9m+4Nc1yEErzMp36CgZ1rar7wk0XHMbjsIoK12d3Ba2tb+k5b9sUQtykI0SdekKshuqczYCIL/YqCiLQspn07zt8E5IQHv40ASKPRUGFmFnUg24QDB357GYS41LEInBOMlkYt3XENtWrx5Ebj/kDHsC767JrrQn+GAHluVTBzeUuzSswhTydewhZ3KigleFxHL6ckm3s2a+AFDBXVCIDegOMwXrtq6WxUwhJjo2MlFxfYZZtTggK6jvk0DO4UQXM9aF56rM7yARq79JX4HkUBQi/9E/9I0keDlrPIc0qQnlgCc6hKZsE1YKTbR6x0TqgtMjTlGAZ+TxpWsECe8ffnUtUHi54RaLqKmBYSrBr0utGp3LJlpZ+mFfQcPW35UQlXaLj/IUhXdgJbYvHqEBTyKhEsWnBjZ9IGS+NsZup4Ha5OheX31r7iTIsjyzteudD8n6eMJw/FWLycLHGRrrhgJ7s6KpH29tqMMkOILt0uZ63OG86/PNlAyQXmrnPalqfKV9MM1VLK/A7b3iZeaCbPyM5yQPQ2Auv8etG3E0HzV9mCRCoDHGzsDK3WXWm4EAZ3tGb7hzRCdYwwF/1v1nME4sPjvAjYrz58od4Ymp5EhjcfJK6wH0v62ox0SAFw1oGMqYbme0mZMa0eULrHj9TRXTNePLrBVuVWX3CZfI6Z7x9JnIj5/NGKbXYQZ69qgsnpRafLpkVQHb3URGIQlF6qFiNq3zh8kXSnZOCOErw2rt6ef/WxSGbPjT4Q7nZ9v/pXQuYfBLH+Xl7DvWWShLWNwumT0bes+/j2drs18GAX9ppsLlMBohcs3Vd4s+QKTUrmYCVO022AT/QRjOEcN37lA8dioMa1CxE51jWWsiXVJ6ZMaD0h7km3lKdrYPOYyQPkdNoo7niW5ygml/jbPVV0SnnvqFyBD+gXwEQGuthlMx6kDRexzvdRwsXFGPAEqO8LJQpSUwU63Bs3Xewy/kdW8UpxvrXaXE+nHQzxY9apBB1izhn6ltfG5qzd626iTMGpmuMTfwI9nUZ5+D5bxTP5MIr34Wv9rNobrgakxdy22WhWZbKHUI3rmB/PGbA6uhWsCQTOSBsSHt81E/l2Y7VySTlv0fEWnUa+GL3WDvecPX+0bdLHDy/XwA09YHQeNh2xgfibzg5FwNAYFtFg62NA8iuK8PxCQa+xCcn7LIm9++pp12uXMZt1xTy3yr+6lmnEaJYcZC3cNCamubqdU/9e/idOE1Fd3KCW8r4bm5KoDXpAO0VXpeMCDRCWRauaHN09Xl+41R5VpkLxskOl2yC9uiOV4L2lnZojwpa0XflmS35j1XAvSTjC3gy9/JPrWUCoD2RH0IEiT/Xk56Knmeyo2HJHP9mED3d7UrwpwQTy1iJhLcVd9u3XE5ngjwPfhqa2Np7DVT3JEA5nn/0oX7p0LvG1diKQ=="}
+    {v:1,salt:"GleprBmFF6UNI6qwL20ciQ==",iv:"KbHpWobqJlzd0FC2",ct:"nbFSZTO7MROAiaJB4jTBeoHs/NdBIFY+wITDE4FzPY2sXi1zlprssEz17Ksi+SUbWtVZSV4kUg0XaIwGJdQtOyLTd2XPz+jTXm+E+wW8ydNkCnHn6sIoLV9Usv/rRrX30g+ubo+ZSZe460W8B0AZrsnUMQw1uM3LguGKwTa6kFZJiQM4FqYdAvJICTJ56m4YGOq2ocLF5bcCYK3QqUualyNVmKo2WbdAitxBZ3PX3BP5w5szmHNcoXoxCXrJ1amZ8ExmQTN0c/ZgTjGmjZ8JSHBWMSQnWraeAmoN9PRFFsegOQdyIpxsCQzNB69/T1dR2u7hZW8drBSlH5l1AecJSVHCwrHwxSkFLU6WNFqKtNdgmFcKW8+eP7rlImoekm5kJB3DVPVvTAEs3qe0ih9DqGMjDI1EAlK6fXQr/0c8HwhIDuj4kjh3fc9dAoJZC/lMvxfR0Z3uVsyCSd47ZJMkkXhMUiDdKuYh4cuKpSfjz66yWUZ1xHpELD6qi0K5KhIVSUO6g00vYhzSiVk3EUu41eEO2q+je589w987b5FoU/QHUulFugF2Q/ySi4wjEnFdjkCXRaSLYEPPpcu8S6gt5HeElMwa2Ll1YkBKum54wX7sXizkT71gMsPrywTa7G6X/NsMFlzbNEGh0j5yDxdxsa2b9cP2zrDxt86NJ2YjvFAsJlMkXmfY1wjYYM8v7Lxnu0B2t4Vp3kCodf0g3pkCujsHe+yabjYVKRWVsbTh76XbpY9x3CqBu+a+iWfhszBwzrL4EfsIVwdfsqE5mBYm31kqMxyr+YJWdGYXaTTy2RY2vQAokURVU3NdDy9fXduriKNcAmrosgXULL7LHsbM8Q2E79p61vIDMcjXHbWgOgpUuzpWyJERzBdPJQhAHrgRhLEtGvL051He6AcT2th6yg/+mj3bXjS7sK3+4rLXY95UoSgab3NlAMplZmIpEhKXcSKTOLWbz9021t4nOEpsNYcm4MhZN4f5zvDps/UOSvsUU037RWRJwaSJUsuFM36KjALD9gXXUcdu0ga2mGKG9BTzpkSLwJoNll7lK9LBSBd4TKhPqnu5zwa1SLpxwHZUK4T60P6Azv+sRT2B1Isj4Uz/J/r7Agk+zjrqkrS+relySbQiNZ+kAo9uHv18cN+e0Ab5iKLbcFUKRLWsJOMzGHDjcH6LRMNrSS3ZKwAXXMal2LepVR11nZbz3kpuqP+bbU3JiGEmBQ0UEqBRWWBMndpG1TpcRacC6m5Y3VbAs8O41e2aGm04Z7mz8oz4sqI3JyQ8YAqX0cBWky5/RLMgaVZlIr50X15ozCj6iTZ1H0UUOSuz0VlaBM9C91sK12Y0HNFhIlbbPTM0GvlX613KbeN+2VwS8jWolYCKgHx4zBhJqBFR93wq3YUihKCGiJ1QclNXdCEwjbBhYs1MBpPw8sUX2WawmoA7B0u9fMQj3qZc8K8CvRW2wIzc+piMMZKs13EmAeVQMPnkbjZwR/X22MN7t55EU4H6Lx37DqdtzV8vEIbIfTCyJ1Mqp8N0ZmwUJaZUGSG76sAo1+MtrGP0G/sqXRuO1pzJMeYVosUKWIa4zZfb88EHYdk9N3yAE6DKBPnBIO9tugkstBF2xui/+KD5rxp5Bu0XtsIV+Ou0qw=="},
+    {v:1,salt:"8DX9oE1SDa8Gc+5KrRhmYg==",iv:"808N93QqTKd9BvH+",ct:"dgfOD9MgS6DOQ0FA8lReMQLmDIJHdy9+EcWnXLCMo9Z/xemIHQ4y1XJA+U8zXaujG54ZmjUi9tBvLxKVH7y3KEJm2IJAUQKfkGaQQpFUnbEcz5aifhrtzf5aL7/dWqza8oDaprju3Ueh3HrT9sXYI6VgiljIFGgvjnUycwkxmtVzoHuACrdG5UO6mmwO782v5WCMAQKm7RJeQLW/YDwr0dHrYy4EgAw4RJunoJaXMj6+dTyIn5CVcq/UTORj/q+Ng8H81zsBCKrGR3yRrJHn4SzXhyHNsn5wTfrfdkF2iXF6hPLw303aa6OaMA2srNodtzwDlz8Ji1y53E+QGh5lLVO7jdMA+gPc97LxLotSqqc936/ZW63oeonm1RrtgFh/3OlPPAGYF2h3qv4WWfqKnKI+oACNqAoSluH91n/rbiqnSfnANIg5riQhcppqYAWvZtCNzsTSYCiBMXFrocBd7fvqQxwQzEx23Skekdby9+a2dIWWOrf/vq7UKcgyaqLtGXTKLK1t5QMhdmV/a6Lik3fz0BsWF4++pxfAbrxSKzlfRCYDTlHgqLSf2b5uxbe0Zo00yFXmDOyvcej491eF75nK1aNjqmhD5Tto33rC4Nx7nnfUKhY1IskkOVNkIA4k4zEWMiH/54LQz4ByNPzbeLixRUmmUQprb7sIrzMiTldwAU0Syt2ETC7qPU6Q74MzPcds7Lm4vB5wYh4mXjyKj4OV/wt+LjgkX/KgUxDbxdoUTDamsTWFvlkdXw0aLpevXYwMPdczO+QjpuRJFlB6KTRJGG3o+jCzxerfS1sDfMUsyg8Jx4XFVS+enyygIDdIpQxd2F0Ah82kVUgpjNq7yUJ76KfZ52TNgN8zTr16ZIpPwhQYWlajLNS8vmDSERYQTgoPv1F7KmNx0WIC0NEbBtSsHSV3F/kBfC2Pt4cLwhFDg0HrObDNeT/aguOe1ICYjelFjAMRBW2k65xynwdIugI98I9I/CqkutFeS1sA/5k8LOtajmSsEti6qXrVOOZgX0AsgcnSD1jbBmWHdW0Ry1YSwOBKN9BsuPmIJP4U05v6JPMjciHelZBbVmrruoUiY/4DIreUKp7c6dPqkwDrJtWW+Ok88NzSpAo777/IiPCJdtLeI1G3uPJ/VcoT2u/+IoKGfGW6asWWPIPmv+2HNi/cYjmc7mw0UtLYngqcqy4sF0GOy8YU7Z0pCVy2IW3Wijg5w/3ZK0x+DmWPRs9YYlrdPOst3xGLfWmmj9Ft251GMf9LcV5zW8KNeK7/dIq6kbkUJI3VXkEiS2ZmKfABzT0Xz+5stLMEDT7zq9m3HGRsQ5wJ+JjnU5SY4SSdw3Qxvshx2Ic9+LN00xysEOcDwCgBhcl2GMIRxomBFD2/cCPKM0QqB1rs/AhW8TrKxinBybMenkNAHddKV6dKk5dzk1rt68U7ouayOg9GR3Dy4gWy+pwygr5BslYXKFwkzPvscBr7dKx9BX0oz6fnMTj8iI+TBeQ8MlsoV+AM80CBfHBI8vk7ScptQN+nSAtSAZcMVeGXHE84ZAfr37SocoTD18pj7x/hLbE5SKI2WY43zMPjSer8tT3JF2WhYmzxoKiTjEesude8PnUgCbnJgnwPrxTJ/y5kWOZza+7DJGsiaBSpOeCUuP2SrlXD6B3ucya+bBuInyJZ1tNIC+8R0Arr6sBXaWPJ7pPvkWXc1LQn3L5oePp1KBX8lRutUY7ezKoCt9ulnQ1Okq3Z+RCImR38I9aFV1jNwlC0XpBnKlp4knveEbvub67XNCvmSJIyt0zlylqXPhjkoN4R3VRToDyo97Vwg8EIGekUDw7r2Ne1NiicqVZZp1JnV+5VNwP4AKfQIdBilYFYO2MMIC65/nOwdLlT0FALUNmHfHNkPT1Cia86KhzP2roCMF7219CXUMh0kW9ErKoYUJxeTz6znsaL6ByLys+eSpRWIx19fbT74dhUx3wE+NoMtmaAOjAtTKSBsG0BVs0GViAsw4pCPuK1UJst4dJyTYy+dRtjmfslMnaB3nwkaFJETZMP0ecSCym6p0Dkp7w4dyQiyqH677QEw9xZUxR+N3G39g9z2WIdh8Xcj7LRiKMYdF2UBoeMVKvMmNVAYwMnMKwmgRdOTmhnhiKUP6q7RELjHQ1msSaCDbltwDI32Zw85jdzKDCilmwsoNEfwZUeVygIkxcCCQr2zzMpxa1YWXmXDxSxBH5XCMS7M/R0AfEpRLh1/xv2IjXNKXrokRSc9DeujIVJP7dNHIcC/zTQB//kpwt+cRq63OvH2LQvPG6jJbLC88DaYje9LDDt8F3FiGOHQ9Ztchz7SNTvtr1MpBnPrSWfeo34qTTEF5ewRvXBwRDsZdrok/2AhlQL3r+l6awyqMpJQj1USnf1Wv0JYnA0mdWEQ+xjm8sIWQPsq3qcdZNk1fVnPbEaYzN65hfPiNUwTDHxvHDQHKu2ySxzeKW8vNMxWcC2/acm99WXvy/W1Nth3+FtZ6Wp6oSeVkvY59iXYskyammIZra2VWoIyDrh355nBn6i8D0k2kRjhvF7kZeTgCCV1L11e7qJjtD3nzUFGw0+g1KhkqVb8JH0ff3jrEIb5Z3aDHE1DepyzfSY8da1IAR1TCRtlqLRTlJxvzTh1tLjYkduVLuEl+rknbeXB2PlWgQzwB5H/4WdyVh6yatpIXbznWfjtlTo7lOiu5A87p3JOcqpzNeQJ0txr1URGsjuvVyC5CKLp6WwpgJfqvNJ36Elb0U0Lx31T9opB4zeYIMCJ2dGl8hlfOSyE/kqznedNs9iYSOG1x0c5uw7o3qLXAEPgZnHf2VBBzHvA1cnWhx7ZIPK8znE1c/X5QZDkattmxhnZnRlTjSWXt9PvXm5qeovbR8eNxuK8vZHWZJLPfyC3oKwnMjNMNGpj3HKn+lWawTNulYdyUskjqIfAKGFy1eBY79B+uEmrKXdYqgOqAdT9p770nzhsJK8fJPyhWQXF0JOP799jvb0ULiCgvb0RB4BB1F3PRQ3lj05Ej7f0GsRs8KjniyzcUuhAAzuHKK8qIQzSv7mOLQM33es6FVSwRB2LXjXsSwGgQPbKhnWAIT77drEEcDzAv1XwEj7lr4u96vrYEohczuzBh2YO6QL2ujPoE4gXLMuDX6VEOjAJajfRDg36iQILsEZ03pz+6bioo6cmVvXGw/AEvkqAxm8tRhlsKPTYNYmpRO2zrrTUPsIQCwudFX7Yi6e/wTmcvEy9MFMMIDehgkAymQzcGMwgxdKJKwOc67vO3dxSvIOVGiCw7NK9XxIC67NcG8Dc5BDniFC/bYuLHdRY0A1goQ+ouWXlOHKNtfMaljrIKluaBAnevdV5uBFN/ebFqBy6VNx/fFWet8U8DpzmZub5TZeNOpXm5+KPBphhY97O9p0TZE6xiEYbxfmNguT/NM0SOvmQQNjl+TKOJ1liOV8TRSyBm3Q1NTG4T4lvU4KR5PMOmN/QGsLjlZlEy4v4QOYrCcZf72AkzRh6ALLl+B+LULiaxFF4WLdSAxzfUz+UyoA5kuZAkpNsea+bWCS486sE+pTdNhLEdrrW56b9Ft3mQwo7DS5NIkZdRb4ZrWJ/ZeytkpdKgCe9pyujeok3aWKr2UZvogv1TGm2oh1bVifwO/vBCUmzTeQDUYeSlIrD/1mLeF7c97K785oE5h70+mCU6M5N/v8mBGQ1kJtye+8S2vRA6Z5LhHB3w6qXFEzRO/L3tbSM+/HUuBzzjFZy1CNTSAwo+16RsaX0SMeL61Lc4t6m4no34XZMEaqF70BPd9bN5nqYVcFBLFIX+0sGujll4/lyOULxJVq1O4bumalhXZu76HJdK/76hdO+JWlPKOT0P0NTIgq7f0cJ5OsrZaVH9vlN3//A3B3bPwQSkWxwfEy4pCHZ7pUm5zGNqgNGvBgmEQKDIEzGP5gxAzN92D9wlMe0spbrdX2QvBEz57JSE+RrMPFaWuN9E4SxSQ0voQgB9IPHV10lzfaH7Zq7Unvux9/z4ES8D0bEvASfdp0/4zqj8KslO3LNsF63XDJopSoYtj20DmcN7eb6DrLKTNt9HazswYnSFcz4bMRZSDFW2G2pB9tG7gzcrVzL58M+GUTIotDQkx2iTls5J7MrALJ9DvtJMngxmUjFAVkYG/xy44euGfEZZYxupOe1Ph6PcHPehoS2q1AH1kCiK+WRkMylV6R8pcUBCKp2d8u5XfWaI0fclengmifb2LtkXSGZoRmfVoRRSS+0dMFD9fcUJTWvJfblCPSolJLqr0IyUu5dyQDTt74ICJddLBWEr9ZvgTxywIJ+QNigqYsb8FYs+Mp4aB/eNMZBodICtVAhfBTM6Ubodbaj00nhzJ4+8mRwdDPjJL98MfQhoRtpQ5qVhJuBMWEqgl6uMHSb3qVywXmXS/nKWdU60IBv9kO8gXvclxBbKJ8/jMjtKQQmwxgyIdCYRPJb1k4FfxeW+a+1dV5WoRaWPyV4O3whfiQGkglObpaYSyinfMnVKjW+c13n8JRxmMEkJE6QTOm15efPfxQsyKxq1z/B1VMz5zBixAaNy6D0x5UPk7mLy1eZ6zQsNth/GoFzp5msUAIuSkXZGWEmYwoorrMsKtqp861RgFiioNqiF8ykYv0kbiafqzCCQ78g9aNdSITfeKHv3P+jSNpKVshcpZOCrKCWdrqTd+GiGAliDQSqAPnl6sDU5XFkGWDx2qKwNcA4EX6LirRGxLrx7YF1kBnlodMKaJhS8RMfj29+PY8Jogy4sbGUcTfqPhgZcAICmnxiVYDq7CYg3jgep4uDJRHvnrCD48VGkcJrZHYDWSrGY7rBoAkyx7mx57GZBMolbvrKDeapHydjrk+yOQoLhsBYPDTS5akn4bvxMmnG0eamHhLircDViqYKFTVf9T2r+HkkyvAdx8mY7IUmaAyfaLve5opSDtGX3gJ2U7jOwhbArO6tsFFXCTDAxQOzqCkt2Zb/quE9guTmmbgBQHz46v9f2KGECp0qS8adEiYGP0cU+7MjkLcHtls/h2aEFn2uXAxFtOZTUow9sHX1C6huk/uaY+7ubdLwBpJkTA+ltYNwyRCUQq/d6jK3uKXAtg5kCyXYVOMlqLxePTXLRnKeY13q7OD+R18w08niHmPwkdH+6mNaf5UFuSSn/ZWwjOqZl0LSY/Q9c2Nbwb4JF5vm9t2tgCxabprs6u/6Tmf8rgOzAvMBOwXVkrU7bMbwT4scP9OBBjMOEj13LylUR9pA3UF3kfgJxZKVnXrDEPdhMLasiArxsxp+2ONfaoKk97/1LQkH17zPmTT/ZFvBWXjPwXwHNKXlocMAg5eCtNUp6VwJ/DvS6m0LCFZixl+KqDeMaHdRn1avzkRMLEA/Z24u9SvEounjT21/vI2CpCq/glp1s5ahW7scDmF8Bx6PyNhWOumgXuGToSBmbYeUzUcdFt+HjPZ0F23e0pitTduncRxxqjOTT4Xg2XwJq7GMEVtZZ248qYwEqmwF6wEB0hKlhYiZaL8Ai4brm8+Mw4IFJ3pjenVIsJCTwdUz+4sBuC1hy9luE+OkU+VH6HYqMcET2LYHdJ/lhXgX5PGrDzdoMd8Vg7V29f9k71sVuwmXqZpEqOlwvwr+m3TfALsAuHLWzsih2hB3nzUU96IYrNaILpPtHX3E+YRt96HmFgeEiGiXMdAf9n+osUFu5HX/0IQi5ON6vEGQlkaW0L6b1G4uEtFI2MEMokZD/yCzm47swQpOwzJvOuRLQHx5ae4zgs53kHOqK8BXep8Cbrn5H2N4WVm3b0LPGt1A3X4GEvr8T98x15UzG5xtgzNpLli6Vmts5GcwJ8z2ZKDsqRD9OMXLwbv2Dl6HveGtt2HXKtn4IIGsZP+4R4zwI/YJ6mkjD45MPBrqDqzHPw2XzyWzReOVr5gEExobD4tl1pTLetrgw+Wtuy+epaJBEV0WatnnRS9aosCssFWamLB/Yi69hBKbMjE0fCHw6zbVXCHirmUtUJqCa6uCR8GEVCthZrIgiRTJuOmVswijm543L0="}
   ];
 
   /* ============ fond tissé (ambiance calme) ============ */
@@ -693,6 +749,7 @@
   }
 
   function buildDevisCard(d, data){
+    if(d.lots) return buildDevisModulaire(d, data);
     var card=document.createElement('article');
     card.className='devis-card';
     var total=devisTotal(d);
@@ -728,13 +785,228 @@
     return card;
   }
 
+  /* ---------- devis modulaire : prestations à cocher ---------- */
+  function buildDevisModulaire(d, data){
+    var card=document.createElement('article');
+    card.className='devis-card';
+    var signed=signState(d.ref);
+    var lots=d.lots||[];
+
+    // sélection : celle du bon pour accord si signé, sinon les cases cochées par défaut
+    var sel=new Set();
+    if(signed && signed.sel) signed.sel.forEach(function(id){ sel.add(id); });
+    else lots.forEach(function(l){ if(l.coche) sel.add(l.id); });
+    var maintOpts=(d.maintenance&&d.maintenance.options)||[];
+    var maint = signed&&('maint' in signed) ? signed.maint
+              : ((maintOpts.filter(function(o){return o.coche;})[0]||{}).id||null);
+
+    function lotById(id){ return lots.filter(function(l){return l.id===id;})[0]; }
+    function sommes(){
+      var sous=0, base=0, tout=true;
+      lots.forEach(function(l){
+        if(sel.has(l.id)){ sous+=l.prix||0; if(l.acompte) base+=l.prix||0; }
+        else tout=false;
+      });
+      var remiseOn=!!(d.remise && tout && lots.length>1);
+      return { sous:sous, remiseOn:remiseOn,
+               total:sous-(remiseOn?(d.remise.montant||0):0),
+               acompte:Math.round(base/2) };
+    }
+
+    var lotRows=lots.map(function(l){
+      return '<label class="lot'+(signed?' locked':'')+'" data-id="'+esc(l.id)+'">'+
+        '<input type="checkbox"'+(signed?' disabled':'')+'>'+
+        '<span class="lot-box" aria-hidden="true"></span>'+
+        '<span class="lot-main"><span class="lot-head">'+
+          '<b class="lot-code">'+esc(l.id)+'</b>'+
+          '<span class="lot-titre">'+esc(l.titre)+'</span>'+
+          '<span class="lot-prix">'+EUR.format(l.prix||0)+'</span></span>'+
+        ((l.details&&l.details.length)?'<ul class="lot-details">'+l.details.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'')+
+        '</span></label>';
+    }).join('');
+
+    var maintHtml='';
+    if(maintOpts.length){
+      maintHtml='<div class="maint"><h5>'+esc((d.maintenance&&d.maintenance.titre)||'Après la mise en ligne')+'</h5><div class="lots">'+
+        maintOpts.map(function(o){
+          return '<label class="lot maint-opt'+(signed?' locked':'')+'" data-id="'+esc(o.id)+'">'+
+            '<input type="radio" name="maint-'+esc(d.ref)+'"'+(signed?' disabled':'')+'>'+
+            '<span class="lot-box" aria-hidden="true"></span>'+
+            '<span class="lot-main"><span class="lot-head"><span class="lot-titre">'+esc(o.titre)+'</span></span>'+
+            (o.desc?'<ul class="lot-details"><li>'+esc(o.desc)+'</li></ul>':'')+
+            '</span></label>';
+        }).join('')+'</div></div>';
+    }
+
+    card.innerHTML=
+      '<div class="dv-head">'+
+        '<div><h3>Devis '+esc(d.ref)+'</h3>'+
+        '<div class="dv-date">Émis le '+esc(fmtDate(d.date))+'</div></div>'+
+        '<span class="stat '+(signed?'ok':'pending')+'">'+(signed?'Validé':'En attente de validation')+'</span>'+
+      '</div>'+
+      '<div class="dv-body">'+
+        (d.intro&&!signed?'<p class="dv-intro">'+esc(d.intro)+'</p>':'')+
+        '<div class="lots">'+lotRows+'</div>'+
+        '<div class="dv-remise" hidden><span class="lbl">'+esc((d.remise&&d.remise.label)||'Remise')+'</span><span class="dr-amt"></span></div>'+
+        '<div class="dv-total"><span class="lbl">Total</span><span class="amt dv-amt"></span></div>'+
+        (d.mention?'<p class="dv-mention">'+esc(d.mention)+'</p>':'')+
+        '<p class="dv-acompte"></p>'+
+        '<p class="dv-count"></p>'+
+        maintHtml+
+        (d.conditions?'<p class="dv-cond">'+esc(d.conditions)+'</p>':'')+
+        '<div class="dv-zone"></div>'+
+      '</div>';
+
+    // interactions des cases
+    var rows={};
+    card.querySelectorAll('.lot:not(.maint-opt)').forEach(function(row){
+      var id=row.getAttribute('data-id');
+      rows[id]=row;
+      var cb=row.querySelector('input');
+      if(!signed) cb.addEventListener('change', function(){ setLot(id, cb.checked); sync(); });
+    });
+    card.querySelectorAll('.maint-opt').forEach(function(row){
+      var rb=row.querySelector('input');
+      rb.checked=(maint===row.getAttribute('data-id'));
+      row.classList.toggle('on', rb.checked);
+      row.classList.toggle('off', !rb.checked);
+      if(!signed) rb.addEventListener('change', function(){
+        if(rb.checked) maint=row.getAttribute('data-id');
+        card.querySelectorAll('.maint-opt').forEach(function(r2){
+          var on=r2.querySelector('input').checked;
+          r2.classList.toggle('on',on); r2.classList.toggle('off',!on);
+        });
+      });
+    });
+    function setLot(id,on){
+      var l=lotById(id); if(!l) return;
+      if(on){ sel.add(id); if(l.needs && !sel.has(l.needs)) setLot(l.needs,true); }
+      else{ sel.delete(id); lots.forEach(function(o){ if(o.needs===id && sel.has(o.id)) setLot(o.id,false); }); }
+    }
+    function sync(){
+      Object.keys(rows).forEach(function(id){
+        var on=sel.has(id), row=rows[id];
+        row.querySelector('input').checked=on;
+        row.classList.toggle('on',on); row.classList.toggle('off',!on);
+      });
+      var s=sommes();
+      var rem=card.querySelector('.dv-remise');
+      rem.hidden=!s.remiseOn;
+      if(s.remiseOn) rem.querySelector('.dr-amt').textContent='- '+EUR.format(d.remise.montant||0);
+      card.querySelector('.dv-amt').textContent=EUR.format(s.total);
+      var ac=card.querySelector('.dv-acompte');
+      if(d.acompteNote && s.total>0){
+        ac.innerHTML=esc(d.acompteNote)+(s.acompte?' Soit <b>'+EUR.format(s.acompte)+'</b> à la validation.':'');
+      } else ac.textContent='';
+      var n=sel.size;
+      card.querySelector('.dv-count').textContent=
+        n+' prestation'+(n>1?'s':'')+' retenue'+(n>1?'s':'')+' sur '+lots.length;
+      var st=card.querySelector('.sg-total'); if(st) st.textContent=EUR.format(s.total);
+      return s;
+    }
+
+    var zone=card.querySelector('.dv-zone');
+    if(signed) zone.appendChild(buildSignedView(d, signed));
+    else zone.appendChild(buildSignFormModulaire(d, data, card, sel, sommes, function(){ return maint; }));
+    sync();
+    return card;
+  }
+
+  /* ---------- validation + signature (devis modulaire) ---------- */
+  function buildSignFormModulaire(d, data, card, sel, sommes, getMaint){
+    var wrap=document.createElement('div');
+    wrap.className='dv-sign';
+    wrap.innerHTML=
+      '<h4>Valider et signer ce devis</h4>'+
+      '<div class="sg-row">'+
+        '<div class="field"><label>Nom et prénom du signataire</label>'+
+        '<input type="text" class="sg-name" autocomplete="name" placeholder="Prénom Nom" required></div>'+
+      '</div>'+
+      '<label class="sg-check"><input type="checkbox" class="sg-accept">'+
+        '<span>Je retiens les prestations sélectionnées ci-dessus du devis <b>'+esc(d.ref)+'</b>, pour un total de <b class="sg-total"></b> HT, et je les accepte sans réserve : bon pour accord.</span></label>'+
+      '<div class="pad-wrap"><canvas class="sg-pad" aria-label="Zone de signature manuscrite"></canvas>'+
+        '<span class="pad-hint">Signez dans ce cadre</span></div>'+
+      '<div class="sg-actions">'+
+        '<button class="btn primary sg-send" type="button">Valider et signer le devis</button>'+
+        '<button class="btn ghost small sg-clear" type="button">Effacer la signature</button>'+
+      '</div>'+
+      '<p class="sg-status" role="status" aria-live="polite"></p>'+
+      '<p class="sg-legal">La validation en ligne vaut bon pour accord sur les prestations sélectionnées (signature électronique au sens de l’article 1367 du Code civil). Un e-mail de confirmation m’est adressé automatiquement, et vous pourrez imprimer votre exemplaire signé.</p>';
+
+    var pad=makePad(wrap.querySelector('.sg-pad'), wrap.querySelector('.pad-wrap'));
+    var status=wrap.querySelector('.sg-status');
+    var sendBtn=wrap.querySelector('.sg-send');
+
+    wrap.querySelector('.sg-clear').addEventListener('click', function(){ pad.clear(); });
+
+    sendBtn.addEventListener('click', async function(){
+      var name=wrap.querySelector('.sg-name').value.trim();
+      var ok=wrap.querySelector('.sg-accept').checked;
+      status.className='sg-status';
+      if(sel.size===0){ status.className='sg-status err'; status.textContent='Retenez au moins une prestation avant de valider.'; return; }
+      if(!name){ status.className='sg-status err'; status.textContent='Indiquez le nom du signataire.'; return; }
+      if(!ok){ status.className='sg-status err'; status.textContent='Cochez la case « bon pour accord » pour valider.'; return; }
+      if(pad.isEmpty()){ status.className='sg-status err'; status.textContent='Signez dans le cadre prévu à cet effet.'; return; }
+
+      var s=sommes();
+      var retenus=(d.lots||[]).filter(function(l){ return sel.has(l.id); });
+      var maintId=getMaint();
+      var maintOpt=((d.maintenance&&d.maintenance.options)||[]).filter(function(o){ return o.id===maintId; })[0];
+      var png=pad.toPNG();
+      var payload={
+        access_key: WEB3FORMS_KEY,
+        subject: 'Bon pour accord · Devis '+d.ref+' · '+(data.entreprise||data.client||''),
+        from_name: 'Espace client Filigrane',
+        devis: d.ref,
+        client: data.client||'',
+        entreprise: data.entreprise||'',
+        projet: data.projet||'',
+        prestations_retenues: retenus.map(function(l){ return l.id+' · '+l.titre+' · '+EUR.format(l.prix||0); }).join('\n'),
+        remise: s.remiseOn ? '- '+EUR.format(d.remise.montant||0)+' ('+((d.remise&&d.remise.label)||'remise')+')' : 'aucune',
+        montant: EUR.format(s.total),
+        acompte_a_la_validation: s.acompte?EUR.format(s.acompte):'sans objet',
+        maintenance: maintOpt ? maintOpt.titre+(maintOpt.desc?' : '+maintOpt.desc:'') : 'non précisée',
+        signataire: name,
+        date_signature: new Date().toLocaleString('fr-FR'),
+        signature_png: png
+      };
+
+      sendBtn.disabled=true; var old=sendBtn.textContent; sendBtn.textContent='Envoi en cours…';
+      try{
+        var r=await fetch('https://api.web3forms.com/submit',{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(payload)
+        });
+        var json=await r.json();
+        if(!json.success) throw new Error('api');
+        var signed={at:new Date().toISOString(), name:name, png:png,
+                    sel:Array.from(sel), maint:maintId, total:s.total};
+        try{ localStorage.setItem('filigrane.sign.'+d.ref, JSON.stringify(signed)); }catch(e){}
+        // re-rend la carte entière en état signé (cases figées)
+        card.replaceWith(buildDevisModulaire(d, data));
+      }catch(err){
+        status.className='sg-status err';
+        status.textContent='Envoi impossible pour le moment. Réessayez, ou écrivez-moi : mehdi.mjid@dauphine.eu';
+        sendBtn.disabled=false; sendBtn.textContent=old;
+      }
+    });
+
+    return wrap;
+  }
+
   /* ---------- devis déjà validé ---------- */
   function buildSignedView(d, signed){
     var box=document.createElement('div');
     box.className='dv-signed';
     var when=new Date(signed.at).toLocaleString('fr-FR',{dateStyle:'long',timeStyle:'short'});
+    var perim='';
+    if(signed.sel && signed.total!=null){
+      var n=signed.sel.length;
+      perim=' pour '+n+' prestation'+(n>1?'s':'')+' retenue'+(n>1?'s':'')+', total <b>'+EUR.format(signed.total)+'</b> HT';
+    }
     box.innerHTML=
-      '<p class="sig-line">Bon pour accord signé le <b>'+esc(when)+'</b> par <b>'+esc(signed.name)+'</b>. Merci pour votre confiance, le tissage peut commencer.</p>'+
+      '<p class="sig-line">Bon pour accord signé le <b>'+esc(when)+'</b> par <b>'+esc(signed.name)+'</b>'+perim+'. Merci pour votre confiance, le tissage peut commencer.</p>'+
       (signed.png?'<img alt="Signature de '+esc(signed.name)+'" src="'+signed.png+'">':'')+
       '<button class="btn ghost small" type="button">Imprimer / enregistrer en PDF</button>';
     box.querySelector('button').addEventListener('click', function(){ printReceipt(d, signed); });
@@ -867,7 +1139,11 @@
         return pts<6;
       },
       toPNG:function(){
-        var w=900, h=Math.round(900*(canvas.height/Math.max(1,canvas.width)))||340;
+        // ratio borné : un canvas dégénéré (volet réduit, rotation en cours de signature)
+        // donnerait sinon un export démesuré que le navigateur refuse (data:,)
+        var ratio=canvas.width>0 ? canvas.height/canvas.width : .38;
+        if(!isFinite(ratio) || ratio<=.05 || ratio>2) ratio=.38;
+        var w=900, h=Math.round(900*ratio);
         var out=document.createElement('canvas'); out.width=w; out.height=h;
         var o=out.getContext('2d');
         o.fillStyle='#ffffff'; o.fillRect(0,0,w,h);
@@ -887,12 +1163,37 @@
 
   /* ---------- exemplaire imprimable ---------- */
   function printReceipt(d, signed){
-    var total=devisTotal(d);
-    var rows=(d.lignes||[]).map(function(l){
-      var q=l.qte||1;
-      return '<tr><td>'+esc(l.desc)+'</td><td>'+q+'</td><td>'+EUR.format(l.pu||0)+'</td><td>'+EUR.format(q*(l.pu||0))+'</td></tr>';
-    }).join('');
     var when=new Date(signed.at).toLocaleString('fr-FR',{dateStyle:'long',timeStyle:'short'});
+    var tableHtml='', totalHtml='', extraHtml='';
+
+    if(d.lots && signed.sel){
+      // devis modulaire : uniquement les prestations retenues au bon pour accord
+      var retenus=d.lots.filter(function(l){ return signed.sel.indexOf(l.id)>-1; });
+      var sous=retenus.reduce(function(s,l){ return s+(l.prix||0); },0);
+      var remiseOn=!!(d.remise && retenus.length===d.lots.length && d.lots.length>1);
+      var total=(signed.total!=null)?signed.total:(sous-(remiseOn?(d.remise.montant||0):0));
+      var base=retenus.reduce(function(s,l){ return s+(l.acompte?(l.prix||0):0); },0);
+      tableHtml='<table><thead><tr><th>Prestation retenue</th><th>Prix HT</th></tr></thead><tbody>'+
+        retenus.map(function(l){
+          return '<tr><td><strong>'+esc(l.id)+' · '+esc(l.titre)+'</strong>'+
+            ((l.details&&l.details.length)?'<br><span class="det">'+l.details.map(esc).join(' · ')+'</span>':'')+
+            '</td><td>'+EUR.format(l.prix||0)+'</td></tr>';
+        }).join('')+'</tbody></table>';
+      totalHtml=(remiseOn?'<div class="tot" style="font-size:14px">'+esc((d.remise&&d.remise.label)||'Remise')+' : <strong>- '+EUR.format(d.remise.montant||0)+'</strong></div>':'')+
+        '<div class="tot">Total : <strong>'+EUR.format(total)+'</strong></div>';
+      if(d.acompteNote) extraHtml+='<p class="cond">'+esc(d.acompteNote)+(base?' Soit '+EUR.format(Math.round(base/2))+' à la validation.':'')+'</p>';
+      var mo=((d.maintenance&&d.maintenance.options)||[]).filter(function(o){ return o.id===signed.maint; })[0];
+      if(mo) extraHtml+='<p class="cond"><strong>Après la mise en ligne :</strong> '+esc(mo.titre)+(mo.desc?'. '+esc(mo.desc)+'.':'')+'</p>';
+    } else {
+      var total2=devisTotal(d);
+      tableHtml='<table><thead><tr><th>Prestation</th><th>Qté</th><th>Prix unit.</th><th>Total</th></tr></thead><tbody>'+
+        (d.lignes||[]).map(function(l){
+          var q=l.qte||1;
+          return '<tr><td>'+esc(l.desc)+'</td><td>'+q+'</td><td>'+EUR.format(l.pu||0)+'</td><td>'+EUR.format(q*(l.pu||0))+'</td></tr>';
+        }).join('')+'</tbody></table>';
+      totalHtml='<div class="tot">Total : <strong>'+EUR.format(total2)+'</strong></div>';
+    }
+
     var html='<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>Devis '+esc(d.ref)+' · bon pour accord</title>'+
       '<style>body{font-family:Georgia,serif;color:#14121c;margin:48px;max-width:720px}'+
       'h1{font-size:26px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:2px}'+
@@ -900,8 +1201,9 @@
       'h2{font-size:19px;margin:26px 0 4px}.meta{font-size:13px;color:#555;margin-bottom:18px}'+
       'table{width:100%;border-collapse:collapse;margin:14px 0}'+
       'th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.14em;border-bottom:1.5px solid #14121c;padding:8px 8px 6px 0}'+
-      'td{padding:9px 8px 9px 0;border-bottom:1px solid #ddd;font-size:14px}'+
+      'td{padding:9px 8px 9px 0;border-bottom:1px solid #ddd;font-size:14px;vertical-align:top}'+
       'td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}'+
+      '.det{font-size:11.5px;color:#777;line-height:1.6}'+
       '.tot{text-align:right;font-size:19px;margin:12px 0 2px}.men{text-align:right;font-size:12px;color:#666}'+
       '.cond{font-size:12.5px;color:#555;margin-top:14px}'+
       '.sig{margin-top:36px;padding-top:18px;border-top:1.5px solid #14121c}'+
@@ -911,10 +1213,10 @@
       '<h1>Filigrane</h1><div class="sub">Studio de création numérique</div>'+
       '<h2>Devis '+esc(d.ref)+'</h2>'+
       '<div class="meta">Émis le '+esc(fmtDate(d.date))+'</div>'+
-      '<table><thead><tr><th>Prestation</th><th>Qté</th><th>Prix unit.</th><th>Total</th></tr></thead>'+
-      '<tbody>'+rows+'</tbody></table>'+
-      '<div class="tot">Total : <strong>'+EUR.format(total)+'</strong></div>'+
+      tableHtml+
+      totalHtml+
       (d.mention?'<div class="men">'+esc(d.mention)+'</div>':'')+
+      extraHtml+
       (d.conditions?'<p class="cond">'+esc(d.conditions)+'</p>':'')+
       '<div class="sig"><p><strong>Bon pour accord</strong>, signé électroniquement le '+esc(when)+' par <strong>'+esc(signed.name)+'</strong>.</p>'+
       (signed.png?'<img alt="Signature" src="'+signed.png+'">':'')+'</div>'+
