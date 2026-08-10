@@ -156,12 +156,12 @@
     margin-top:20px; padding-top:18px; border-top:1px solid var(--line);
     font-size:13.5px; line-height:1.7; color:var(--slate);
   }
-  .gate-demo button{
-    background:none; border:none; cursor:pointer; font-family:var(--font-ui); font-size:13.5px;
-    color:var(--gold-soft); border-bottom:1px solid rgba(212,169,78,.5); padding:0 0 1px;
-    letter-spacing:.06em; transition:color .25s, border-color .25s;
+  .gate-demo a{
+    color:var(--gold-soft); text-decoration:none;
+    border-bottom:1px solid rgba(212,169,78,.5); padding-bottom:1px;
+    transition:color .25s, border-color .25s;
   }
-  .gate-demo button:hover{ color:var(--ivory); border-color:var(--ivory); }
+  .gate-demo a:hover{ color:var(--ivory); border-color:var(--ivory); }
   .gate-links{
     margin-top:34px; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--slate);
     display:flex; gap:26px; flex-wrap:wrap; justify-content:center;
@@ -397,9 +397,7 @@
           <p class="gate-error" id="gateError" role="alert" aria-live="polite"></p>
           <button class="btn primary" type="submit" id="gateBtn" style="width:100%; text-align:center; margin-top:6px">Ouvrir mon espace</button>
         </form>
-        <p class="gate-demo">Curieux de découvrir l'expérience&nbsp;?
-          <button type="button" id="demoBtn">Essayer avec le code de démonstration</button>
-        </p>
+        <p class="gate-demo">Vous n'avez pas encore de code&nbsp;? Il vous sera remis au lancement de votre projet. Une question&nbsp;: <a href="mailto:mehdi.mjid@dauphine.eu">mehdi.mjid@dauphine.eu</a></p>
       </div>
       <div class="gate-links">
         <a href="index.html">&larr; Retour au site</a>
@@ -449,7 +447,6 @@
   "use strict";
   var REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var WEB3FORMS_KEY = '0656dba3-6f75-4433-ba72-9701a35558c7';
-  var DEMO_CODE = 'FIL-DEMO-2026';
 
   /* ============================================================
      LE COFFRE — chaque bloc est chiffré avec le code d'accès du
@@ -609,11 +606,6 @@
     }
     try{ sessionStorage.setItem('filigrane.code', normCode(codeInput.value)); }catch(e){}
     renderPortal(data);
-  });
-
-  document.getElementById('demoBtn').addEventListener('click', function(){
-    codeInput.value=DEMO_CODE;
-    gateForm.requestSubmit ? gateForm.requestSubmit() : gateForm.dispatchEvent(new Event('submit',{cancelable:true}));
   });
 
   document.getElementById('logoutBtn').addEventListener('click', function(){
