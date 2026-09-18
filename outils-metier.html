@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Outils métier et CRM sur-mesure · Filigrane</title>
+<meta name="description" content="Développement d'outils métier sur-mesure : CRM, espace client, devis et signature en ligne, suivi de chantier, application interne, tableaux de bord. Filigrane, studio de création numérique.">
+<meta name="theme-color" content="#0a0910">
+<link rel="canonical" href="https://www.filigrane-site.fr/outils-metier.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.filigrane-site.fr/outils-metier.html">
+<meta property="og:site_name" content="Filigrane">
+<meta property="og:title" content="Outils métier et CRM sur-mesure · Filigrane">
+<meta property="og:description" content="Développement d'outils métier sur-mesure : CRM, espace client, devis et signature en ligne, suivi de chantier, application interne, tableaux de bord. Filigrane, studio de création numérique.">
+<meta property="og:image" content="https://www.filigrane-site.fr/og-filigrane.png">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/pages.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Outils métier et CRM sur-mesure",
+      "serviceType": "Développement d'applications de gestion et d'espaces clients",
+      "url": "https://www.filigrane-site.fr/outils-metier.html",
+      "description": "Développement d'outils métier sur-mesure : CRM, espace client, devis et signature en ligne, suivi de chantier, application interne, tableaux de bord. Filigrane, studio de création numérique.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "France"
+      },
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Filigrane",
+        "url": "https://www.filigrane-site.fr/",
+        "email": "mehdi.mjid@dauphine.eu"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Filigrane",
+          "item": "https://www.filigrane-site.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Outils métier et CRM",
+          "item": "https://www.filigrane-site.fr/outils-metier.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Peut-on récupérer ce qui est déjà dans mes tableurs&nbsp;?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, et c'est presque toujours la première étape. Vos données existantes sont reprises et vérifiées avant la mise en service, pour que personne ne reparte d'une page blanche."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de personnes peuvent s'en servir&nbsp;?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Autant que nécessaire, avec des droits différents selon les rôles. Le nombre d'utilisateurs ne fait pas grimper une facture d'abonnement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Est-ce que ça marche sur le terrain, sans réseau&nbsp;?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, quand le métier l'exige. L'application garde la journée en mémoire sur le téléphone et se synchronise dès que le réseau revient."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que se passe-t-il si mes besoins changent&nbsp;?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C'est prévu. Un outil métier se modifie au fil de l'activité : on ajoute un champ, une étape, un écran. C'est justement ce qu'un logiciel du marché ne permet pas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Est-ce que cela peut se brancher sur l'IA&nbsp;?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, et c'est souvent là que l'outil prend toute sa valeur : devis préparé automatiquement, relance rédigée, information extraite d'un document entrant. L'outil range, l'IA travaille dedans."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<canvas id="weave" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="index.html">Filigrane</a>
+  <nav class="nav" aria-label="Navigation principale">
+      <a href="creation-site-internet.html">Sites internet</a>
+      <a href="intelligence-artificielle.html">Intelligence artificielle</a>
+      <a href="outils-metier.html" class="on">Outils métier</a>
+      <a href="index.html#demonstrations">Démonstrations</a>
+  </nav>
+  <div class="tb-right">
+    <a class="phase" href="espace-client.html" aria-label="Espace client" title="Espace client"><span class="dot"></span><span class="phase-txt">Espace client</span></a>
+    <a class="btn tiny primary" href="index.html#contact">Mon projet</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+    <a href="creation-site-internet.html"><span class="dn">01</span>Sites internet</a>
+    <a href="intelligence-artificielle.html"><span class="dn">02</span>Intelligence artificielle</a>
+    <a href="outils-metier.html"><span class="dn">03</span>Outils métier</a>
+    <a href="index.html#demonstrations"><span class="dn">04</span>Démonstrations</a>
+    <a href="espace-client.html"><span class="dn">05</span>Espace client</a>
+    <a class="btn primary drawer-cta" href="index.html#contact">Parler de mon projet</a>
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Filigrane</a><span>·</span>Outils métier et CRM</div>
+  </div>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">Le savoir-faire · 03</div>
+      <h1>Le logiciel que vous cherchez <span class="g">sans le trouver</span></h1>
+      <p class="lede">Vous avez essayé trois outils du marché. Le premier faisait trop, le deuxième pas assez, le troisième coûtait un abonnement par personne pour des fonctions que vous n'utilisez pas. <strong>Un outil sur-mesure fait exactement ce que fait votre métier</strong>, et rien d'autre.</p>
+      <div class="marks"><span class="mark"><b>Vos</b>&nbsp; règles</span><span class="mark"><b>Aucun</b>&nbsp; abonnement par poste</span><span class="mark"><b>Depuis</b>&nbsp; un navigateur</span><span class="mark"><b>Les données</b>&nbsp; sont à vous</span></div>
+      <div class="cta-row">
+        <a class="btn primary" href="index.html#contact">Parler de mon projet</a>
+        <a class="btn ghost" href="index.html#demonstrations">Voir une démonstration</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="prose reveal">
+        <h2>Quand le tableur <span class="g">ne suffit plus</span></h2>
+        <p>Presque toutes les entreprises passent par là. Un tableur partagé, puis deux, puis une version sur le bureau de quelqu'un et une autre dans la boîte aux lettres. Chacun sait où sont ses informations, personne ne sait où sont celles des autres, et la moitié du travail consiste à recopier d'un endroit vers un autre.</p>
+        <p>Un outil métier règle cela d'un coup&nbsp;: <strong>une seule source, accessible de partout, avec vos mots et vos règles</strong>. Pas un logiciel générique dans lequel il faut faire rentrer votre métier de force.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Ce que l'on <span class="g">construit</span></h2>
+        <p>Chaque brique existe seule. On commence par celle qui vous fait le plus mal aujourd'hui, et on ajoute ensuite.</p>
+      </div>
+      <div class="grid">
+        <article class="tile reveal">
+          <span class="k">i.</span>
+          <h3>CRM sur-mesure</h3>
+          <p>Vos clients, vos échanges, vos devis et vos relances au même endroit. Uniquement les champs dont vous avez besoin, dans le vocabulaire de votre métier.</p>
+        </article>
+        <article class="tile reveal d1">
+          <span class="k">ii.</span>
+          <h3>Espace client</h3>
+          <p>Chaque client se connecte et retrouve l'avancée de son dossier, ses documents et ses devis. Autant d'appels et de courriels en moins pour vous.</p>
+        </article>
+        <article class="tile reveal d2">
+          <span class="k">iii.</span>
+          <h3>Devis et signature</h3>
+          <p>Le devis se prépare, part, se suit, et se signe en ligne d'un geste du doigt. L'accord est daté, archivé, et vous êtes prévenu à la seconde.</p>
+        </article>
+        <article class="tile reveal d3">
+          <span class="k">iv.</span>
+          <h3>Planning et tournées</h3>
+          <p>Interventions, chantiers, rendez-vous. Vos équipes voient leur journée sur leur téléphone, même sans réseau, et tout remonte au bureau.</p>
+        </article>
+        <article class="tile reveal">
+          <span class="k">v.</span>
+          <h3>Tableaux de bord</h3>
+          <p>Les trois ou quatre chiffres qui comptent vraiment, à jour, lisibles en dix secondes. Pas un rapport de trente pages que personne n'ouvre.</p>
+        </article>
+        <article class="tile reveal d1">
+          <span class="k">vi.</span>
+          <h3>Automatisations</h3>
+          <p>Relance à date, document généré, notification à la bonne personne, information recopiée d'un outil vers l'autre. Ce qui se répète se programme.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Comment <span class="g">on procède</span></h2>
+        <p>On ne dessine pas un logiciel sur un tableau blanc. On part de votre semaine réelle, y compris les rustines que vous avez inventées.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="n">i.</span>
+          <h3>L'observation</h3>
+          <p>Je regarde comment vous travaillez vraiment, papier compris. Les contournements que vous avez bricolés sont les informations les plus précieuses.</p>
+        </div>
+        <div class="step reveal d1">
+          <span class="n">ii.</span>
+          <h3>La maquette</h3>
+          <p>Vous voyez les écrans avant qu'ils existent, et vous les corrigez. Changer un écran sur une maquette coûte une minute, après coup c'est autre chose.</p>
+        </div>
+        <div class="step reveal d2">
+          <span class="n">iii.</span>
+          <h3>La mise en service</h3>
+          <p>Reprise de vos données existantes, mise en ligne, et accompagnement des premiers jours d'usage, qui sont les seuls qui comptent vraiment.</p>
+        </div>
+        <div class="step reveal d3">
+          <span class="n">iv.</span>
+          <h3>Les évolutions</h3>
+          <p>Un outil métier vit avec l'activité. On ajoute au fil de l'eau, selon ce qui remonte de ceux qui s'en servent tous les jours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="prose reveal">
+        <h2>Sur-mesure ou <span class="g">logiciel du marché</span>&nbsp;?</h2>
+        <p>La réponse honnête n'est pas toujours le sur-mesure. Pour la comptabilité, la paie ou la facturation réglementée, des outils existent, ils sont à jour des obligations légales et il n'y a aucune raison de les réécrire. Je vous le dirai plutôt que de vous vendre autre chose.</p>
+        <p>Le sur-mesure prend tout son sens ailleurs&nbsp;: là où <strong>votre façon de travailler est justement ce qui vous distingue</strong>, et où aucun logiciel générique ne la reconnaît. Le suivi de vos dossiers, votre manière de chiffrer, vos étapes de chantier, votre relation client.</p>
+        <ul>
+          <li><strong>Vos règles.</strong> L'outil suit votre organisation, vous ne changez pas d'organisation pour suivre un outil.</li>
+          <li><strong>Vos données.</strong> Elles restent les vôtres et restent exportables. Aucun enfermement.</li>
+          <li><strong>Un coût qui ne suit pas vos effectifs.</strong> Pas d'abonnement qui grimpe à chaque personne ajoutée.</li>
+          <li><strong>Depuis un navigateur.</strong> Ordinateur, tablette, téléphone. Rien à installer, rien à mettre à jour.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Les questions <span class="g">que l'on me pose</span></h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>Peut-on récupérer ce qui est déjà dans mes tableurs&nbsp;?</summary>
+          <div class="ans">Oui, et c'est presque toujours la première étape. Vos données existantes sont reprises et vérifiées avant la mise en service, pour que personne ne reparte d'une page blanche.</div>
+        </details>
+        <details>
+          <summary>Combien de personnes peuvent s'en servir&nbsp;?</summary>
+          <div class="ans">Autant que nécessaire, avec des droits différents selon les rôles. Le nombre d'utilisateurs ne fait pas grimper une facture d'abonnement.</div>
+        </details>
+        <details>
+          <summary>Est-ce que ça marche sur le terrain, sans réseau&nbsp;?</summary>
+          <div class="ans">Oui, quand le métier l'exige. L'application garde la journée en mémoire sur le téléphone et se synchronise dès que le réseau revient.</div>
+        </details>
+        <details>
+          <summary>Que se passe-t-il si mes besoins changent&nbsp;?</summary>
+          <div class="ans">C'est prévu. Un outil métier se modifie au fil de l'activité : on ajoute un champ, une étape, un écran. C'est justement ce qu'un logiciel du marché ne permet pas.</div>
+        </details>
+        <details>
+          <summary>Est-ce que cela peut se brancher sur l'IA&nbsp;?</summary>
+          <div class="ans">Oui, et c'est souvent là que l'outil prend toute sa valeur : devis préparé automatiquement, relance rédigée, information extraite d'un document entrant. <strong>L'outil range, l'IA travaille dedans.</strong></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="endcall reveal">
+        <div class="es" aria-hidden="true">F</div>
+        <div class="et">
+          <h2>Décrivez-moi <span class="g">votre semaine</span></h2>
+          <p>Ce que vous recopiez, ce que vous cherchez, ce que vous oubliez de relancer. C'est de là que part un bon outil métier.</p>
+        </div>
+        <a class="btn primary" href="index.html#contact">Parler de mon projet</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Aller <span class="g">plus loin</span></h2></div>
+      <div class="siblings">
+        <a class="sib reveal" href="creation-site-internet.html">
+          <small>Savoir-faire</small>
+          <b>Création de site internet</b>
+          <span>Direction artistique et site écrit à la main, pensé pour être trouvé et pour convertir.</span>
+        </a>
+        <a class="sib reveal" href="intelligence-artificielle.html">
+          <small>Savoir-faire</small>
+          <b>Intégration d'intelligence artificielle</b>
+          <span>L'IA branchée là où elle vous fait gagner des heures, pas là où elle fait joli.</span>
+        </a>
+        <a class="sib reveal" href="index.html#demonstrations">
+          <small>Démonstrations</small>
+          <b>Voir ce qui est réalisable</b>
+          <span>Quatre maquettes construites pour donner une idée concrète du résultat.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <footer class="site-foot">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand">Filigrane</span>
+        <p>Studio de création numérique et d'intelligence artificielle. Sites sur-mesure, IA intégrée et outils métier, écrits à la main. Jamais un template.</p>
+      </div>
+      <div>
+        <h4>Savoir-faire</h4>
+        <ul>
+          <li><a href="creation-site-internet.html">Création de site internet</a></li>
+          <li><a href="intelligence-artificielle.html">Intégration d'IA</a></li>
+          <li><a href="outils-metier.html">Outils métier &amp; CRM</a></li>
+          <li><a href="index.html#savoir-faire">Accompagnement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Le studio</h4>
+        <ul>
+          <li><a href="index.html#demonstrations">Démonstrations</a></li>
+          <li><a href="index.html#methode">La méthode</a></li>
+          <li><a href="index.html#atelier">L'atelier</a></li>
+          <li><a href="index.html#questions">Questions fréquentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="index.html#contact">Parler de mon projet</a></li>
+          <li><a href="mailto:mehdi.mjid@dauphine.eu">mehdi.mjid@dauphine.eu</a></li>
+          <li><a href="espace-client.html">Espace client</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Site tissé à la main, sans template ni librairie</span>
+      <span class="sep">© <span id="year">2026</span> Filigrane</span>
+    </div>
+  </footer>
+
+<script src="assets/pages.js"></script>
+</body>
+</html>

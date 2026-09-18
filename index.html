@@ -3,14 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FILIGRANE · Studio de création numérique</title>
-<meta name="description" content="Filigrane conçoit des identités numériques sur-mesure : sites vitrines premium, design génératif et intelligence artificielle intégrée. Aucun template, tout est tissé à la main.">
+<title>Filigrane · Création de site internet et intégration d'intelligence artificielle</title>
+<meta name="description" content="Filigrane conçoit des sites internet sur-mesure, intègre l'intelligence artificielle dans les entreprises et développe des outils métier : CRM, espaces clients, applications. Aucun template, tout est écrit à la main.">
+<meta name="author" content="Filigrane">
+<meta name="theme-color" content="#0a0910">
 <link rel="canonical" href="https://www.filigrane-site.fr/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0910'/%3E%3Ccircle cx='32' cy='32' r='25' fill='none' stroke='%23d4a94e' stroke-width='1.6'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='34' fill='%23e6c67e' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.filigrane-site.fr/">
-<meta property="og:title" content="FILIGRANE · Studio de création numérique">
-<meta property="og:description" content="Identités numériques sur-mesure : sites vitrines premium, design génératif et intelligence artificielle intégrée.">
+<meta property="og:site_name" content="Filigrane">
+<meta property="og:title" content="Filigrane · Création de site internet et intégration d'IA">
+<meta property="og:description" content="Sites sur-mesure, intelligence artificielle intégrée et outils métier. Aucun template, tout est écrit à la main.">
+<meta property="og:image" content="https://www.filigrane-site.fr/og-filigrane.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Filigrane · Création de site internet et intégration d'IA">
+<meta name="twitter:description" content="Sites sur-mesure, intelligence artificielle intégrée et outils métier.">
+<meta name="twitter:image" content="https://www.filigrane-site.fr/og-filigrane.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -29,7 +41,7 @@
     --font-ui:"Inter", system-ui, sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:auto;}
+  html{scroll-behavior:auto; scroll-padding-top:92px; overflow-x:hidden;}
   body{
     background:var(--ink);
     color:var(--ivory);
@@ -37,11 +49,13 @@
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
+  body.locked{ overflow:hidden; }
   ::selection{ background:var(--gold); color:var(--ink); }
 
   /* ---------- generative layer ---------- */
   #loom{
-    position:fixed; inset:0; width:100vw; height:100vh;
+    /* inset:0 suffit : 100vw inclut la barre de défilement et créait un débordement latéral */
+    position:fixed; inset:0;
     z-index:0; display:block; background:var(--ink);
   }
   .vignette{
@@ -53,20 +67,46 @@
 
   /* ---------- top bar ---------- */
   .topbar{
-    position:fixed; top:0; left:0; right:0; z-index:6;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:22px clamp(20px,4vw,52px);
+    position:fixed; top:0; left:0; right:0; z-index:20;
+    display:flex; align-items:center; gap:clamp(14px,3vw,40px);
+    padding:22px clamp(18px,4vw,52px);
     mix-blend-mode:difference;
+    border-bottom:1px solid transparent;
+    transition:padding .4s ease, background .4s ease, border-color .4s ease;
+  }
+  .topbar.solid{
+    mix-blend-mode:normal;
+    padding-top:13px; padding-bottom:13px;
+    background:rgba(9,8,14,.82);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-bottom-color:var(--line);
   }
   .brand{
     font-family:var(--font-display);
-    font-weight:500; font-size:21px; letter-spacing:.4em;
+    font-weight:500; font-size:clamp(16px,2vw,21px); letter-spacing:.4em;
     padding-left:.4em; text-transform:uppercase;
+    color:var(--ivory); text-decoration:none; white-space:nowrap; flex:none;
   }
+  .nav{ display:flex; align-items:center; gap:clamp(12px,2vw,26px); margin-left:auto; }
+  .nav a{
+    font-size:11.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--ivory-dim); text-decoration:none; position:relative;
+    padding:6px 0; white-space:nowrap;
+    transition:color .3s;
+  }
+  .nav a::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:var(--gold); transform:scaleX(0); transform-origin:left;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .nav a:hover{ color:var(--ivory); }
+  .nav a:hover::after, .nav a.on::after{ transform:scaleX(1); }
+  .nav a.on{ color:var(--ivory); }
+  .tb-right{ display:flex; align-items:center; gap:clamp(10px,1.6vw,20px); flex:none; }
   .phase{
-    font-size:11px; letter-spacing:.32em; text-transform:uppercase;
-    color:var(--ivory); display:flex; align-items:center; gap:10px;
-    text-decoration:none;
+    font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--ivory); display:flex; align-items:center; gap:9px;
+    text-decoration:none; white-space:nowrap;
   }
   .phase .phase-txt{
     border-bottom:1px solid transparent; padding-bottom:2px;
@@ -74,10 +114,42 @@
   }
   .phase:hover .phase-txt{ border-color:var(--ivory); }
   .phase .dot{
-    width:7px; height:7px; border-radius:50%;
+    width:7px; height:7px; border-radius:50%; flex:none;
     background:var(--gold); box-shadow:0 0 12px var(--gold);
     transition:background .5s, box-shadow .5s;
   }
+  .btn.tiny{ padding:11px 20px; font-size:11px; letter-spacing:.16em; }
+  .menu-btn{
+    display:none; width:40px; height:34px; background:none; border:1px solid var(--line);
+    border-radius:2px; cursor:pointer; position:relative; flex:none;
+  }
+  .menu-btn span{
+    position:absolute; left:11px; right:11px; height:1px; background:var(--ivory);
+    transition:transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s;
+  }
+  .menu-btn span:nth-child(1){ top:13px; }
+  .menu-btn span:nth-child(2){ top:20px; }
+  .menu-btn[aria-expanded="true"] span:nth-child(1){ transform:translateY(3.5px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span:nth-child(2){ transform:translateY(-3.5px) rotate(-45deg); }
+
+  /* ---------- mobile drawer ---------- */
+  .drawer{
+    position:fixed; inset:0; z-index:19; background:rgba(8,7,12,.97);
+    backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    display:flex; flex-direction:column; justify-content:center; gap:4px;
+    padding:96px clamp(26px,9vw,60px) 60px;
+    opacity:0; visibility:hidden; transform:translateY(-14px);
+    transition:opacity .45s ease, visibility .45s, transform .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .drawer.open{ opacity:1; visibility:visible; transform:none; }
+  .drawer a{
+    font-family:var(--font-display); font-size:clamp(26px,7vw,38px); font-weight:400;
+    color:var(--ivory); text-decoration:none; padding:13px 0;
+    border-bottom:1px solid var(--line); display:flex; align-items:baseline; gap:16px;
+  }
+  .drawer a .dn{ font-size:12px; font-family:var(--font-ui); letter-spacing:.2em; color:var(--gold-soft); }
+  .drawer a:last-of-type{ border-bottom:none; }
+  .drawer .drawer-cta{ margin-top:26px; border:none; }
 
   /* ---------- weaving rail ---------- */
   .rail{
@@ -109,8 +181,9 @@
   .overlay{ position:relative; z-index:5; }
   .panel{
     min-height:100vh; display:flex; flex-direction:column; justify-content:center;
-    padding:96px clamp(22px,8vw,140px);
+    padding:110px clamp(22px,8vw,140px) 96px;
   }
+  .panel.auto{ min-height:0; }
   .panel.right{ align-items:flex-end; text-align:right; }
   .eyebrow{
     font-size:11px; letter-spacing:.4em; text-transform:uppercase;
@@ -127,17 +200,18 @@
     text-shadow:0 8px 60px rgba(5,4,10,.55);
   }
   .hero .sub{
-    margin-top:30px; font-size:clamp(11px,1.4vw,14px); letter-spacing:.5em; padding-left:.5em;
-    text-transform:uppercase; color:var(--gold-soft);
+    margin-top:30px; font-size:clamp(10.5px,1.32vw,13.5px); letter-spacing:.42em; padding-left:.42em;
+    text-transform:uppercase; color:var(--gold-soft); line-height:2;
   }
   .hero .lede{
-    margin-top:34px; max-width:58ch; font-weight:400;
-    font-size:clamp(18px,2.6vw,22.5px); color:var(--ivory-dim); line-height:1.75;
+    margin-top:32px; max-width:60ch; font-weight:400;
+    font-size:clamp(17px,2.4vw,21.5px); color:var(--ivory-dim); line-height:1.75;
     text-shadow:0 2px 22px rgba(6,5,10,.9);
   }
   .hero .lede em{ font-style:normal; color:var(--ivory); }
+  .hero .cta-row{ margin-top:36px; }
   .scroll-cue{
-    margin-top:52px; display:inline-flex; flex-direction:column; align-items:center; gap:12px;
+    margin-top:44px; display:inline-flex; flex-direction:column; align-items:center; gap:12px;
     font-size:10px; letter-spacing:.34em; text-transform:uppercase; color:var(--slate);
   }
   .scroll-cue .bar{
@@ -160,7 +234,7 @@
   }
   .chapter h2 .g{ color:var(--gold-soft); font-style:italic; }
   .chapter p{
-    font-weight:400; font-size:clamp(18px,2.4vw,21.5px); line-height:1.85;
+    font-weight:400; font-size:clamp(17px,2.3vw,21.5px); line-height:1.85;
     color:var(--ivory-dim); text-shadow:0 2px 22px rgba(6,5,10,.9);
   }
   .chapter p strong{ color:var(--ivory); font-weight:600; }
@@ -181,39 +255,209 @@
 
   /* services */
   .services-panel{ align-items:stretch; }
-  .services-head{ max-width:min(56ch, 92vw); margin-bottom:52px; position:relative; }
+  .services-head{ max-width:min(58ch, 92vw); margin-bottom:52px; position:relative; }
   .services-head h2{
     font-family:var(--font-display); font-weight:400;
     font-size:clamp(40px,6.6vw,84px); line-height:1.06; margin-bottom:20px;
     text-shadow:0 4px 34px rgba(6,5,10,.7);
   }
   .services-head h2 .g{ color:var(--gold-soft); font-style:italic; }
-  .services-head p{ font-weight:400; font-size:clamp(18px,2.4vw,21px); line-height:1.8; color:var(--ivory-dim); text-shadow:0 2px 22px rgba(6,5,10,.9); }
+  .services-head p{ font-weight:400; font-size:clamp(17px,2.3vw,21px); line-height:1.8; color:var(--ivory-dim); text-shadow:0 2px 22px rgba(6,5,10,.9); }
   .cards{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); gap:18px;
   }
   .card{
     position:relative; overflow:hidden;
     border:1px solid var(--line); border-radius:3px;
-    padding:32px 28px 30px;
+    padding:32px 26px 28px;
     background:rgba(14,12,22,.46);
     backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    display:flex; flex-direction:column;
     transition:transform .45s cubic-bezier(.2,.7,.2,1), border-color .45s, background .45s;
   }
   .card:hover{ transform:translateY(-6px); border-color:rgba(212,169,78,.55); background:rgba(16,13,24,.6); }
-  .card .icon{ width:34px; height:34px; margin-bottom:20px; color:var(--gold-soft); }
+  .card .icon{ width:32px; height:32px; margin-bottom:18px; color:var(--gold-soft); }
   .card .icon svg{ width:100%; height:100%; }
   .card h3{
-    font-family:var(--font-display); font-weight:500; font-size:22px;
+    font-family:var(--font-display); font-weight:500; font-size:21px;
     margin-bottom:12px; letter-spacing:.02em;
   }
-  .card p{ font-weight:400; font-size:16.5px; line-height:1.75; color:var(--ivory-dim); }
-  .card .tagline{
-    margin-top:18px; font-size:10.5px; letter-spacing:.26em; text-transform:uppercase; color:var(--gold-soft);
+  .card p{ font-weight:400; font-size:15.8px; line-height:1.72; color:var(--ivory-dim); }
+  .card .bullets{ list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:7px; }
+  .card .bullets li{
+    font-size:13.4px; line-height:1.5; color:var(--ivory-dim); padding-left:16px; position:relative;
   }
+  .card .bullets li::before{
+    content:''; position:absolute; left:0; top:.62em; width:5px; height:1px; background:var(--gold-soft);
+  }
+  .card .tagline{
+    margin-top:auto; padding-top:18px;
+    font-size:10.5px; letter-spacing:.26em; text-transform:uppercase; color:var(--gold-soft);
+  }
+  .card .more{
+    margin-top:14px; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ivory); text-decoration:none;
+    border-bottom:1px solid rgba(212,169,78,.55); padding-bottom:2px; align-self:flex-start;
+    transition:color .25s, border-color .25s;
+  }
+  .card .more:hover{ color:var(--gold-soft); border-color:var(--gold-soft); }
+
+  /* ---------- demonstrations ---------- */
+  .demo-panel{ align-items:stretch; }
+  .demo-tabs{ display:flex; flex-wrap:wrap; gap:9px; margin-bottom:24px; }
+  .demo-tab{
+    font-family:var(--font-ui); font-size:11.5px; letter-spacing:.17em; text-transform:uppercase;
+    color:var(--ivory-dim); background:rgba(14,12,22,.6); cursor:pointer;
+    border:1px solid var(--line); border-radius:2px; padding:12px 18px;
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    transition:color .3s, border-color .3s, background .3s, transform .3s;
+  }
+  .demo-tab:hover{ color:var(--ivory); border-color:rgba(212,169,78,.45); transform:translateY(-2px); }
+  .demo-tab.on{ color:#181203; background:var(--gold); border-color:var(--gold); font-weight:500; }
+  .demo-stage{
+    border:1px solid var(--line); border-radius:16px;
+    background:rgba(10,9,16,.62);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    padding:clamp(12px,2.2vw,24px);
+    box-shadow:0 34px 90px rgba(0,0,0,.5);
+  }
+  .demo-cap{
+    display:flex; flex-wrap:wrap; gap:10px 26px; align-items:baseline;
+    margin-top:18px; padding:0 4px;
+  }
+  .demo-cap h3{ font-family:var(--font-display); font-weight:500; font-size:19px; }
+  .demo-cap p{ font-size:14.6px; line-height:1.65; color:var(--ivory-dim); flex:1 1 320px; }
+  .demo-note{
+    margin-top:22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--slate);
+  }
+  .demo{ display:none; }
+  .demo.on{ display:block; }
+
+  /* browser chrome */
+  .frame{ border-radius:11px; overflow:hidden; border:1px solid rgba(255,255,255,.09); }
+  .frame-bar{
+    display:flex; align-items:center; gap:12px; padding:10px 14px;
+    background:#191625; border-bottom:1px solid rgba(255,255,255,.07);
+  }
+  .frame-dots{ display:flex; gap:6px; flex:none; }
+  .frame-dots i{ width:9px; height:9px; border-radius:50%; display:block; }
+  .frame-url{
+    flex:1; background:rgba(255,255,255,.06); border-radius:20px;
+    padding:5px 14px; font-size:11px; color:#a9a3b8; letter-spacing:.04em;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .frame-body{ background:#faf7f1; color:#1b1723; }
+
+  /* mock : site vitrine */
+  .mk-site{ font-family:var(--font-ui); }
+  .mk-site .nav2{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px clamp(14px,3vw,30px); background:#fff; border-bottom:1px solid #eae4d8;
+  }
+  .mk-site .lg{ font-family:var(--font-display); font-size:15px; letter-spacing:.24em; color:#1b1723; }
+  .mk-site .nav2 ul{ display:flex; gap:18px; list-style:none; }
+  .mk-site .nav2 li{ font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#6d6579; }
+  .mk-site .nav2 .bk{ background:#1b1723; color:#f7f3ea; font-size:10px; letter-spacing:.14em; padding:8px 14px; border-radius:2px; text-transform:uppercase; }
+  .mk-site .hero2{
+    position:relative; min-height:190px; display:flex; flex-direction:column; justify-content:center;
+    padding:32px clamp(14px,3vw,30px);
+    background:linear-gradient(115deg,#2b2233 0%,#584231 46%,#9a7048 100%);
+    color:#f8f4ec; overflow:hidden;
+  }
+  .mk-site .hero2::after{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(70% 120% at 82% 20%, rgba(255,214,150,.3), transparent 60%);
+  }
+  .mk-site .hero2 span{ position:relative; z-index:1; font-size:9.5px; letter-spacing:.3em; text-transform:uppercase; opacity:.8; }
+  .mk-site .hero2 h4{ position:relative; z-index:1; font-family:var(--font-display); font-weight:400; font-size:clamp(24px,4vw,40px); line-height:1.12; margin:12px 0 14px; max-width:16ch; }
+  .mk-site .hero2 .bt{ position:relative; z-index:1; align-self:flex-start; background:#f0d18a; color:#2b2233; font-size:10px; letter-spacing:.16em; text-transform:uppercase; padding:11px 20px; border-radius:2px; }
+  .mk-site .row3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#eae4d8; }
+  .mk-site .row3 div{ background:#faf7f1; padding:20px clamp(12px,2vw,20px); }
+  .mk-site .row3 b{ display:block; font-family:var(--font-display); font-size:14px; font-weight:500; margin-bottom:7px; }
+  .mk-site .row3 p{ font-size:11.4px; line-height:1.6; color:#6d6579; }
+  .mk-site .row3 i{ display:block; width:20px; height:2px; background:#c19a52; margin-bottom:12px; }
+
+  /* mock : CRM */
+  .mk-crm{ display:grid; grid-template-columns:154px 1fr; background:#f5f2ec; min-height:330px; }
+  .mk-crm .side{ background:#141220; padding:18px 14px; }
+  .mk-crm .side .lg{ font-family:var(--font-display); font-size:12.5px; letter-spacing:.24em; color:#e6c67e; margin-bottom:22px; }
+  .mk-crm .side a{ display:flex; align-items:center; gap:9px; font-size:11.2px; color:#9a94a8; padding:9px 9px; border-radius:5px; text-decoration:none; }
+  .mk-crm .side a.on{ background:rgba(212,169,78,.15); color:#f2ecdf; }
+  .mk-crm .side a i{ width:5px; height:5px; border-radius:50%; background:currentColor; flex:none; opacity:.75; }
+  .mk-crm .main{ padding:18px clamp(12px,2vw,22px); }
+  .mk-crm .hd{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px; }
+  .mk-crm .hd b{ font-family:var(--font-display); font-size:17px; font-weight:500; color:#1b1723; }
+  .mk-crm .hd span{ font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#8c8598; }
+  .mk-crm .kpis{ display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin-bottom:16px; }
+  .mk-crm .kpi{ background:#fff; border:1px solid #e7e1d5; border-radius:8px; padding:11px 12px; }
+  .mk-crm .kpi small{ display:block; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:#8c8598; margin-bottom:6px; }
+  .mk-crm .kpi b{ font-family:var(--font-display); font-size:19px; font-weight:500; color:#1b1723; }
+  .mk-crm .kpi em{ font-style:normal; font-size:9.5px; color:#4e8f60; margin-left:5px; }
+  .mk-crm .split{ display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+  .mk-crm .box{ background:#fff; border:1px solid #e7e1d5; border-radius:8px; padding:13px 14px; }
+  .mk-crm .box > small{ display:block; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:#8c8598; margin-bottom:12px; }
+  .mk-crm .bars{ display:flex; align-items:flex-end; gap:6px; height:78px; }
+  .mk-crm .bars span{ flex:1; background:linear-gradient(180deg,#d4a94e,#b8863a); border-radius:2px 2px 0 0; transition:height .9s cubic-bezier(.2,.7,.2,1); }
+  .mk-crm .bars span:last-child{ background:linear-gradient(180deg,#1b1723,#403a52); }
+  .mk-crm .rows{ display:flex; flex-direction:column; gap:9px; }
+  .mk-crm .r{ display:flex; align-items:center; gap:9px; font-size:11px; color:#4a4456; }
+  .mk-crm .av{ width:22px; height:22px; border-radius:50%; background:#e7e1d5; color:#6d6579; font-size:9.5px; display:flex; align-items:center; justify-content:center; flex:none; font-weight:600; }
+  .mk-crm .r b{ font-weight:500; color:#1b1723; }
+  .mk-crm .pill{ margin-left:auto; font-size:8.6px; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; border-radius:20px; white-space:nowrap; }
+  .mk-crm .pill.a{ background:#e8f2ea; color:#3d7a52; }
+  .mk-crm .pill.b{ background:#fbf0dc; color:#94702c; }
+  .mk-crm .pill.c{ background:#eeecf4; color:#5c5570; }
+
+  /* mock : application métier */
+  .mk-app{ background:linear-gradient(150deg,#1a1626,#241d33); padding:26px 18px; display:flex; justify-content:center; }
+  .mk-app .phone{
+    width:236px; border-radius:26px; border:1px solid rgba(255,255,255,.14);
+    background:#faf7f1; overflow:hidden; box-shadow:0 22px 50px rgba(0,0,0,.45);
+  }
+  .mk-app .top{ background:#141220; color:#f2ecdf; padding:16px 16px 14px; }
+  .mk-app .top .dt{ font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:#e6c67e; }
+  .mk-app .top b{ display:block; font-family:var(--font-display); font-size:17px; font-weight:500; margin-top:5px; }
+  .mk-app .top .st{ display:flex; gap:14px; margin-top:11px; font-size:9.5px; color:#9a94a8; }
+  .mk-app .top .st b{ display:inline; font-family:var(--font-ui); font-size:9.5px; color:#f2ecdf; margin:0 0 0 3px; }
+  .mk-app .list{ padding:12px; display:flex; flex-direction:column; gap:8px; }
+  .mk-app .it{ background:#fff; border:1px solid #e7e1d5; border-left:2px solid #d4a94e; border-radius:6px; padding:10px 11px; }
+  .mk-app .it.done{ border-left-color:#4e8f60; opacity:.62; }
+  .mk-app .it .h{ display:flex; align-items:center; justify-content:space-between; }
+  .mk-app .it b{ font-size:11.6px; color:#1b1723; font-weight:600; }
+  .mk-app .it .tm{ font-size:9.2px; color:#8c8598; letter-spacing:.06em; }
+  .mk-app .it p{ font-size:10.4px; color:#6d6579; margin-top:4px; line-height:1.5; }
+  .mk-app .tabs2{ display:flex; border-top:1px solid #e7e1d5; background:#fff; }
+  .mk-app .tabs2 span{ flex:1; text-align:center; padding:11px 0 13px; font-size:8.6px; letter-spacing:.1em; text-transform:uppercase; color:#a09aac; }
+  .mk-app .tabs2 span.on{ color:#1b1723; box-shadow:inset 0 2px 0 #d4a94e; }
+
+  /* mock : IA */
+  .mk-ia{ display:grid; grid-template-columns:1.1fr .9fr; background:#f5f2ec; min-height:330px; }
+  .mk-ia .chat{ padding:18px clamp(12px,2vw,20px); display:flex; flex-direction:column; gap:10px; border-right:1px solid #e7e1d5; }
+  .mk-ia .chat .hd{ display:flex; align-items:center; gap:9px; padding-bottom:12px; border-bottom:1px solid #e7e1d5; margin-bottom:4px; }
+  .mk-ia .chat .av2{ width:26px; height:26px; border-radius:50%; background:#141220; color:#e6c67e; font-family:var(--font-display); font-style:italic; font-size:14px; display:flex; align-items:center; justify-content:center; }
+  .mk-ia .chat .hd b{ font-size:11.5px; color:#1b1723; }
+  .mk-ia .chat .hd small{ display:block; font-size:9px; color:#4e8f60; letter-spacing:.06em; }
+  .mk-ia .msg{ max-width:84%; font-size:11.4px; line-height:1.62; padding:10px 13px; border-radius:12px; }
+  .mk-ia .msg.them{ background:#fff; border:1px solid #e7e1d5; color:#4a4456; border-bottom-left-radius:3px; }
+  .mk-ia .msg.me{ background:#141220; color:#f2ecdf; align-self:flex-end; border-bottom-right-radius:3px; }
+  .mk-ia .typing{ display:flex; gap:4px; padding:12px 14px; background:#fff; border:1px solid #e7e1d5; border-radius:12px; border-bottom-left-radius:3px; width:max-content; }
+  .mk-ia .typing i{ width:5px; height:5px; border-radius:50%; background:#b5aec2; animation:blip 1.3s infinite; }
+  .mk-ia .typing i:nth-child(2){ animation-delay:.18s; }
+  .mk-ia .typing i:nth-child(3){ animation-delay:.36s; }
+  @keyframes blip{ 0%,60%,100%{ opacity:.3; transform:translateY(0);} 30%{ opacity:1; transform:translateY(-3px);} }
+  .mk-ia .auto{ padding:18px clamp(12px,2vw,20px); }
+  .mk-ia .auto > small{ display:block; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:#8c8598; margin-bottom:14px; }
+  .mk-ia .fl{ display:flex; flex-direction:column; gap:8px; }
+  .mk-ia .fl .n{ background:#fff; border:1px solid #e7e1d5; border-radius:7px; padding:10px 12px; }
+  .mk-ia .fl .n b{ display:block; font-size:10.8px; color:#1b1723; font-weight:600; }
+  .mk-ia .fl .n span{ display:block; font-size:9.6px; color:#8c8598; margin-top:3px; letter-spacing:.04em; }
+  .mk-ia .fl .ar{ width:1px; height:11px; background:#d6cfc2; margin-left:19px; }
+  .mk-ia .gain{ margin-top:14px; background:#141220; color:#f2ecdf; border-radius:7px; padding:12px 13px; }
+  .mk-ia .gain b{ font-family:var(--font-display); font-size:18px; font-weight:500; color:#e6c67e; }
+  .mk-ia .gain span{ display:block; font-size:9.6px; color:#9a94a8; margin-top:3px; letter-spacing:.08em; text-transform:uppercase; }
 
   /* method */
-  .steps{ margin-top:46px; display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:0; counter-reset:step; }
+  .steps{ margin-top:46px; display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:0; }
   .step{
     position:relative; padding:26px 26px 6px 0; border-top:1px solid var(--line);
   }
@@ -228,11 +472,64 @@
   }
   .method-note b{ color:var(--gold-soft); font-weight:600; }
 
+  /* ---------- l'homme derrière ---------- */
+  .about-wrap{
+    display:grid; grid-template-columns:auto 1fr; gap:clamp(24px,4vw,52px); align-items:center;
+    max-width:1020px; width:100%;
+  }
+  .about-seal{
+    width:clamp(110px,15vw,168px); height:clamp(110px,15vw,168px); border-radius:50%;
+    border:1px solid rgba(212,169,78,.5); position:relative; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 34% 28%, rgba(212,169,78,.16), transparent 62%);
+    box-shadow:inset 0 0 40px rgba(212,169,78,.1), 0 0 44px rgba(212,169,78,.07);
+  }
+  .about-seal span{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    font-size:clamp(46px,6.4vw,74px); line-height:1;
+    background:linear-gradient(115deg,#9a7226,#d4a94e 32%,#f6e7c0 52%,#d4a94e 70%,#9a7226);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .about-seal::after{
+    content:''; position:absolute; inset:9px; border-radius:50%;
+    border:1px solid rgba(242,236,223,.14);
+  }
+  .about-txt h2{ margin-bottom:18px; }
+  .about-txt p + p{ margin-top:15px; }
+  .about-facts{ display:flex; flex-wrap:wrap; gap:9px; margin-top:24px; }
+
+  /* ---------- FAQ ---------- */
+  .faq{ max-width:min(74ch,94vw); width:100%; margin-top:8px; }
+  .faq details{
+    border-top:1px solid var(--line);
+  }
+  .faq details:last-child{ border-bottom:1px solid var(--line); }
+  .faq summary{
+    list-style:none; cursor:pointer; padding:22px 44px 22px 0; position:relative;
+    font-family:var(--font-display); font-weight:500; font-size:clamp(17px,2.2vw,21px);
+    line-height:1.4; color:var(--ivory);
+    transition:color .3s;
+  }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary:hover{ color:var(--gold-soft); }
+  .faq summary::after{
+    content:''; position:absolute; right:8px; top:50%; width:11px; height:1px;
+    background:var(--gold-soft); transform:translateY(-50%);
+  }
+  .faq summary::before{
+    content:''; position:absolute; right:13px; top:50%; width:1px; height:11px;
+    background:var(--gold-soft); transform:translateY(-50%);
+    transition:transform .3s, opacity .3s;
+  }
+  .faq details[open] summary::before{ transform:translateY(-50%) rotate(90deg); opacity:0; }
+  .faq .ans{ padding:0 44px 24px 0; font-size:16.4px; line-height:1.8; color:var(--ivory-dim); }
+  .faq .ans strong{ color:var(--ivory); font-weight:600; }
+
   /* finale */
   .finale{ align-items:center; text-align:center; }
   .finale .chapter{ max-width:none; }
   .finale h2{ max-width:16ch; margin-left:auto; margin-right:auto; }
-  .finale p{ margin:0 auto; max-width:46ch; }
+  .finale > .chapter > p{ margin:0 auto; max-width:48ch; }
   .cta-row{ margin-top:38px; display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
   .btn{
     font-family:var(--font-ui); font-size:13px; letter-spacing:.16em; text-transform:uppercase;
@@ -244,7 +541,21 @@
   .btn.primary:hover{ transform:translateY(-2px); background:var(--gold-soft); }
   .btn.ghost{ border-color:var(--line); color:var(--ivory); background:transparent; }
   .btn.ghost:hover{ transform:translateY(-2px); border-color:var(--ivory); }
-  .btn:focus-visible, a:focus-visible{ outline:2px solid var(--gold); outline-offset:4px; }
+  .btn:focus-visible, a:focus-visible, summary:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:4px; }
+
+  /* mid-page call */
+  .midcall{
+    width:100%; max-width:980px; margin:60px auto 0;
+    border:1px solid var(--line); border-radius:14px;
+    background:rgba(13,11,20,.6);
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    padding:clamp(26px,3.4vw,40px);
+    display:flex; flex-wrap:wrap; align-items:center; gap:22px 34px; text-align:left;
+  }
+  .midcall h3{ font-family:var(--font-display); font-weight:400; font-size:clamp(22px,3vw,30px); line-height:1.25; flex:1 1 320px; }
+  .midcall h3 .g{ color:var(--gold-soft); font-style:italic; }
+  .midcall p{ flex:1 1 260px; font-size:15.4px; line-height:1.7; color:var(--ivory-dim); }
+
   /* contact */
   .contact-card{
     --mx:50%; --my:18%;
@@ -257,7 +568,6 @@
     backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
     box-shadow:0 34px 90px rgba(0,0,0,.55), 0 0 70px rgba(212,169,78,.06);
   }
-  /* surbrillance qui suit la souris */
   .cc-glow{
     position:absolute; inset:0; pointer-events:none; z-index:0;
     background:radial-gradient(340px circle at var(--mx) var(--my), rgba(212,169,78,.1), transparent 65%);
@@ -297,14 +607,21 @@
     display:block; font-size:11px; letter-spacing:.24em; text-transform:uppercase;
     color:var(--gold-soft); margin-bottom:8px;
   }
-  .cc-field input, .cc-field textarea{
+  .cc-field input, .cc-field textarea, .cc-field select{
     width:100%; background:rgba(10,9,16,.55); border:1px solid var(--line); border-radius:10px;
     padding:14px 15px; color:var(--ivory); font-size:15.5px; font-family:var(--font-ui);
     transition:border-color .3s, box-shadow .3s, background .3s;
   }
+  .cc-field select{
+    appearance:none; -webkit-appearance:none; cursor:pointer;
+    background-image:linear-gradient(45deg,transparent 50%,var(--gold-soft) 50%),linear-gradient(135deg,var(--gold-soft) 50%,transparent 50%);
+    background-position:calc(100% - 20px) calc(50% + 1px), calc(100% - 14px) calc(50% + 1px);
+    background-size:6px 6px, 6px 6px; background-repeat:no-repeat;
+  }
+  .cc-field select option{ background:#12101c; color:var(--ivory); }
   .cc-field input::placeholder, .cc-field textarea::placeholder{ color:rgba(213,206,191,.38); }
-  .cc-field input:hover, .cc-field textarea:hover{ border-color:rgba(212,169,78,.35); }
-  .cc-field input:focus, .cc-field textarea:focus{
+  .cc-field input:hover, .cc-field textarea:hover, .cc-field select:hover{ border-color:rgba(212,169,78,.35); }
+  .cc-field input:focus, .cc-field textarea:focus, .cc-field select:focus{
     outline:none; border-color:var(--gold);
     box-shadow:0 0 0 3px rgba(212,169,78,.14), 0 0 24px rgba(212,169,78,.08);
     background:rgba(12,10,19,.75);
@@ -323,7 +640,6 @@
   @keyframes btnShine{ 0%{ left:-80%; opacity:1; } 100%{ left:130%; opacity:1; } }
   .cc-hint{ margin-top:14px; font-size:13px; color:var(--slate); text-align:center; line-height:1.6; }
   .contact-card .btn.primary[disabled]{ opacity:.6; cursor:progress; }
-  /* champ leurre anti-robots : invisible pour les humains */
   .cc-hp{ position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; opacity:0; pointer-events:none; }
   .cc-status{
     margin-top:16px; font-size:14px; line-height:1.6; text-align:center;
@@ -332,144 +648,277 @@
   .cc-status.ok, .cc-status.err{ opacity:1; }
   .cc-status.ok{ color:var(--gold-soft); }
   .cc-status.err{ color:#e08a6f; }
-  @media (max-width:760px){
-    .contact-card{ grid-template-columns:1fr; }
-    .cc-info{ border-right:none; border-bottom:1px solid var(--line); }
+
+  /* ---------- footer ---------- */
+  .site-foot{
+    position:relative; z-index:5;
+    border-top:1px solid var(--line);
+    background:rgba(8,7,12,.72);
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    padding:clamp(40px,5vw,66px) clamp(22px,8vw,140px) 34px;
   }
-  @media (max-width:560px){ .cc-row{ grid-template-columns:1fr; } }
-  @media (prefers-reduced-motion:reduce){
-    .contact-card .btn.primary:hover::after{ animation:none; }
+  .foot-grid{
+    display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:34px;
+    max-width:1200px; margin:0 auto;
   }
-  .contact-line{ margin-top:30px; font-size:15px; letter-spacing:.06em; color:var(--ivory-dim); }
-  .contact-line a{ color:var(--ivory); text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px; }
-  .contact-line a:hover{ color:var(--gold-soft); }
-  .credit{ margin-top:54px; font-size:10.5px; letter-spacing:.22em; color:var(--slate); text-transform:uppercase; line-height:2; }
-  .credit a{
-    color:var(--slate); text-decoration:none;
-    border-bottom:1px solid rgba(141,136,153,.4); padding-bottom:1px;
-    transition:color .25s, border-color .25s;
+  .foot-grid h4{
+    font-size:10.5px; letter-spacing:.26em; text-transform:uppercase;
+    color:var(--gold-soft); margin-bottom:16px; font-weight:500;
   }
-  .credit a:hover{ color:var(--gold-soft); border-color:var(--gold-soft); }
+  .foot-grid ul{ list-style:none; display:flex; flex-direction:column; gap:11px; }
+  .foot-grid a{
+    font-size:14px; color:var(--ivory-dim); text-decoration:none;
+    transition:color .25s;
+  }
+  .foot-grid a:hover{ color:var(--gold-soft); }
+  .foot-brand .brand{ padding-left:0; display:block; margin-bottom:14px; }
+  .foot-brand p{ font-size:14.4px; line-height:1.75; color:var(--ivory-dim); max-width:38ch; }
+  .foot-bottom{
+    max-width:1200px; margin:38px auto 0; padding-top:24px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:12px 26px; align-items:center;
+    font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--slate);
+  }
+  .foot-bottom a{ color:var(--slate); text-decoration:none; transition:color .25s; }
+  .foot-bottom a:hover{ color:var(--gold-soft); }
+  .foot-bottom .sep{ margin-left:auto; }
 
   /* reveal */
   .reveal{ opacity:0; transform:translateY(34px); transition:opacity 1.1s cubic-bezier(.2,.7,.2,1), transform 1.1s cubic-bezier(.2,.7,.2,1); }
   .reveal.in{ opacity:1; transform:none; }
   .reveal.d1{ transition-delay:.12s; } .reveal.d2{ transition-delay:.24s; } .reveal.d3{ transition-delay:.36s; }
 
-  /* ---------- cinematic intro ---------- */
+  /* ---------- intro : le filigrane révélé par la lumière ---------- */
+  /* Un filigrane ne se voit qu'en approchant la feuille d'une source de
+     lumière. C'est tout ce que fait cette intro, et rien d'autre : une bande
+     de lumière traverse la feuille, le nom apparaît dans le papier, un fil
+     d'or se tire dessous. Aucune autre forme, aucun autre mouvement. */
   .intro{
-    position:fixed; inset:0; z-index:30; background:var(--ink);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px;
-    transition:opacity 1.1s cubic-bezier(.4,0,.2,1), visibility 1.1s, transform 1.1s cubic-bezier(.4,0,.2,1);
-    cursor:pointer; padding:0 22px; text-align:center;
+    position:fixed; inset:0; z-index:30; background:#08070c;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    cursor:pointer; padding:0 24px; text-align:center;
+    transition:opacity 1s cubic-bezier(.4,0,.2,1), visibility 1s, transform 1s cubic-bezier(.4,0,.2,1);
   }
-  .intro.gone{ opacity:0; visibility:hidden; transform:scale(1.06); }
-  .intro .halo{
-    position:absolute; width:min(70vw,560px); height:min(70vw,560px); border-radius:50%;
-    background:radial-gradient(circle, rgba(212,169,78,.10) 0%, transparent 62%);
-    animation:halo 4s ease-in-out infinite;
-  }
-  @keyframes halo{ 0%,100%{transform:scale(.92);opacity:.7} 50%{transform:scale(1.06);opacity:1} }
-  .intro .seal{ position:relative; width:min(46vw,220px); }
-  .intro .seal svg{ width:100%; height:auto; overflow:visible; display:block; }
-  .intro .fglyph{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-display); font-style:italic; font-weight:500;
-    font-size:calc(min(46vw,220px) * .5); line-height:1; padding-bottom:.08em;
-    background:linear-gradient(115deg,#9a7226 0%,#d4a94e 30%,#f6e7c0 50%,#d4a94e 70%,#9a7226 100%);
-    background-size:240% 100%; background-position:120% 0;
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    opacity:0; filter:blur(14px); transform:translateY(20px) scale(1.14);
-  }
-  .intro.play .fglyph{
-    animation:fIn 1.5s cubic-bezier(.2,.7,.2,1) .75s forwards,
-              shine 2.8s ease-in-out 2.1s infinite;
-  }
-  @keyframes fIn{ to{ opacity:1; filter:blur(0); transform:translateY(0) scale(1); } }
-  @keyframes shine{ from{ background-position:120% 0; } to{ background-position:-120% 0; } }
-  .intro .draw{
-    fill:none; stroke-linecap:round; stroke-linejoin:round;
-    stroke-dasharray:1; stroke-dashoffset:1;
-  }
-  .intro.play .draw{ animation:draw 1.5s cubic-bezier(.55,0,.18,1) forwards; }
-  @keyframes draw{ to{ stroke-dashoffset:0; } }
-  .intro .iname{
-    display:flex; gap:.34em; font-family:var(--font-display); font-weight:400;
-    font-size:clamp(24px,5vw,36px); text-transform:uppercase; letter-spacing:.1em;
-  }
-  .intro .iname span{ opacity:0; transform:translateY(16px); }
-  .intro.play .iname span{ animation:riseIn .8s cubic-bezier(.2,.7,.2,1) forwards; }
-  @keyframes riseIn{ to{ opacity:1; transform:none; } }
-  .intro .isub{
-    font-size:10.5px; letter-spacing:.42em; padding-left:.42em; text-transform:uppercase;
-    color:var(--gold-soft); opacity:0;
-  }
-  .intro.play .isub{ animation:riseIn 1s ease 2s forwards; }
-  .intro .iskip{
-    position:absolute; bottom:34px; font-size:9.5px; letter-spacing:.3em; text-transform:uppercase;
-    color:var(--slate); opacity:0;
-  }
-  .intro.play .iskip{ animation:riseIn 1s ease 2.4s forwards; }
+  .intro.gone{ opacity:0; visibility:hidden; transform:scale(1.045); }
 
+  /* la feuille : une lueur très douce, et le grain du papier */
+  .intro .sheet{
+    position:absolute; inset:0; pointer-events:none; opacity:0;
+    background:radial-gradient(58% 46% at 50% 47%, rgba(242,236,223,.052), transparent 72%);
+  }
+  .intro.play .sheet{ animation:sheetIn 1.8s ease .15s forwards; }
+  @keyframes sheetIn{ to{ opacity:1; } }
+  .intro .grain{
+    position:absolute; inset:0; pointer-events:none; opacity:.3; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='.42'/></svg>");
+  }
+
+  /* le nom, d'abord gravé dans la feuille, puis révélé */
+  .intro .wm{ position:relative; display:inline-block; }
+  .intro .wm span{
+    display:block; font-family:var(--font-display); font-weight:400;
+    font-size:clamp(26px,8.2vw,84px); line-height:1.14;
+    letter-spacing:.26em; padding-left:.26em;
+    text-transform:uppercase; white-space:nowrap;
+  }
+  /* la gravure : presque rien, un relief dans le papier */
+  .intro .wm .base{
+    color:rgba(242,236,223,.055);
+    text-shadow:0 1px 0 rgba(255,255,255,.04), 0 -1px 0 rgba(0,0,0,.55);
+  }
+  .intro.play .wm .base{ animation:settle 1.5s cubic-bezier(.3,.7,.2,1) 1.15s forwards; }
+  @keyframes settle{
+    to{ color:rgba(242,236,223,.93); text-shadow:0 2px 46px rgba(212,169,78,.2); }
+  }
+  /* la lumière qui passe derrière la feuille, de gauche à droite */
+  .intro .wm .lit{
+    position:absolute; inset:0;
+    background:linear-gradient(98deg,
+      transparent 41%,
+      rgba(242,236,223,.34) 46.5%,
+      rgba(252,244,222,1) 50%,
+      rgba(216,175,88,.9) 53.5%,
+      transparent 59%);
+    background-size:200% 100%; background-position:130% 0;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .intro.play .wm .lit{ animation:sweep 1.85s cubic-bezier(.3,.1,.25,1) .45s forwards; }
+  @keyframes sweep{ to{ background-position:-30% 0; } }
+
+  /* le fil d'or, tiré sous le nom */
+  .intro .thread{
+    margin-top:clamp(18px,3vw,30px); width:min(58vw,400px); height:1px;
+    background:linear-gradient(90deg, transparent, rgba(212,169,78,.8) 50%, transparent);
+    transform:scaleX(0);
+  }
+  .intro.play .thread{ animation:pull 1.25s cubic-bezier(.2,.7,.2,1) 1.85s forwards; }
+  @keyframes pull{ to{ transform:scaleX(1); } }
+
+  .intro .isub{
+    margin-top:clamp(16px,2.6vw,26px);
+    font-size:clamp(8.8px,1.15vw,10.5px); letter-spacing:.44em; padding-left:.44em;
+    text-transform:uppercase; color:var(--gold-soft);
+    opacity:0; transform:translateY(10px); line-height:2.1;
+    max-width:min(90vw,660px);
+  }
+  .intro.play .isub{ animation:riseIn 1.1s ease 2.4s forwards; }
+  @keyframes riseIn{ to{ opacity:1; transform:none; } }
+  .intro .iskip{
+    position:absolute; bottom:38px;
+    font-size:9.5px; letter-spacing:.3em; text-transform:uppercase; color:var(--slate);
+    opacity:0; transform:translateY(8px);
+  }
+  .intro.play .iskip{ animation:riseIn 1s ease 2.95s forwards; }
+  /* sur un écran étroit, le nom doit tenir sur une ligne sans jamais déborder */
+  @media (max-width:620px){
+    .intro .wm span{ font-size:clamp(21px,7.2vw,40px); letter-spacing:.2em; padding-left:.2em; }
+    .intro .thread{ width:min(74vw,320px); margin-top:20px; }
+    .intro .isub{ font-size:8.6px; letter-spacing:.3em; padding-left:.3em; line-height:2.2; }
+  }
+
+  /* ---------- responsive ---------- */
+  /* la barre du haut se dégarnit par paliers plutôt que de déborder
+     et de couper le bouton d'appel entre 1000 et 1120 px */
+  @media (max-width:1320px){
+    .nav{ gap:18px; }
+    .nav a{ font-size:11px; letter-spacing:.14em; }
+  }
+  @media (max-width:1180px){
+    /* le libellé tombe, le point doré reste : l'intitulé passe par aria-label */
+    .phase .phase-txt{ display:none; }
+  }
+  @media (max-width:1060px){
+    .nav{ display:none; }
+    .menu-btn{ display:block; }
+    .topbar{ gap:14px; }
+    .tb-right{ margin-left:auto; }
+  }
+  @media (max-width:1000px){
+    .about-wrap{ grid-template-columns:1fr; justify-items:start; }
+  }
+  @media (max-width:900px){
+    .tb-right .btn.tiny{ display:none; }
+  }
+  @media (max-width:820px){
+    .mk-crm{ grid-template-columns:1fr; }
+    .mk-crm .side{ display:flex; gap:6px; overflow-x:auto; padding:12px; }
+    .mk-crm .side .lg{ display:none; }
+    .mk-crm .side a{ white-space:nowrap; }
+    .mk-crm .split{ grid-template-columns:1fr; }
+    .mk-ia{ grid-template-columns:1fr; }
+    .mk-ia .chat{ border-right:none; border-bottom:1px solid #e7e1d5; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:760px){
+    .contact-card{ grid-template-columns:1fr; }
+    .cc-info{ border-right:none; border-bottom:1px solid var(--line); }
+    .mk-crm .kpis{ grid-template-columns:repeat(2,1fr); }
+    .mk-site .row3{ grid-template-columns:1fr; }
+  }
   @media (max-width:640px){
-    .rail{ display:none; }
-    .brand{ font-size:16px; letter-spacing:.28em; }
-    .panel{ padding-top:110px; padding-bottom:70px; }
+    .rail{ right:10px; }
+    .rail .alt{ display:none; }
+    .rail .track{ height:min(34vh,220px); }
+    .brand{ letter-spacing:.26em; }
+    .panel{ padding-top:118px; padding-bottom:74px; }
     .panel.right{ align-items:flex-start; text-align:left; }
     .panel.right .chips{ justify-content:flex-start; }
+    .foot-grid{ grid-template-columns:1fr; gap:26px; }
+    .foot-bottom .sep{ margin-left:0; }
+    .demo-tab{ flex:1 1 44%; text-align:center; padding:12px 8px; letter-spacing:.12em; }
   }
+  @media (max-width:560px){ .cc-row{ grid-template-columns:1fr; } }
   @media (prefers-reduced-motion:reduce){
     .reveal{ transition:none; opacity:1; transform:none; }
     .scroll-cue .bar{ animation:none; }
-    .intro .halo{ animation:none; }
-    .intro.play .draw{ animation:none; stroke-dashoffset:0; }
-    .intro.play .fglyph{ animation:none; opacity:1; filter:none; transform:none; }
-    .intro .orbit{ display:none; }
-    .intro.play .iname span, .intro.play .isub, .intro.play .iskip{ animation:none; opacity:1; transform:none; }
+    .intro .sheet{ opacity:1; animation:none; }
+    .intro .grain{ display:none; }
+    .intro .wm .lit{ display:none; }
+    .intro .wm .base{ animation:none; color:rgba(242,236,223,.95); text-shadow:none; }
+    .intro .thread{ animation:none; transform:none; }
+    .intro .isub, .intro .iskip{ animation:none; opacity:1; transform:none; }
+    .contact-card .btn.primary:hover::after{ animation:none; }
+    .mk-ia .typing i{ animation:none; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Filigrane",
+  "alternateName": "Filigrane, studio de création numérique et d'intelligence artificielle",
+  "url": "https://www.filigrane-site.fr/",
+  "image": "https://www.filigrane-site.fr/og-filigrane.png",
+  "description": "Studio de création numérique et d'intelligence artificielle. Sites internet sur-mesure, intégration d'IA, outils métier et CRM, écrits à la main sans template.",
+  "email": "mehdi.mjid@dauphine.eu",
+  "priceRange": "€€",
+  "areaServed": { "@type": "Country", "name": "France" },
+  "knowsLanguage": "fr",
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Création de site internet sur-mesure", "serviceType": "Conception et développement web" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Intégration d'intelligence artificielle", "serviceType": "Assistants IA, automatisation, IA sur données d'entreprise" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Outils métier et CRM sur-mesure", "serviceType": "Développement d'applications de gestion" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Identité visuelle numérique", "serviceType": "Direction artistique" } }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Concrètement, que fait Filigrane ?", "acceptedAnswer": { "@type": "Answer", "text": "Filigrane conçoit et développe des sites internet sur-mesure, intègre l'intelligence artificielle dans le quotidien des entreprises et construit des outils métier : CRM, espaces clients, applications internes, tableaux de bord. Tout est écrit à la main, sans template ni constructeur." } },
+    { "@type": "Question", "name": "Pourquoi ne pas prendre un template ou un constructeur de sites ?", "acceptedAnswer": { "@type": "Answer", "text": "Un template vous donne le site de milliers d'autres entreprises, alourdi par du code que vous n'utiliserez jamais. Un site écrit à la main est plus rapide, mieux référencé, et surtout il ressemble à votre entreprise et à aucune autre." } },
+    { "@type": "Question", "name": "Qu'est-ce que l'intelligence artificielle change vraiment pour une petite entreprise ?", "acceptedAnswer": { "@type": "Answer", "text": "Elle reprend les tâches répétitives : répondre aux questions courantes de vos clients à toute heure, préparer les devis, relancer ceux qui n'ont pas répondu, retrouver une information dans vos propres documents. On commence toujours par identifier là où vous perdez des heures, puis on automatise ces points précis." } },
+    { "@type": "Question", "name": "Je n'y connais rien en informatique, est-ce un problème ?", "acceptedAnswer": { "@type": "Answer", "text": "Non, c'est même le cas le plus fréquent. Tout est expliqué sans jargon, vous validez à chaque étape, et une prise en main est prévue à la livraison pour que vous soyez autonome sur ce que vous voulez modifier vous-même." } },
+    { "@type": "Question", "name": "À qui appartient le site une fois livré ?", "acceptedAnswer": { "@type": "Answer", "text": "À vous. Le nom de domaine est déposé à votre nom, le code vous appartient, et vous pouvez partir avec à tout moment. Aucun abonnement obligatoire pour garder votre site en ligne." } },
+    { "@type": "Question", "name": "Que se passe-t-il après la mise en ligne ?", "acceptedAnswer": { "@type": "Answer", "text": "Le suivi fait partie du travail : hébergement, sauvegardes, mises à jour, retouches et évolutions. Vous gardez le même interlocuteur, celui qui a construit le site." } },
+    { "@type": "Question", "name": "Pouvez-vous reprendre un site existant ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Refonte complète, reprise d'un site laissé à l'abandon, correction d'un site qui ne convertit pas, ou ajout d'une brique IA sur un site déjà en place : les trois cas se traitent." } },
+    { "@type": "Question", "name": "Comment se passe le premier échange ?", "acceptedAnswer": { "@type": "Answer", "text": "Un appel ou un rendez-vous pour comprendre votre métier, vos clients et ce qui vous fait perdre du temps. Vous repartez avec une direction claire et une proposition chiffrée, sans engagement." } }
+  ]
+}
+</script>
 </head>
 <body id="top">
 
-  <div class="intro play" id="intro" role="button" aria-label="Entrer sur le site">
-    <div class="halo" aria-hidden="true"></div>
-    <div class="seal" aria-hidden="true">
-      <svg viewBox="0 0 220 220">
-        <!-- l'anneau du sceau, tracé comme un fil -->
-        <circle class="draw" cx="110" cy="110" r="86" pathLength="1"
-          stroke="#d4a94e" stroke-width="1.1" opacity=".8"
-          transform="rotate(-90 110 110)" style="animation-delay:.15s; animation-duration:1.9s"/>
-        <circle class="draw" cx="110" cy="110" r="79" pathLength="1"
-          stroke="rgba(242,236,223,.35)" stroke-width=".7"
-          transform="rotate(90 110 110)" style="animation-delay:.45s; animation-duration:2s"/>
-        <!-- la navette d'or qui tisse autour du sceau -->
-        <g class="orbit">
-          <circle cx="110" cy="24" r="2.6" fill="#e6c67e">
-            <animateTransform attributeName="transform" type="rotate"
-              from="0 110 110" to="360 110 110" dur="7s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="110" cy="24" r="1.4" fill="rgba(242,236,223,.6)">
-            <animateTransform attributeName="transform" type="rotate"
-              from="-16 110 110" to="344 110 110" dur="7s" repeatCount="indefinite"/>
-          </circle>
-        </g>
-      </svg>
-      <span class="fglyph">F</span>
+  <div class="intro play" id="intro" role="button" tabindex="0" aria-label="Entrer sur le site">
+    <div class="sheet" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="wm" aria-hidden="true">
+      <span class="base">Filigrane</span>
+      <span class="lit">Filigrane</span>
     </div>
-    <div class="iname" aria-hidden="true">
-      <span style="animation-delay:1.5s">F</span><span style="animation-delay:1.57s">I</span><span style="animation-delay:1.64s">L</span><span style="animation-delay:1.71s">I</span><span style="animation-delay:1.78s">G</span><span style="animation-delay:1.85s">R</span><span style="animation-delay:1.92s">A</span><span style="animation-delay:1.99s">N</span><span style="animation-delay:2.06s">E</span>
-    </div>
-    <div class="isub">Studio de création numérique</div>
+    <div class="thread" aria-hidden="true"></div>
+    <div class="isub">Création numérique &amp; intelligence artificielle</div>
     <div class="iskip">Cliquer pour entrer</div>
   </div>
 
   <canvas id="loom" aria-hidden="true"></canvas>
   <div class="vignette"></div>
 
-  <header class="topbar">
-    <div class="brand">Filigrane</div>
-    <a class="phase" href="espace-client.html"><span class="dot" id="phaseDot"></span><span class="phase-txt">Espace client</span></a>
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#top">Filigrane</a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#savoir-faire">Savoir-faire</a>
+      <a href="#demonstrations">Démonstrations</a>
+      <a href="#methode">Méthode</a>
+      <a href="#questions">Questions</a>
+    </nav>
+    <div class="tb-right">
+      <a class="phase" href="espace-client.html" aria-label="Espace client" title="Espace client"><span class="dot" id="phaseDot"></span><span class="phase-txt">Espace client</span></a>
+      <a class="btn tiny primary" href="#contact">Mon projet</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
+    </div>
   </header>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <a href="#savoir-faire"><span class="dn">01</span>Savoir-faire</a>
+    <a href="#demonstrations"><span class="dn">02</span>Démonstrations</a>
+    <a href="#methode"><span class="dn">03</span>Méthode</a>
+    <a href="#atelier"><span class="dn">04</span>L'atelier</a>
+    <a href="#questions"><span class="dn">05</span>Questions</a>
+    <a href="espace-client.html"><span class="dn">06</span>Espace client</a>
+    <a class="btn primary drawer-cta" href="#contact">Parler de mon projet</a>
+  </div>
 
   <aside class="rail" aria-hidden="true">
     <div class="alt" id="altLabel">tissage · 0 %</div>
@@ -478,29 +927,34 @@
 
   <main class="overlay">
 
-    <section class="panel hero">
+    <section class="panel hero" id="hero">
       <h1>Filigrane</h1>
-      <div class="sub">Studio de création numérique</div>
-      <p class="lede">Chaque fil que vous voyez derrière ces mots est <em>calculé en temps réel</em>, ligne de code par ligne de code. C'est notre manière de nous présenter&nbsp;: nous ne posons pas des templates, nous tissons des identités.</p>
+      <div class="sub">Studio de création numérique &amp; intelligence artificielle</div>
+      <p class="lede">Chaque fil que vous voyez derrière ces mots est <em>calculé en temps réel</em>, ligne de code par ligne de code. C'est notre manière de nous présenter&nbsp;: <em>sites sur-mesure</em>, <em>intelligence artificielle intégrée</em> et <em>outils métier</em>, écrits à la main pour votre entreprise. Jamais un template.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#demonstrations">Voir ce qui est réalisable</a>
+        <a class="btn ghost" href="#contact">Parler de mon projet</a>
+      </div>
       <span class="scroll-cue"><span class="bar"></span>Dérouler le fil</span>
     </section>
 
-    <section class="panel center">
+    <section class="panel center" id="histoire">
       <div class="chapter reveal">
         <div class="eyebrow"><span class="num">01</span>L'histoire</div>
         <h2>Tout commence par <span class="g">un algorithme</span></h2>
-        <p>Étudiant en double licence à l'université <strong>Paris-Dauphine</strong>, je passe mes journées dans le <strong>codage algorithmique et la programmation d'intelligence artificielle</strong>. Et un constat s'est imposé&nbsp;: les entreprises d'ici, restaurants, artisans, cabinets ou commerces, méritent mieux que des sites-modèles vus mille fois.</p>
-        <p style="margin-top:16px">Filigrane est né de cette conviction&nbsp;: mettre la rigueur des algorithmes et la puissance de l'IA <strong>au service de votre identité</strong>. Le motif qui ondule derrière ces mots n'existe nulle part ailleurs&nbsp;: il est généré par un algorithme écrit pour Filigrane. Demain, le vôtre.</p>
+        <p>Étudiant en double licence à l'université <strong>Paris-Dauphine</strong>, je passe mes journées dans le <strong>codage algorithmique et la programmation d'intelligence artificielle</strong>. Et un constat s'est imposé&nbsp;: les entreprises d'ici, restaurants, artisans, cabinets ou commerces, méritent mieux que des sites-modèles vus mille fois, et mieux qu'une IA dont tout le monde parle sans jamais la leur mettre entre les mains.</p>
+        <p style="margin-top:16px">Filigrane est né de cette conviction&nbsp;: mettre la rigueur des algorithmes et la puissance de l'IA <strong>au service de votre identité et de votre temps</strong>. Le motif qui ondule derrière ces mots n'existe nulle part ailleurs, il est généré par un algorithme écrit pour Filigrane. Demain, le vôtre.</p>
       </div>
       <div class="chips reveal d1">
-        <span class="chip"><b>Dauphine</b>&nbsp; · Paris</span>
-        <span class="chip"><b>Algorithmique</b>&nbsp; &amp; IA</span>
-        <span class="chip"><b>100&nbsp;%</b>&nbsp; sur-mesure</span>
+        <span class="chip"><b>Dauphine</b>&nbsp; · Algorithmique &amp; IA</span>
+        <span class="chip"><b>Sites</b>&nbsp; sur-mesure</span>
+        <span class="chip"><b>IA</b>&nbsp; intégrée</span>
+        <span class="chip"><b>Outils</b>&nbsp; métier &amp; CRM</span>
         <span class="chip"><b>0</b>&nbsp; template</span>
       </div>
     </section>
 
-    <section class="panel right">
+    <section class="panel right" id="filigrane">
       <div class="chapter reveal">
         <div class="eyebrow"><span class="num">02</span>Le filigrane</div>
         <h2>Une signature <span class="g">dans la matière</span></h2>
@@ -508,86 +962,361 @@
       </div>
     </section>
 
-    <section class="panel services-panel">
+    <section class="panel services-panel" id="savoir-faire">
       <div class="services-head reveal">
         <div class="eyebrow"><span class="num">03</span>Le savoir-faire</div>
-        <h2>Trois fils, <span class="g">une étoffe</span></h2>
-        <p>Tout ce qu'il faut pour que votre entreprise existe en ligne à la hauteur de ce qu'elle vaut.</p>
+        <h2>Quatre fils, <span class="g">une étoffe</span></h2>
+        <p>Le site reste le cœur du métier. Autour de lui, tout ce qui fait qu'une entreprise existe en ligne et travaille mieux&nbsp;: l'intelligence artificielle, les outils internes, et un interlocuteur qui reste.</p>
       </div>
       <div class="cards">
-        <article class="card reveal d1">
-          <div class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-          </div>
-          <h3>Identité visuelle numérique</h3>
-          <p>Direction artistique complète&nbsp;: univers graphique, typographies, palette, motifs génératifs. Votre marque devient reconnaissable au premier pixel, et reste cohérente du site à la carte de visite.</p>
-          <div class="tagline">L'image de marque</div>
-        </article>
-        <article class="card reveal d2">
+        <article class="card reveal">
           <div class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
           </div>
-          <h3>Site vitrine sur-mesure</h3>
-          <p>Un site rapide, impeccable sur mobile, écrit à la main sans constructeur ni thème acheté. Pensé pour Google (SEO local), pensé pour convertir&nbsp;: réservation, devis, prise de rendez-vous.</p>
+          <h3>Sites internet sur-mesure</h3>
+          <p>Direction artistique complète puis site écrit à la main, sans constructeur ni thème acheté. Rapide, impeccable sur mobile, pensé pour Google et pour convertir.</p>
+          <ul class="bullets">
+            <li>Univers graphique, typographies, motifs génératifs</li>
+            <li>Vitrine, catalogue, réservation, prise de rendez-vous</li>
+            <li>Référencement et fiche d'établissement</li>
+            <li>Refonte d'un site existant</li>
+          </ul>
           <div class="tagline">La vitrine</div>
+          <a class="more" href="creation-site-internet.html">En savoir plus</a>
         </article>
-        <article class="card reveal d3">
+        <article class="card reveal d1">
           <div class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12l-2.83-3.17A4 4 0 0 1 12 2z"/><circle cx="5" cy="16" r="3"/><circle cx="19" cy="16" r="3"/><path d="M12 12v3"/><path d="M8 16h1"/><path d="M15 16h1"/><path d="M12 15a7 7 0 0 0-4.9 2"/><path d="M12 15a7 7 0 0 1 4.9 2"/></svg>
           </div>
-          <h3>Intelligence artificielle intégrée</h3>
-          <p>Assistant qui répond à vos clients, réservation intelligente, automatisation des devis et des relances&nbsp;: l'IA appliquée là où elle vous fait vraiment gagner du temps et des ventes.</p>
+          <h3>Intelligence artificielle</h3>
+          <p>L'IA branchée là où elle vous fait gagner des heures, pas là où elle fait joli. On part de vos tâches répétitives, on les confie à la machine.</p>
+          <ul class="bullets">
+            <li>Assistant qui répond à vos clients jour et nuit</li>
+            <li>IA entraînée sur vos propres documents</li>
+            <li>Devis, comptes rendus et relances automatisés</li>
+            <li>Audit des heures récupérables, puis formation</li>
+          </ul>
           <div class="tagline">Le temps retrouvé</div>
+          <a class="more" href="intelligence-artificielle.html">En savoir plus</a>
+        </article>
+        <article class="card reveal d2">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/><path d="M13 13h4"/><path d="M13 17h4"/></svg>
+          </div>
+          <h3>Outils métier &amp; CRM</h3>
+          <p>Le logiciel que vous cherchez sans le trouver. Dessiné autour de votre façon de travailler, pas l'inverse, et accessible depuis n'importe quel appareil.</p>
+          <ul class="bullets">
+            <li>CRM, suivi de clients et de chantiers</li>
+            <li>Espace client, devis et signature en ligne</li>
+            <li>Application interne pour vos équipes</li>
+            <li>Tableaux de bord et automatisations</li>
+          </ul>
+          <div class="tagline">L'atelier</div>
+          <a class="more" href="outils-metier.html">En savoir plus</a>
+        </article>
+        <article class="card reveal d3">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <h3>Accompagnement</h3>
+          <p>Un projet ne s'arrête pas à la mise en ligne. Hébergement, évolutions, formation de vos équipes&nbsp;: les mêmes personnes, avant comme après.</p>
+          <ul class="bullets">
+            <li>Hébergement, sauvegardes, mises à jour</li>
+            <li>Retouches et évolutions au fil de l'eau</li>
+            <li>Prise en main et formation à l'IA</li>
+            <li>Conseil sur vos outils et votre organisation</li>
+          </ul>
+          <div class="tagline">L'entretien</div>
+          <a class="more" href="#contact">Me poser une question</a>
         </article>
       </div>
     </section>
 
-    <section class="panel">
+    <section class="panel demo-panel" id="demonstrations">
+      <div class="services-head reveal">
+        <div class="eyebrow"><span class="num">04</span>Les démonstrations</div>
+        <h2>Ce que l'on peut <span class="g">construire pour vous</span></h2>
+        <p>Plutôt que de le décrire, le montrer. Voici quatre maquettes de démonstration, construites pour cette page, qui donnent une idée concrète de ce qui est réalisable. Les contenus sont fictifs, la fabrication est réelle.</p>
+      </div>
+
+      <div class="reveal d1">
+        <div class="demo-tabs" role="tablist" aria-label="Types de réalisations">
+          <button class="demo-tab on" type="button" role="tab" aria-selected="true" aria-controls="d-site" id="t-site">Site internet</button>
+          <button class="demo-tab" type="button" role="tab" aria-selected="false" aria-controls="d-crm" id="t-crm">CRM sur-mesure</button>
+          <button class="demo-tab" type="button" role="tab" aria-selected="false" aria-controls="d-app" id="t-app">Application métier</button>
+          <button class="demo-tab" type="button" role="tab" aria-selected="false" aria-controls="d-ia" id="t-ia">Intégration d'IA</button>
+        </div>
+
+        <div class="demo-stage">
+          <!-- 1. site vitrine -->
+          <div class="demo on" id="d-site" role="tabpanel" aria-labelledby="t-site">
+            <div class="frame">
+              <div class="frame-bar">
+                <div class="frame-dots"><i style="background:#e0705f"></i><i style="background:#e0b65f"></i><i style="background:#6fb07a"></i></div>
+                <div class="frame-url">votre-enseigne.fr</div>
+              </div>
+              <div class="frame-body mk-site">
+                <div class="nav2">
+                  <div class="lg">MAISON B.</div>
+                  <ul><li>La maison</li><li>La carte</li><li>Nous trouver</li></ul>
+                  <div class="bk">Réserver</div>
+                </div>
+                <div class="hero2">
+                  <span>Depuis 1978</span>
+                  <h4>Le goût d'une maison qui ne triche pas</h4>
+                  <div class="bt">Réserver une table</div>
+                </div>
+                <div class="row3">
+                  <div><i></i><b>La carte</b><p>Une page qui donne envie, mise à jour en deux clics depuis votre téléphone.</p></div>
+                  <div><i></i><b>Réservation</b><p>Le client réserve seul, vous recevez tout dans votre agenda.</p></div>
+                  <div><i></i><b>Sur Google</b><p>Trouvé par ceux qui cherchent votre métier près de chez vous.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-cap">
+              <h3>Le site vitrine</h3>
+              <p>Une identité complète, une page d'accueil qui pose le ton, et les actions qui comptent mises en avant. Écrit à la main, donc rapide à charger et propre pour le référencement.</p>
+            </div>
+          </div>
+
+          <!-- 2. CRM -->
+          <div class="demo" id="d-crm" role="tabpanel" aria-labelledby="t-crm" hidden>
+            <div class="frame">
+              <div class="frame-bar">
+                <div class="frame-dots"><i style="background:#e0705f"></i><i style="background:#e0b65f"></i><i style="background:#6fb07a"></i></div>
+                <div class="frame-url">app.votre-entreprise.fr / clients</div>
+              </div>
+              <div class="frame-body mk-crm">
+                <div class="side">
+                  <div class="lg">ATELIER</div>
+                  <a class="on" href="#demonstrations" onclick="return false"><i></i>Clients</a>
+                  <a href="#demonstrations" onclick="return false"><i></i>Devis</a>
+                  <a href="#demonstrations" onclick="return false"><i></i>Chantiers</a>
+                  <a href="#demonstrations" onclick="return false"><i></i>Factures</a>
+                  <a href="#demonstrations" onclick="return false"><i></i>Relances</a>
+                </div>
+                <div class="main">
+                  <div class="hd"><b>Vue d'ensemble</b><span>Ce mois</span></div>
+                  <div class="kpis">
+                    <div class="kpi"><small>Devis envoyés</small><b class="cnt" data-to="24">0</b></div>
+                    <div class="kpi"><small>Signés</small><b class="cnt" data-to="11">0</b><em>+3</em></div>
+                    <div class="kpi"><small>En attente</small><b class="cnt" data-to="9">0</b></div>
+                    <div class="kpi"><small>Relances dues</small><b class="cnt" data-to="4">0</b></div>
+                  </div>
+                  <div class="split">
+                    <div class="box">
+                      <small>Devis signés par mois</small>
+                      <div class="bars" id="crmBars">
+                        <span data-h="34"></span><span data-h="52"></span><span data-h="41"></span><span data-h="66"></span><span data-h="58"></span><span data-h="88"></span>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <small>À traiter aujourd'hui</small>
+                      <div class="rows">
+                        <div class="r"><span class="av">LM</span><b>L. Marchand</b><span class="pill a">Signé</span></div>
+                        <div class="r"><span class="av">CD</span><b>C. Delaunay</b><span class="pill b">Relance J+4</span></div>
+                        <div class="r"><span class="av">RB</span><b>R. Bertrand</b><span class="pill c">Devis à faire</span></div>
+                        <div class="r"><span class="av">SF</span><b>S. Fabre</b><span class="pill b">Relance J+4</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-cap">
+              <h3>Le CRM sur-mesure</h3>
+              <p>Vos clients, vos devis et vos relances au même endroit, avec seulement les champs dont vous avez besoin. Accessible depuis un navigateur, sans logiciel à installer, sans abonnement par utilisateur.</p>
+            </div>
+          </div>
+
+          <!-- 3. application métier -->
+          <div class="demo" id="d-app" role="tabpanel" aria-labelledby="t-app" hidden>
+            <div class="frame">
+              <div class="frame-bar">
+                <div class="frame-dots"><i style="background:#e0705f"></i><i style="background:#e0b65f"></i><i style="background:#6fb07a"></i></div>
+                <div class="frame-url">Application des équipes sur le terrain</div>
+              </div>
+              <div class="frame-body mk-app">
+                <div class="phone">
+                  <div class="top">
+                    <div class="dt">Mardi 14</div>
+                    <b>Ma tournée</b>
+                    <div class="st"><span>Interventions <b>5</b></span><span>Terminées <b>2</b></span></div>
+                  </div>
+                  <div class="list">
+                    <div class="it done"><div class="h"><b>Mme Delaunay</b><span class="tm">08:30</span></div><p>Entretien annuel. Rapport envoyé automatiquement.</p></div>
+                    <div class="it done"><div class="h"><b>Cabinet Roussel</b><span class="tm">10:00</span></div><p>Dépannage. Photo et signature enregistrées.</p></div>
+                    <div class="it"><div class="h"><b>M. Bertrand</b><span class="tm">14:00</span></div><p>Devis à présenter. Fiche client ouverte hors connexion.</p></div>
+                    <div class="it"><div class="h"><b>Résidence Les Tilleuls</b><span class="tm">16:15</span></div><p>Trois points à vérifier, liste préremplie.</p></div>
+                  </div>
+                  <div class="tabs2"><span class="on">Tournée</span><span>Clients</span><span>Devis</span><span>Moi</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-cap">
+              <h3>L'application métier</h3>
+              <p>Pour les équipes qui ne sont pas devant un ordinateur. Elle s'installe sur le téléphone comme une vraie application, fonctionne hors connexion, et remonte tout dans le bureau en temps réel.</p>
+            </div>
+          </div>
+
+          <!-- 4. IA -->
+          <div class="demo" id="d-ia" role="tabpanel" aria-labelledby="t-ia" hidden>
+            <div class="frame">
+              <div class="frame-bar">
+                <div class="frame-dots"><i style="background:#e0705f"></i><i style="background:#e0b65f"></i><i style="background:#6fb07a"></i></div>
+                <div class="frame-url">votre-entreprise.fr · assistant</div>
+              </div>
+              <div class="frame-body mk-ia">
+                <div class="chat">
+                  <div class="hd">
+                    <div class="av2">F</div>
+                    <div><b>Assistant de votre entreprise</b><small>En ligne, répond en quelques secondes</small></div>
+                  </div>
+                  <div class="msg them">Bonjour, je réponds à vos questions et je peux vous mettre en relation. Que puis-je faire pour vous&nbsp;?</div>
+                  <div class="msg me">Vous intervenez le samedi&nbsp;? Et j'aurais besoin d'un devis pour 40&nbsp;m².</div>
+                  <div class="msg them">Oui, le samedi matin. Pour 40&nbsp;m², je prépare une estimation et je la transmets à l'équipe. Sur quelle adresse e-mail puis-je vous l'envoyer&nbsp;?</div>
+                  <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>
+                </div>
+                <div class="auto">
+                  <small>Ce qui se déclenche ensuite</small>
+                  <div class="fl">
+                    <div class="n"><b>Fiche client créée</b><span>Dans votre CRM, sans ressaisie</span></div>
+                    <div class="ar"></div>
+                    <div class="n"><b>Devis prérempli</b><span>Vous validez, il part</span></div>
+                    <div class="ar"></div>
+                    <div class="n"><b>Relance programmée</b><span>Automatique à J+4</span></div>
+                  </div>
+                  <div class="gain"><b>6 h</b><span>récupérées chaque semaine</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="demo-cap">
+              <h3>L'intégration d'intelligence artificielle</h3>
+              <p>L'assistant ne se contente pas de répondre, il déclenche le travail derrière : fiche créée, devis préparé, relance programmée. L'IA branchée sur vos outils, pas posée à côté.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="demo-note">Maquettes de démonstration · contenus et noms fictifs · construites pour illustrer ce qui est réalisable</p>
+      </div>
+
+      <div class="midcall reveal d1">
+        <h3>Vous voyez déjà <span class="g">ce que ça donnerait</span> chez vous&nbsp;?</h3>
+        <p>Racontez-moi votre activité et ce qui vous prend du temps. Je vous dis ce qui est faisable, et à quoi ça ressemblerait.</p>
+        <a class="btn primary" href="#contact">Parler de mon projet</a>
+      </div>
+    </section>
+
+    <section class="panel" id="methode">
       <div class="chapter reveal" style="max-width:none">
-        <div class="eyebrow"><span class="num">04</span>L'accompagnement</div>
+        <div class="eyebrow"><span class="num">05</span>L'accompagnement</div>
         <h2 style="max-width:16ch">Un accompagnement <span class="g">cousu main</span></h2>
-        <p style="max-width:60ch; font-weight:400; font-size:clamp(18px,2.4vw,21px); line-height:1.85; color:var(--ivory-dim); text-shadow:0 2px 22px rgba(6,5,10,.9)">Vous n'aurez jamais affaire à un service client ni à un sous-traitant&nbsp;: <strong style="color:var(--ivory); font-weight:600">un seul interlocuteur</strong>, du premier café à la mise en ligne, et bien après. Je m'adapte à votre rythme, j'explique sans jargon, et je ne considère le travail terminé que quand vous êtes fier de votre site.</p>
+        <p style="max-width:60ch; font-weight:400; font-size:clamp(17px,2.3vw,21px); line-height:1.85; color:var(--ivory-dim); text-shadow:0 2px 22px rgba(6,5,10,.9)">Vous n'aurez jamais affaire à un service client ni à un sous-traitant. <strong style="color:var(--ivory); font-weight:600">Filigrane est un atelier</strong>, et celui qui conçoit votre site reste votre interlocuteur, du premier café à la mise en ligne et bien après. On s'adapte à votre rythme, on explique sans jargon, et le travail n'est pas terminé tant que vous n'êtes pas fier de votre site.</p>
         <div class="steps">
           <div class="step reveal">
             <span class="n">i.</span>
             <h3>L'esquisse</h3>
-            <p>Nous nous rencontrons, j'étudie votre métier, vos clients et vos concurrents, puis je vous présente une première direction créative pour votre site.</p>
+            <p>Nous nous rencontrons, j'étudie votre métier, vos clients et vos concurrents, puis je vous présente une première direction créative et les points où vous perdez du temps.</p>
           </div>
           <div class="step reveal d1">
             <span class="n">ii.</span>
             <h3>Le tissage</h3>
-            <p>Design et développement sur-mesure. Vous suivez l'avancée et vous validez chaque étape. Rien n'est figé tant que ce n'est pas juste.</p>
+            <p>Design et développement sur-mesure. Vous suivez l'avancée depuis votre espace client et vous validez chaque étape. Rien n'est figé tant que ce n'est pas juste.</p>
           </div>
           <div class="step reveal d2">
             <span class="n">iii.</span>
             <h3>La lumière</h3>
-            <p>Mise en ligne, référencement Google, fiche d'établissement, textes optimisés. Votre site livré en 2 à 4 semaines, prêt à travailler pour vous.</p>
+            <p>Mise en ligne, référencement Google, fiche d'établissement, textes optimisés, et prise en main des outils pour que vous soyez autonome.</p>
           </div>
           <div class="step reveal d3">
             <span class="n">iv.</span>
             <h3>L'entretien</h3>
-            <p>Hébergement, sauvegardes, mises à jour et retouches&nbsp;: je reste votre interlocuteur unique, votre site reste impeccable.</p>
+            <p>Hébergement, sauvegardes, mises à jour et retouches&nbsp;: votre site reste entre les mêmes mains, et il reste impeccable.</p>
+          </div>
+        </div>
+        <p class="method-note reveal"><b>Rien n'est sous-traité</b> · vous validez à chaque étape · le site vous appartient</p>
+      </div>
+    </section>
+
+    <section class="panel" id="atelier">
+      <div class="about-wrap reveal">
+        <div class="about-seal" aria-hidden="true"><span>F</span></div>
+        <div class="about-txt chapter" style="max-width:none">
+          <div class="eyebrow"><span class="num">06</span>L'atelier</div>
+          <h2>Qui travaille <span class="g">derrière Filigrane</span></h2>
+          <p>Filigrane a été fondé par <strong>Mehdi</strong>. Double licence à Paris-Dauphine, des journées passées dans le codage algorithmique et l'intelligence artificielle, et une entreprise montée pour appliquer tout cela à des activités bien réelles.</p>
+          <p>C'est un atelier, pas une agence. Quelqu'un vient vers vous pour le premier échange, puis <strong>celui qui conçoit votre site est celui qui vous suit</strong>, du premier rendez-vous à la mise en ligne et bien après. Rien n'est sous-traité, votre projet ne change pas de mains en cours de route, et dans deux ans vous retrouverez les mêmes visages.</p>
+          <div class="about-facts">
+            <span class="chip"><b>Zéro</b>&nbsp; sous-traitance</span>
+            <span class="chip"><b>Code</b>&nbsp; écrit à la main</span>
+            <span class="chip"><b>Le site</b>&nbsp; vous appartient</span>
+            <span class="chip"><b>Espace client</b>&nbsp; pour suivre</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="panel finale">
+    <section class="panel auto" id="questions" style="align-items:center; padding-top:90px;">
+      <div class="chapter reveal" style="max-width:min(74ch,94vw); width:100%">
+        <div class="eyebrow"><span class="num">07</span>Les questions</div>
+        <h2>Ce que l'on me <span class="g">demande souvent</span></h2>
+      </div>
+      <div class="faq reveal d1">
+        <details>
+          <summary>Concrètement, que fait Filigrane&nbsp;?</summary>
+          <div class="ans">Trois choses, et elles se complètent. <strong>Des sites internet sur-mesure</strong>, du logo au référencement. <strong>De l'intelligence artificielle intégrée</strong> à votre activité&nbsp;: assistant pour vos clients, automatisation de vos tâches répétitives, IA branchée sur vos propres documents. Et <strong>des outils métier</strong>&nbsp;: CRM, espace client, application interne. Tout est écrit à la main, sans template ni constructeur.</div>
+        </details>
+        <details>
+          <summary>Pourquoi ne pas prendre un template ou un constructeur de sites&nbsp;?</summary>
+          <div class="ans">Parce qu'un template vous donne le site de milliers d'autres entreprises, alourdi par du code que vous n'utiliserez jamais. Un site écrit à la main charge plus vite, se référence mieux, et surtout il ressemble à votre entreprise et à aucune autre. C'est précisément ce que vos clients retiennent.</div>
+        </details>
+        <details>
+          <summary>Qu'est-ce que l'IA change vraiment pour une petite entreprise&nbsp;?</summary>
+          <div class="ans">Elle reprend ce qui vous mange vos soirées&nbsp;: répondre aux mêmes questions, préparer les devis, relancer ceux qui n'ont pas répondu, retrouver une information dans vos documents. On ne part jamais de la technologie, on part de <strong>vos heures perdues</strong>&nbsp;: on regarde où elles passent, puis on automatise ces points précis. Le reste est du bavardage.</div>
+        </details>
+        <details>
+          <summary>Je n'y connais rien en informatique, est-ce un problème&nbsp;?</summary>
+          <div class="ans">Non, c'est même le cas le plus fréquent, et c'est prévu. Tout est expliqué sans jargon, vous validez à chaque étape depuis votre espace client, et une prise en main est faite à la livraison pour que vous puissiez modifier vous-même ce que vous voulez modifier.</div>
+        </details>
+        <details>
+          <summary>À qui appartient le site une fois livré&nbsp;?</summary>
+          <div class="ans">À vous. Le nom de domaine est déposé à votre nom, <strong>le code vous appartient</strong>, et vous pouvez partir avec à tout moment. Aucun abonnement obligatoire pour garder votre site en ligne, aucun verrou.</div>
+        </details>
+        <details>
+          <summary>Que se passe-t-il après la mise en ligne&nbsp;?</summary>
+          <div class="ans">Le suivi fait partie du travail. Hébergement, sauvegardes, mises à jour, retouches, évolutions quand votre activité bouge. Vous gardez le même interlocuteur, celui qui a construit le site et qui sait exactement où regarder.</div>
+        </details>
+        <details>
+          <summary>Pouvez-vous reprendre un site qui existe déjà&nbsp;?</summary>
+          <div class="ans">Oui, et c'est fréquent. Refonte complète, reprise d'un site laissé à l'abandon, correction d'un site qui reçoit des visites mais ne convertit pas, ou simple ajout d'une brique IA sur une base existante. On regarde ensemble ce qui vaut la peine d'être gardé.</div>
+        </details>
+        <details>
+          <summary>Comment se passe le premier échange&nbsp;?</summary>
+          <div class="ans">Un appel ou un rendez-vous, pour comprendre votre métier, vos clients et ce qui vous fait perdre du temps. Vous repartez avec une direction claire et une proposition chiffrée. <strong>Sans engagement</strong>, et sans avoir à décider sur le moment.</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="panel finale" id="contact">
       <div class="chapter reveal">
-        <div class="eyebrow" style="text-align:center"><span class="num">05</span>La signature</div>
+        <div class="eyebrow" style="text-align:center"><span class="num">08</span>La signature</div>
         <h2>Votre marque mérite <span class="g">son filigrane</span></h2>
-        <p>Racontez-moi votre entreprise. Je vous montre ce que votre présence en ligne pourrait devenir, avec des mots simples et une vision précise.</p>
+        <p>Racontez-moi votre entreprise. Je vous montre ce que votre présence en ligne pourrait devenir, et où l'intelligence artificielle vous ferait gagner du temps.</p>
 
         <div class="contact-card reveal d1" id="contactCard">
           <div class="cc-glow" aria-hidden="true"></div>
           <div class="cc-info">
             <div class="cc-seal" aria-hidden="true">F</div>
             <h3>Tissons votre <span class="g">projet</span></h3>
-            <p>Un échange simple et une réponse claire sur ce que le web peut apporter à votre entreprise.</p>
+            <p>Un échange simple et une réponse claire sur ce que le web et l'IA peuvent apporter à votre entreprise.</p>
             <ul class="cc-list">
               <li>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
                 <a href="mailto:mehdi.mjid@dauphine.eu">mehdi.mjid@dauphine.eu</a>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a4 4 0 0 1 4 4c0 1.1-.45 2.1-1.17 2.83L12 12l-2.83-3.17A4 4 0 0 1 12 2z"/><circle cx="5" cy="16" r="3"/><circle cx="19" cy="16" r="3"/></svg>
+                <span>Site, intelligence artificielle, outil métier</span>
               </li>
             </ul>
           </div>
@@ -606,13 +1335,27 @@
                 <input id="c_ent" name="entreprise" type="text" autocomplete="organization" placeholder="Restaurant Le Catalan">
               </div>
             </div>
-            <div class="cc-field">
-              <label for="c_mail">Votre e-mail</label>
-              <input id="c_mail" name="email" type="email" autocomplete="email" placeholder="jean@exemple.fr" required>
+            <div class="cc-row">
+              <div class="cc-field">
+                <label for="c_mail">Votre e-mail</label>
+                <input id="c_mail" name="email" type="email" autocomplete="email" placeholder="jean@exemple.fr" required>
+              </div>
+              <div class="cc-field">
+                <label for="c_besoin">Ce dont vous avez besoin</label>
+                <select id="c_besoin" name="besoin" required>
+                  <option value="" disabled selected>Choisir…</option>
+                  <option>Un site internet</option>
+                  <option>La refonte d'un site existant</option>
+                  <option>Une intégration d'intelligence artificielle</option>
+                  <option>Un outil métier ou un CRM</option>
+                  <option>Plusieurs de ces sujets</option>
+                  <option>Je ne sais pas encore</option>
+                </select>
+              </div>
             </div>
             <div class="cc-field">
               <label for="c_msg">Votre projet</label>
-              <textarea id="c_msg" name="message" rows="4" placeholder="Parlez-moi de votre activité et de ce dont vous avez besoin..." required></textarea>
+              <textarea id="c_msg" name="message" rows="4" placeholder="Votre activité, ce que vous avez aujourd'hui, et ce qui vous prend du temps..." required></textarea>
             </div>
             <button class="btn primary" type="submit" id="c_submit">Envoyer mon message</button>
             <p class="cc-status" id="c_status" role="status" aria-live="polite"></p>
@@ -622,11 +1365,50 @@
           <a class="btn ghost" href="espace-client.html">Espace client</a>
           <a class="btn ghost" href="#top" id="ctaTop">Revoir le tissage</a>
         </div>
-        <div class="credit">Site tissé à la main, sans template ni librairie<br>Filigrane · Studio de création numérique<br><a href="espace-client.html">Espace client</a> &nbsp;·&nbsp; <a href="mentions-legales.html">Mentions légales</a></div>
       </div>
     </section>
 
   </main>
+
+  <footer class="site-foot">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand">Filigrane</span>
+        <p>Studio de création numérique et d'intelligence artificielle. Sites sur-mesure, IA intégrée et outils métier, écrits à la main. Jamais un template.</p>
+      </div>
+      <div>
+        <h4>Savoir-faire</h4>
+        <ul>
+          <li><a href="creation-site-internet.html">Création de site internet</a></li>
+          <li><a href="intelligence-artificielle.html">Intégration d'IA</a></li>
+          <li><a href="outils-metier.html">Outils métier &amp; CRM</a></li>
+          <li><a href="#savoir-faire">Accompagnement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Le studio</h4>
+        <ul>
+          <li><a href="#demonstrations">Démonstrations</a></li>
+          <li><a href="#methode">La méthode</a></li>
+          <li><a href="#atelier">L'atelier</a></li>
+          <li><a href="#questions">Questions fréquentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#contact">Parler de mon projet</a></li>
+          <li><a href="mailto:mehdi.mjid@dauphine.eu">mehdi.mjid@dauphine.eu</a></li>
+          <li><a href="espace-client.html">Espace client</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Site tissé à la main, sans template ni librairie</span>
+      <span class="sep">© <span id="year">2026</span> Filigrane</span>
+    </div>
+  </footer>
 
 <script>
 (function(){
@@ -680,18 +1462,24 @@
   var ctx=canvas.getContext('2d');
   var W=0,H=0,DPR=1;
   function resize(){
-    DPR=Math.min(window.devicePixelRatio||1, 2);
-    W=window.innerWidth; H=window.innerHeight;
+    // sur mobile on plafonne le DPR : même rendu, beaucoup moins de pixels à peindre
+    var cap = (document.documentElement.clientWidth||window.innerWidth)<760 ? 1.5 : 2;
+    DPR=Math.min(window.devicePixelRatio||1, cap);
+    // clientWidth, pas innerWidth : innerWidth compte la barre de défilement et débordait de la page
+    W=document.documentElement.clientWidth || window.innerWidth; H=window.innerHeight;
     canvas.width=W*DPR; canvas.height=H*DPR;
     canvas.style.width=W+'px'; canvas.style.height=H+'px';
     ctx.setTransform(DPR,0,0,DPR,0,0);
     ctx.fillStyle='#0a0910'; ctx.fillRect(0,0,W,H);
   }
   resize();
-  window.addEventListener('resize', resize);
+  var rzT=null;
+  window.addEventListener('resize', function(){
+    clearTimeout(rzT); rzT=setTimeout(resize,140);
+  });
 
   /* ============ threads ============ */
-  var COUNT = W<700 ? 110 : 250;
+  var COUNT = W<700 ? 90 : 250;
   var threads=[];
   function spawn(th){
     th.x=rng()*W; th.y=rng()*H;
@@ -712,7 +1500,6 @@
   window.addEventListener('pointerleave', function(){ mouse.x=-9999; mouse.y=-9999; });
 
   /* ============ scroll phases ============ */
-  // 0 hero → .2 filigrane → .45 expertise → .68 savoir-faire → .85 méthode → 1 signature
   var PHASES=[
     {at:0.00, name:'Le fil',       dot:'#d4a94e'},
     {at:0.16, name:'Le filigrane', dot:'#e6c67e'},
@@ -738,12 +1525,16 @@
   var railFill=document.getElementById('railFill');
   var railMark=document.getElementById('railMark');
   var altLabel=document.getElementById('altLabel');
-  var lastPhase=-1;
+  var topbar=document.getElementById('topbar');
+  var lastPhase=-1, lastPct=-1, solid=false;
   function updateHUD(p){
     var pct=Math.round(p*100);
-    railFill.style.height=pct+'%';
-    railMark.style.top=pct+'%';
-    altLabel.textContent='tissage · '+pct+' %';
+    if(pct!==lastPct){
+      lastPct=pct;
+      railFill.style.height=pct+'%';
+      railMark.style.top=pct+'%';
+      altLabel.textContent='tissage · '+pct+' %';
+    }
     var idx=0;
     for(var i=0;i<PHASES.length;i++){ if(p>=PHASES[i].at) idx=i; }
     if(idx!==lastPhase){
@@ -752,13 +1543,100 @@
       phaseDot.style.background=PHASES[idx].dot;
       phaseDot.style.boxShadow='0 0 12px '+PHASES[idx].dot;
     }
+    // la barre du haut devient opaque dès qu'on quitte le hero : plus de titre illisible dessous
+    var wantSolid = window.scrollY > window.innerHeight*.6;
+    if(wantSolid!==solid){ solid=wantSolid; topbar.classList.toggle('solid', solid); }
   }
   onScroll();
+
+  /* ============ nav : section active ============ */
+  var navLinks=[].slice.call(document.querySelectorAll('.nav a'));
+  var navTargets=navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var navIO=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var i=navTargets.indexOf(e.target);
+      if(i<0) return;
+      if(e.isIntersecting){
+        navLinks.forEach(function(l){ l.classList.remove('on'); });
+        navLinks[i].classList.add('on');
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  navTargets.forEach(function(el){ if(el) navIO.observe(el); });
+
+  /* ============ menu mobile ============ */
+  var menuBtn=document.getElementById('menuBtn');
+  var drawer=document.getElementById('drawer');
+  function setMenu(open){
+    menuBtn.setAttribute('aria-expanded', open?'true':'false');
+    drawer.classList.toggle('open', open);
+    drawer.setAttribute('aria-hidden', open?'false':'true');
+    document.body.classList.toggle('locked', open);
+  }
+  menuBtn.addEventListener('click', function(){
+    setMenu(menuBtn.getAttribute('aria-expanded')!=='true');
+  });
+  drawer.addEventListener('click', function(e){
+    if(e.target.tagName==='A' || e.target.closest('a')) setMenu(false);
+  });
+  window.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && drawer.classList.contains('open')) setMenu(false);
+  });
+
+  /* ============ défilement doux sur les ancres ============ */
+  document.addEventListener('click', function(e){
+    var a=e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id=a.getAttribute('href');
+    if(id==='#' || a.id==='ctaTop') return;
+    var el=document.querySelector(id);
+    if(!el) return;
+    e.preventDefault();
+    var y = id==='#top' ? 0 : el.getBoundingClientRect().top + window.scrollY - 76;
+    window.scrollTo({ top:Math.max(0,y), behavior: REDUCE ? 'auto' : 'smooth' });
+  });
+
+  /* ============ onglets des démonstrations ============ */
+  var tabs=[].slice.call(document.querySelectorAll('.demo-tab'));
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){
+        var panel=document.getElementById(t.getAttribute('aria-controls'));
+        var on = t===tab;
+        t.classList.toggle('on', on);
+        t.setAttribute('aria-selected', on?'true':'false');
+        panel.classList.toggle('on', on);
+        panel.hidden = !on;
+      });
+      if(tab.getAttribute('aria-controls')==='d-crm') playCrm();
+    });
+  });
+
+  /* petites animations de la maquette CRM, jouées à la première apparition */
+  var crmPlayed=false;
+  function playCrm(){
+    if(crmPlayed || REDUCE) return;
+    crmPlayed=true;
+    [].forEach.call(document.querySelectorAll('#crmBars span'), function(b,i){
+      b.style.height='0%';
+      setTimeout(function(){ b.style.height=b.getAttribute('data-h')+'%'; }, 90*i);
+    });
+    [].forEach.call(document.querySelectorAll('#d-crm .cnt'), function(el){
+      var to=parseInt(el.getAttribute('data-to'),10), n=0;
+      var iv=setInterval(function(){
+        n++; el.textContent=n;
+        if(n>=to) clearInterval(iv);
+      }, Math.max(28, 620/to));
+    });
+  }
+  if(REDUCE){
+    [].forEach.call(document.querySelectorAll('#crmBars span'), function(b){ b.style.height=b.getAttribute('data-h')+'%'; });
+    [].forEach.call(document.querySelectorAll('#d-crm .cnt'), function(el){ el.textContent=el.getAttribute('data-to'); });
+  }
 
   /* ============ the weave ============ */
   var time=0;
   function threadColor(th, p){
-    // palette drifts with scroll: night ivory → gold dominance → ember finale
     var base;
     if(th.type===1){ base = mixRgb(C_GOLD, C_EMBER, kf(p,[[0,0],[.7,0],[1,.75]])); }
     else if(th.type===0){ base = mixRgb(C_IVORY, C_GOLD, kf(p,[[0,.06],[.5,.28],[1,.6]])); }
@@ -783,11 +1661,11 @@
     ctx.fillRect(0,0,W,H);
 
     // field parameters evolve with scroll
-    var scale  = kf(p,[[0,.0018],[.2,.0016],[.45,.0032],[.7,.0022],[1,.0014]]); // noise zoom
-    var drift  = time*kf(p,[[0,.0016],[.5,.0026],[1,.0034]]);                    // field animation
-    var swirl  = kf(p,[[0,2.2],[.35,3.4],[.6,5.2],[.85,3.0],[1,2.0]]);           // curl intensity
+    var scale  = kf(p,[[0,.0018],[.2,.0016],[.45,.0032],[.7,.0022],[1,.0014]]);
+    var drift  = time*kf(p,[[0,.0016],[.5,.0026],[1,.0034]]);
+    var swirl  = kf(p,[[0,2.2],[.35,3.4],[.6,5.2],[.85,3.0],[1,2.0]]);
     var speedM = kf(p,[[0,1],[.5,1.35],[1,1.15]]);
-    var conv   = kf(p,[[0,0],[.82,0],[.97,.9],[1,1]]);                            // finale convergence
+    var conv   = kf(p,[[0,0],[.82,0],[.97,.9],[1,1]]);
     var cx=W/2, cy=H/2, ringR=Math.min(W,H)*.3;
 
     ctx.lineCap='round';
@@ -795,7 +1673,7 @@
     // hero : les fils contournent le titre pour laisser le texte respirer
     var avoid=kf(p,[[0,1],[.12,1],[.26,0],[1,0]]);
     var exA=W*.34, exB=H*.30, exCy=H*.46;
-    var SUB=4; // sub-segments per frame: long silk strokes even at low frame rates
+    var SUB=4;
     for(var i=0;i<threads.length;i++){
       var th=threads[i];
       var col=threadColor(th,p);
@@ -812,10 +1690,8 @@
         var vx=Math.cos(a)*sp;
         var vy=Math.sin(a)*sp;
 
-        // horizontal weave bias in mid-sections (la trame)
         vx += bias*.55; vy *= (1-bias*.5);
 
-        // hero: gentle repulsion from the central text ellipse
         if(avoid>0){
           var ex=(th.x-cx)/exA, ey=(th.y-exCy)/exB;
           var ed=ex*ex+ey*ey;
@@ -825,7 +1701,6 @@
           }
         }
 
-        // finale: threads gather on a ring — the seal of the signature
         if(conv>0){
           var dx=th.x-cx, dy=th.y-cy;
           var d=Math.sqrt(dx*dx+dy*dy)||1;
@@ -835,7 +1710,6 @@
           vx+=-dy/d*tang; vy+=dx/d*tang;
         }
 
-        // gentle mouse influence — the visitor disturbs the weave
         var mdx=th.x-mouse.x, mdy=th.y-mouse.y;
         var md2=mdx*mdx+mdy*mdy;
         if(md2<16000){
@@ -885,9 +1759,11 @@
   else loop();
 
   /* ============ reveals ============ */
+  /* seuil 0 : un bloc plus haut que l'écran (les démonstrations sur mobile)
+     n'atteindrait jamais un seuil en pourcentage et resterait invisible */
   var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); });
-  }, {threshold:.25});
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0, rootMargin:'0px 0px -12% 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
   /* contact form : envoi via Web3Forms, sans quitter la page */
@@ -949,17 +1825,35 @@
     window.scrollTo({top:0, behavior: REDUCE ? 'auto' : 'smooth'});
   });
 
-  /* cinematic intro */
+  /* année du pied de page */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ============ intro cinématique ============ */
+  /* jouée une seule fois par visite : au retour sur le site, on entre directement */
   var intro=document.getElementById('intro');
   var introDone=false;
+  var seen=false;
+  try{ seen = sessionStorage.getItem('filigrane.intro')==='1'; }catch(err){}
+
   function enter(){
     if(introDone) return; introDone=true;
+    try{ sessionStorage.setItem('filigrane.intro','1'); }catch(err){}
     intro.classList.add('gone');
-    setTimeout(function(){ intro.style.display='none'; }, 1300);
+    setTimeout(function(){ intro.style.display='none'; }, 1100);
   }
-  intro.addEventListener('click', enter);
-  window.addEventListener('keydown', function(e){ if(!introDone && (e.key==='Enter'||e.key===' '||e.key==='Escape')) enter(); });
-  setTimeout(enter, REDUCE ? 900 : 3600);
+
+  if(seen || window.location.hash){
+    intro.classList.remove('play');
+    intro.style.display='none';
+    introDone=true;
+  } else {
+    intro.addEventListener('click', enter);
+    window.addEventListener('keydown', function(e){ if(!introDone && (e.key==='Enter'||e.key===' '||e.key==='Escape')) enter(); });
+    // le moindre geste de défilement fait entrer : personne n'attend devant un rideau
+    window.addEventListener('wheel', enter, {passive:true, once:true});
+    window.addEventListener('touchstart', enter, {passive:true, once:true});
+    setTimeout(enter, REDUCE ? 700 : 3800);
+  }
 })();
 </script>
 </body>
