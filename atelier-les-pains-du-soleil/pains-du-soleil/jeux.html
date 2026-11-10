@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le coin des jeux · Les Pains du Soleil</title>
+<meta name="description" content="Le calendrier de l'Avent du Soleil et le passeport des 4 maisons : les petits jeux des Pains du Soleil, avec des surprises à récupérer en boutique.">
+<meta name="theme-color" content="#F3E9D7">
+<link rel="canonical" href="https://www.lespainsdusoleil.com/jeux.html">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Le coin des jeux · Les Pains du Soleil">
+<meta property="og:description" content="Des petits jeux à faire sur ton téléphone, et des surprises à récupérer en boutique.">
+<meta property="og:url" content="https://www.lespainsdusoleil.com/jeux.html">
+<meta property="og:image" content="https://www.lespainsdusoleil.com/assets/photos/plateau-croissants.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F3E9D7'/%3E%3Cg fill='%23C98A1E'%3E%3Ccircle cx='16' cy='16' r='5.4'/%3E%3Cg%3E%3Cpath d='M16 3l1.5 5H14.5z'/%3E%3Cpath d='M16 29l1.5-5H14.5z'/%3E%3Cpath d='M3 16l5 1.5v-3z'/%3E%3Cpath d='M29 16l-5 1.5v-3z'/%3E%3Cpath d='M6.5 6.5l4 2.6-1.9 1.9z'/%3E%3Cpath d='M25.5 25.5l-4-2.6 1.9-1.9z'/%3E%3Cpath d='M25.5 6.5l-2.6 4-1.9-1.9z'/%3E%3Cpath d='M6.5 25.5l2.6-4 1.9 1.9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..600;1,400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=6">
+<link rel="stylesheet" href="assets/jeux.css?v=5">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"CollectionPage","@id":"https://www.lespainsdusoleil.com/jeux.html#page","url":"https://www.lespainsdusoleil.com/jeux.html","name":"Le coin des jeux · Les Pains du Soleil","inLanguage":"fr-FR","isPartOf":{"@id":"https://www.lespainsdusoleil.com/#website"}},
+ {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.lespainsdusoleil.com/"},{"@type":"ListItem","position":2,"name":"Le coin des jeux","item":"https://www.lespainsdusoleil.com/jeux.html"}]}
+]}
+</script>
+<style>
+/* ---------- en-tête : des gourmandises qui flottent ---------- */
+.hub-head{position:relative;overflow:hidden;text-align:center;padding:clamp(20px,4vh,40px) 0 clamp(30px,5vh,56px)}
+.flottants{position:absolute;inset:0;pointer-events:none;z-index:0}
+.flottants span{position:absolute;font-size:clamp(1.6rem,3.2vw,2.6rem);opacity:.85;animation:flotter 7s ease-in-out infinite}
+.flottants span:nth-child(1){left:6%;top:18%;animation-delay:-1s}
+.flottants span:nth-child(2){left:16%;top:68%;animation-delay:-3s}
+.flottants span:nth-child(3){right:8%;top:22%;animation-delay:-2s}
+.flottants span:nth-child(4){right:15%;top:70%;animation-delay:-4s}
+.flottants span:nth-child(5){left:30%;top:6%;animation-delay:-5s;font-size:1.3rem}
+.flottants span:nth-child(6){right:30%;top:4%;animation-delay:-6s;font-size:1.3rem}
+@keyframes flotter{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-14px) rotate(6deg)}}
+.hub-head .wrap{position:relative;z-index:1}
+.hub-head h1{font-size:clamp(2.6rem,7vw,5.4rem);letter-spacing:-.05em;line-height:.92;margin:.35em auto .2em}
+.hub-head .lead{margin-inline:auto}
+
+/* ---------- les cartes de jeux ---------- */
+.jcards{display:grid;grid-template-columns:repeat(2,1fr);max-width:980px;margin-inline:auto;gap:clamp(16px,2vw,24px);margin-top:clamp(26px,4vw,44px)}
+.jcard{position:relative;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:26px;overflow:hidden;
+  transition:transform .45s var(--ease),box-shadow .45s,border-color .45s}
+.jcard:hover{transform:translateY(-8px) rotate(-.4deg);box-shadow:0 30px 64px rgba(35,26,15,.16);border-color:var(--or)}
+.jcard .vis{position:relative;aspect-ratio:16/10;display:grid;place-items:center;overflow:hidden}
+.jcard .vis::before{content:"";position:absolute;width:160%;aspect-ratio:1;
+  background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.22) 0 10deg,transparent 10deg 20deg);animation:tourne 40s linear infinite}
+@keyframes tourne{to{transform:rotate(360deg)}}
+.jcard .vis .em{position:relative;font-size:clamp(3.4rem,6vw,4.6rem);filter:drop-shadow(0 12px 18px rgba(0,0,0,.18));transition:transform .5s var(--ease)}
+.jcard:hover .vis .em{transform:scale(1.12) rotate(-8deg)}
+.jcard .vis .em2{position:absolute;font-size:1.8rem;right:18%;top:16%;animation:flotter 5s ease-in-out infinite}
+.v-quiz{background:linear-gradient(135deg,#F6D06B,#E8A83A)}
+.v-roue{background:linear-gradient(135deg,#2A2015,#4A3A1C)}
+.v-passeport{background:linear-gradient(135deg,#5B7A3A,#87A55E)}
+.v-avent{background:linear-gradient(135deg,#B4232A,#D9534A)}
+.v-rois{background:linear-gradient(135deg,#E9C47A,#C98A1E)}
+.v-bientot{background:linear-gradient(135deg,#ECDFC7,#D9C9A8)}
+.jcard .badge{position:absolute;left:14px;top:14px;z-index:2;font-family:var(--sf-body);font-weight:700;font-size:.6rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--noir);background:rgba(255,253,248,.92);border-radius:100px;padding:6px 11px}
+.jcard .badge.chaud{background:var(--noir);color:var(--miel)}
+.jcard .corps{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.jcard h2{font-size:1.5rem;letter-spacing:-.025em}
+.jcard p{color:var(--ink-soft);font-size:.94rem;margin:.4em 0 1em}
+.jcard .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.jcard .meta span{font-family:var(--sf-body);font-size:.74rem;font-weight:600;color:var(--ink);background:var(--sand);border-radius:100px;padding:5px 10px}
+.jcard .go{margin-top:auto;align-self:flex-start}
+.jcard.bientot{opacity:.78}
+.jcard.bientot:hover{transform:none;box-shadow:none;border-color:var(--line)}
+.lien-carte{position:absolute;inset:0;z-index:3}
+
+@media (max-width:1080px){.jcards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){
+  .jcards{grid-template-columns:1fr}
+  .jcard{display:grid;grid-template-columns:112px 1fr}
+  .jcard .vis{aspect-ratio:auto;min-height:100%}
+  .jcard .vis .em{font-size:2.8rem}.jcard .vis .em2{display:none}
+  .jcard .badge{left:8px;top:8px;font-size:.52rem;padding:4px 7px;letter-spacing:.08em}
+  .jcard .corps{padding:14px 16px 16px}
+  .jcard h2{font-size:1.2rem}
+  .jcard p{font-size:.86rem;margin:.25em 0 .6em}
+  .jcard .meta{display:none}
+  .jcard .go{padding:9px 16px;font-size:.8rem}
+}
+</style>
+</head>
+<body class="page-jeu">
+
+<header class="nav" id="nav">
+  <a href="index.html" class="brandmark" aria-label="Les Pains du Soleil, accueil">
+    <img class="bm-logo-full bm-sombre" src="assets/logo/logo-horizontal.png" alt="Les Pains du Soleil" width="925" height="270">
+  </a>
+  <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#raphael">La Maison</a>
+    <a href="index.html#maisons">Nos boutiques</a>
+    <a href="jeux.html" class="active">Jeux</a>
+    <a href="fidelite.html">Fidélité</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <a href="index.html#maisons" class="nav-cta">Nos boutiques</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<main>
+<section class="hub-head" aria-labelledby="hub-h1">
+  <div class="flottants" aria-hidden="true"><span>🥐</span><span>🎄</span><span>🛂</span><span>☀️</span><span>✨</span><span>🎁</span></div>
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Fil d'Ariane" style="justify-content:center"><a href="index.html">Accueil</a><span class="sep">›</span><span>Le coin des jeux</span></nav>
+    <h1 id="hub-h1">Le coin des <span class="serif-it">jeux</span>.</h1>
+    <p class="lead">Un calendrier de l'Avent pour fêter l'ouverture du site, un passeport pour découvrir nos quatre maisons, et des surprises à récupérer en boutique.</p>
+  </div>
+</section>
+
+<section class="wrap" aria-label="Comment ça marche">
+  <ol class="etapes-jeu">
+    <li><span class="n">1</span><span class="ic" aria-hidden="true">📱</span><b>Tu joues</b><span>Ici, sur ton téléphone. Pas d'appli, pas d'inscription pour jouer.</span></li>
+    <li><span class="n">2</span><span class="ic" aria-hidden="true">🎁</span><b>Tu gagnes</b><span>Un cadeau s'affiche sur ton écran quand la chance est avec toi.</span></li>
+    <li><span class="n">3</span><span class="ic" aria-hidden="true">🧾</span><b>Tu le montres en caisse</b><span>Dans l'une de nos quatre maisons, et c'est tout.</span></li>
+  </ol>
+</section>
+
+<section class="wrap" aria-label="Les jeux" style="padding-bottom:clamp(60px,9vh,110px)">
+  <div class="jcards">
+    <article class="jcard">
+      <div class="vis v-avent"><span class="badge" id="badge-avent">Du 1er au 24 décembre</span><span class="em" aria-hidden="true">🎄</span><span class="em2" aria-hidden="true">🎁</span></div>
+      <div class="corps"><h2>Le calendrier de l'Avent</h2><p>Une case par jour en décembre&nbsp;: des surprises, des défis et des cadeaux en boutique.</p>
+        <div class="meta"><span>📅 24 cases</span><span>🎁 Des cadeaux</span></div>
+        <a class="btn btn-gold btn-sm go" href="calendrier-avent.html">Voir le calendrier →</a></div>
+      <a class="lien-carte" href="calendrier-avent.html" aria-label="Voir le calendrier de l'Avent"></a>
+    </article>
+    <article class="jcard">
+      <div class="vis v-passeport"><span class="badge">En boutique</span><span class="em" aria-hidden="true">🛂</span><span class="em2" aria-hidden="true">📍</span></div>
+      <div class="corps"><h2>Le passeport des 4 maisons</h2><p>Un tampon dans chaque boutique. Les quatre réunis, et un Soleillou t'est offert.</p>
+        <div class="meta"><span>📍 4 boutiques</span><span>🍞 Un Soleillou à la clé</span></div>
+        <a class="btn btn-gold btn-sm go" href="passeport-4-maisons.html">Ouvrir mon passeport →</a></div>
+      <a class="lien-carte" href="passeport-4-maisons.html" aria-label="Ouvrir le passeport des 4 maisons"></a>
+    </article>
+  </div>
+  <p class="regles-jeu">Jeux gratuits, sans obligation d'achat. Une participation par jour et par téléphone. Les cadeaux sont à retirer en boutique, dans la limite des conditions affichées en caisse. Ta progression reste enregistrée sur ton téléphone uniquement.</p>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="footer-logo" src="assets/logo/soleil-logo.png" alt="Les Pains du Soleil" width="569" height="438" loading="lazy">
+    <p class="footer-tag">Cuit au soleil de Catalogne.</p>
+    <p class="footer-brand">Les Pains du Soleil</p>
+    <nav class="footer-nav" aria-label="Pied de page">
+      <a href="index.html">Accueil</a><a href="boulangerie-perpignan.html">Perpignan</a><a href="boulangerie-saint-esteve.html">Saint-Estève</a>
+      <a href="boulangerie-cabestany.html">Cabestany</a><a href="boulangerie-sainte-marie-la-mer.html">Sainte-Marie-la-Mer</a><a href="noel-galettes-des-rois.html">Noël &amp; galettes</a><a href="jeux.html">Jeux</a><a href="fidelite.html">Fidélité</a><a href="vu-a-m6.html">Presse</a><a href="recrutement.html">Recrutement</a>
+      <a href="https://www.instagram.com/lespainsdusoleil/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <div class="footer-flag" aria-hidden="true" title="Sang et or, les couleurs catalanes"></div>
+    <p class="footer-fine">
+      Saint-Estève · Cabestany · Perpignan Halles Vauban · Sainte-Marie-la-Mer · Ouvert 7j/7<br>
+      Boulangeries artisanales · 100&nbsp;% fait maison · Maître Artisan<br>
+      © <span id="yr">2026</span> Les Pains du Soleil. Tous droits réservés. · <a href="mentions-legales.html">Mentions légales</a><br>Site réalisé par <a href="https://www.filigrane-site.fr" target="_blank" rel="noopener" style="color:rgba(243,233,215,.82);font-weight:600">Filigrane</a>, studio de création numérique
+    </p>
+  </div>
+</footer>
+<button class="totop" id="totop" aria-label="Haut de page">↑</button>
+
+<script src="assets/site.js?v=6"></script>
+<script src="assets/jeux.js?v=3"></script>
+<script>
+(function(){
+  "use strict";
+  var p=PDSJeux.paris();
+  /* calendrier de l'Avent : badge selon la date */
+  var ba=document.getElementById("badge-avent");
+  if(p.m===12 && p.d<=24){ ba.textContent="Case du jour à ouvrir"; ba.classList.add("chaud"); }
+  else if(p.m===11){ var j=30-p.d+1; ba.textContent="Dans "+j+" jour"+(j>1?"s":""); }
+})();
+</script>
+</body>
+</html>

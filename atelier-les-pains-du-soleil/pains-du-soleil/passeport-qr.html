@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR codes du passeport · à imprimer · Les Pains du Soleil</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..600;1,400..500&display=swap" rel="stylesheet">
+<style>
+/* Page interne (non référencée) : les 4 QR codes à poser sur les comptoirs.
+   Chaque QR contient l'adresse du passeport + le code secret de la boutique (voir passeport-4-maisons.html). */
+:root{--or:#C98A1E;--or-deep:#A5700F;--ink:#241C12;--soft:#6E6455;--sand:#F3E9D7;--paper:#FFFDF8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif}
+.barre{max-width:900px;margin:0 auto;padding:24px 20px 6px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.barre h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:500;font-size:1.6rem;margin:0}
+.barre p{margin:4px 0 0;color:var(--soft);font-size:.92rem}
+.barre button{font:inherit;font-weight:600;background:var(--or);color:#1C150D;border:none;border-radius:100px;padding:12px 22px;cursor:pointer}
+.feuille{max-width:900px;margin:0 auto;padding:16px 20px 40px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.carton{background:var(--paper);border:2px dashed #D9C29A;border-radius:18px;padding:22px 20px;text-align:center;break-inside:avoid}
+.carton .logo{width:58px;height:auto;margin:0 auto}
+.carton .k{font-weight:700;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or-deep);margin-top:8px}
+.carton h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.5rem;margin:.2em 0 .1em;letter-spacing:-.02em}
+.carton .s{font-size:.95rem;color:var(--soft)}
+.carton .qr{width:62%;max-width:240px;margin:14px auto 10px;display:block}
+.carton .etapes{font-size:.82rem;color:var(--ink);line-height:1.5}
+.carton .etapes b{color:var(--or-deep)}
+@media (max-width:640px){.feuille{grid-template-columns:1fr}}
+@media print{
+  @page{size:A4;margin:10mm}
+  body{background:#fff}
+  .barre{display:none}
+  .feuille{padding:0;gap:8mm;max-width:none}
+  .carton{border-color:#bbb}
+}
+</style>
+</head>
+<body>
+<div class="barre">
+  <div>
+    <h1>Le passeport des 4 maisons · QR codes</h1>
+    <p>Imprime cette page, découpe les cartons et pose chacun dans la bonne boutique, près de la caisse.</p>
+  </div>
+  <button type="button" onclick="window.print()">Imprimer</button>
+</div>
+<div class="feuille">
+  <div class="carton">
+    <img class="logo" src="assets/logo/soleil-logo.png" alt="">
+    <div class="k">Le passeport des 4 maisons</div>
+    <h2>Ton tampon de Perpignan</h2>
+    <div class="s">Halles Vauban</div>
+    <img class="qr" src="assets/jeux/qr-passeport-perpignan.svg" alt="QR code du tampon de Perpignan">
+    <div class="etapes"><b>1.</b> Ouvre l'appareil photo · <b>2.</b> Vise le code · <b>3.</b> Ton tampon s'ajoute&nbsp;!<br>4 tampons = un Soleillou offert</div>
+  </div>
+  <div class="carton">
+    <img class="logo" src="assets/logo/soleil-logo.png" alt="">
+    <div class="k">Le passeport des 4 maisons</div>
+    <h2>Ton tampon de Saint-Estève</h2>
+    <div class="s">46 avenue de Rivesaltes</div>
+    <img class="qr" src="assets/jeux/qr-passeport-saint-esteve.svg" alt="QR code du tampon de Saint-Estève">
+    <div class="etapes"><b>1.</b> Ouvre l'appareil photo · <b>2.</b> Vise le code · <b>3.</b> Ton tampon s'ajoute&nbsp;!<br>4 tampons = un Soleillou offert</div>
+  </div>
+  <div class="carton">
+    <img class="logo" src="assets/logo/soleil-logo.png" alt="">
+    <div class="k">Le passeport des 4 maisons</div>
+    <h2>Ton tampon de Cabestany</h2>
+    <div class="s">La maison historique</div>
+    <img class="qr" src="assets/jeux/qr-passeport-cabestany.svg" alt="QR code du tampon de Cabestany">
+    <div class="etapes"><b>1.</b> Ouvre l'appareil photo · <b>2.</b> Vise le code · <b>3.</b> Ton tampon s'ajoute&nbsp;!<br>4 tampons = un Soleillou offert</div>
+  </div>
+  <div class="carton">
+    <img class="logo" src="assets/logo/soleil-logo.png" alt="">
+    <div class="k">Le passeport des 4 maisons</div>
+    <h2>Ton tampon de Sainte-Marie</h2>
+    <div class="s">Boulangerie &amp; café</div>
+    <img class="qr" src="assets/jeux/qr-passeport-sainte-marie.svg" alt="QR code du tampon de Sainte-Marie-la-Mer">
+    <div class="etapes"><b>1.</b> Ouvre l'appareil photo · <b>2.</b> Vise le code · <b>3.</b> Ton tampon s'ajoute&nbsp;!<br>4 tampons = un Soleillou offert</div>
+  </div>
+</div>
+</body>
+</html>

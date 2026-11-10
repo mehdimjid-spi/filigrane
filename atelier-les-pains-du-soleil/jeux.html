@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les jeux · Les Pains du Soleil · maquettes</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#1A1714; --encre-doux:#4A4239; --ivoire:#FBF7F0; --papier:#FFFDF9;
+  --or:#C8912E; --or-clair:#E3BC72; --ligne:rgba(26,23,20,.12);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--ivoire); color:var(--encre);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{width:100%; max-width:1080px; margin:0 auto; padding:0 24px}
+
+.top{padding:38px 0 0; display:block}
+.top .wrap{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+.marque{font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:500; font-size:26px; line-height:1}
+.marque .f{color:var(--or)}
+.marque small{display:block; font-family:'Inter',sans-serif; font-style:normal; font-weight:500; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--encre-doux); margin-top:8px}
+.retour{text-decoration:none; font-size:14px; font-weight:500; border:1px solid var(--ligne); border-radius:999px; padding:9px 16px; background:var(--papier)}
+.retour:hover{border-color:var(--or-clair)}
+
+.hero{padding:52px 0 10px}
+.hero h1{font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:clamp(32px,6.4vw,54px); line-height:1.08; letter-spacing:-.015em; margin:0 0 20px}
+.hero h1 em{font-style:italic; color:var(--or)}
+.hero p{max-width:62ch; color:var(--encre-doux); margin:0 0 16px; font-size:clamp(16px,2.1vw,18px)}
+.hero p strong{color:var(--encre); font-weight:600}
+
+h2.titre{font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:clamp(24px,3.4vw,32px); margin:48px 0 6px}
+h2.titre em{font-style:italic; color:var(--or)}
+.sous-titre{color:var(--encre-doux); margin:0 0 22px; font-size:15.5px; max-width:66ch}
+
+.grille{display:grid; gap:22px}
+.grille.deux{grid-template-columns:1fr 1fr}
+.grille.trois{grid-template-columns:repeat(3,1fr)}
+
+.jeu{background:var(--papier); border:1px solid var(--ligne); border-radius:18px; overflow:hidden; display:flex; flex-direction:column;
+  box-shadow:0 18px 50px rgba(26,23,20,.06)}
+.jeu .vis{position:relative; aspect-ratio:16/8; display:grid; place-items:center; overflow:hidden}
+.jeu .vis::before{content:""; position:absolute; width:170%; aspect-ratio:1; background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.2) 0 10deg,transparent 10deg 20deg)}
+.jeu .vis span{position:relative; font-size:76px; filter:drop-shadow(0 10px 16px rgba(0,0,0,.2))}
+.v-avent{background:linear-gradient(135deg,#B4232A,#D9534A)}
+.v-passeport{background:linear-gradient(135deg,#5B7A3A,#87A55E)}
+.v-quiz{background:linear-gradient(135deg,#F6D06B,#E8A83A)}
+.v-roue{background:linear-gradient(135deg,#4A3A1C,#7A5A22)}
+.v-rois{background:linear-gradient(135deg,#E9C47A,#C98A1E)}
+.jeu .corps{padding:26px 28px 26px; display:flex; flex-direction:column; flex:1}
+.etiq{display:inline-block; align-self:flex-start; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--or);
+  border:1px solid var(--or-clair); border-radius:999px; padding:5px 12px; margin-bottom:14px}
+.etiq.cote{color:var(--encre-doux); border-color:var(--ligne)}
+.jeu h3{font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:24px; line-height:1.15; margin:0 0 10px}
+.jeu p{margin:0 0 14px; color:var(--encre-doux); font-size:15.5px}
+.jeu ul{margin:0 0 18px; padding:0 0 0 18px; color:var(--encre-doux); font-size:15px}
+.jeu ul li+li{margin-top:4px}
+.jeu .actions{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap}
+.btn{display:inline-flex; align-items:center; gap:10px; background:var(--encre); color:var(--ivoire); text-decoration:none;
+  padding:12px 20px; border-radius:999px; font-weight:600; font-size:14.5px; transition:background .18s ease, transform .18s ease}
+.btn:hover{background:var(--or); transform:translateY(-2px)}
+.btn.clair{background:transparent; color:var(--encre); border:1px solid var(--ligne)}
+.btn.clair:hover{background:#FFF9EC; border-color:var(--or-clair)}
+.cote-zone .jeu{box-shadow:none}
+.cote-zone .jeu .vis{aspect-ratio:16/9}
+.cote-zone .jeu h3{font-size:21px}
+
+.notes{margin:56px 0 0; padding:34px 0 0; border-top:1px solid var(--ligne)}
+.notes h3{font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:24px; margin:0 0 20px}
+.notes ul{margin:0; padding:0; list-style:none; display:grid; gap:14px}
+.notes li{position:relative; padding-left:30px; color:var(--encre-doux); font-size:15.5px; max-width:74ch}
+.notes li::before{content:""; position:absolute; left:6px; top:.62em; width:9px; height:9px; border-radius:50%; border:2px solid var(--or)}
+.notes li b{color:var(--encre); font-weight:600}
+
+.pied{margin-top:56px; padding:30px 0 50px; border-top:1px solid var(--ligne); font-size:13px; color:var(--encre-doux)}
+.pied em{font-family:'Playfair Display',Georgia,serif; font-style:italic; color:var(--encre)}
+
+@media (max-width:900px){.grille.trois{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 20px}
+  .grille.deux,.grille.trois{grid-template-columns:1fr}
+  .jeu .corps{padding:22px 20px}
+  .btn{flex:1 1 100%; justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="marque"><span class="f">F</span>iligrane<small>Studio de création numérique</small></div>
+    <a class="retour" href="index.html">← Toutes les maquettes</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Les jeux, pour faire <em>revenir</em> tes clients.</h1>
+    <p>On a imaginé cinq petits jeux à faire sur téléphone, avec des surprises à récupérer en boutique. Pour l'ouverture du site, le <strong>1er décembre</strong>, on en garde deux&nbsp;: le <strong>calendrier de l'Avent</strong>, mis en avant dès l'arrivée sur le site, et le <strong>passeport des 4 maisons</strong>.</p>
+    <p>Les trois autres sont prêts, mais <strong>gardés de côté</strong>&nbsp;: ils ne sont pas sur le site. On les sortira quand tu voudras.</p>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <h2 class="titre">Au lancement, <em>le 1er décembre</em></h2>
+  <p class="sous-titre">Ce que tes clients verront dès l'ouverture du site.</p>
+  <div class="grille deux">
+    <article class="jeu">
+      <div class="vis v-avent"><span aria-hidden="true">🎄</span></div>
+      <div class="corps">
+        <span class="etiq">Sur l'accueil · du 1er au 24 décembre</span>
+        <h3>Le calendrier de l'Avent du Soleil</h3>
+        <p>C'est la première chose qu'on voit en arrivant sur le site&nbsp;: la case du jour remplace la photo du haut de l'accueil, sous le message « Pour l'ouverture de notre site ».</p>
+        <ul>
+          <li>Une case par jour&nbsp;: surprises en boutique, défis photo, petits secrets de la maison.</li>
+          <li>Les cadeaux ne sont valables que le jour de leur case.</li>
+          <li>Après Noël, l'accueil retrouve tout seul sa photo habituelle.</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="pains-du-soleil/index.html" target="_blank" rel="noopener">Voir l'accueil →</a>
+          <a class="btn clair" href="pains-du-soleil/calendrier-avent.html" target="_blank" rel="noopener">Tout le calendrier</a>
+        </div>
+      </div>
+    </article>
+    <article class="jeu">
+      <div class="vis v-passeport"><span aria-hidden="true">🛂</span></div>
+      <div class="corps">
+        <span class="etiq">Sur le site · toute l'année</span>
+        <h3>Le passeport des 4 maisons</h3>
+        <p>Un QR code posé sur chaque comptoir. Le client le scanne, un tampon s'ajoute dans son passeport. Les quatre tampons réunis, et son Soleillou est offert.</p>
+        <ul>
+          <li>Ça pousse tes clients à découvrir Sainte-Marie, Cabestany, Saint-Estève et Perpignan.</li>
+          <li>Les QR codes sont prêts à imprimer.</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="pains-du-soleil/passeport-4-maisons.html" target="_blank" rel="noopener">Ouvrir le passeport →</a>
+          <a class="btn clair" href="pains-du-soleil/passeport-qr.html" target="_blank" rel="noopener">Les QR codes</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <h2 class="titre">Gardés <em>de côté</em></h2>
+  <p class="sous-titre">Prêts à l'emploi, mais pas sur le site. Tu peux y jouer ici pour te faire une idée.</p>
+  <div class="grille trois cote-zone">
+    <article class="jeu">
+      <div class="vis v-quiz"><span aria-hidden="true">🥖</span></div>
+      <div class="corps">
+        <span class="etiq cote">De côté</span>
+        <h3>Quel pain es-tu&nbsp;?</h3>
+        <p>Six questions, et un résultat parmi tes vrais produits, avec une image prête à poster en story Instagram.</p>
+        <div class="actions"><a class="btn" href="pains-du-soleil/quel-pain-es-tu.html" target="_blank" rel="noopener">Essayer →</a></div>
+      </div>
+    </article>
+    <article class="jeu">
+      <div class="vis v-roue"><span aria-hidden="true">🎡</span></div>
+      <div class="corps">
+        <span class="etiq cote">De côté</span>
+        <h3>La roue du soleil</h3>
+        <p>On tourne la roue en créant sa carte de fidélité, et on gagne un cadeau de bienvenue. Idéal pour relancer les inscriptions.</p>
+        <div class="actions"><a class="btn" href="pains-du-soleil/roue-du-soleil.html" target="_blank" rel="noopener">Essayer →</a></div>
+      </div>
+    </article>
+    <article class="jeu">
+      <div class="vis v-rois"><span aria-hidden="true">👑</span></div>
+      <div class="corps">
+        <span class="etiq cote">De côté · pour janvier</span>
+        <h3>Tirer les rois</h3>
+        <p>On choisit sa part de galette ou de royaume&nbsp;: si la fève est dedans, un cadeau attend en boutique.</p>
+        <div class="actions"><a class="btn" href="pains-du-soleil/tirer-les-rois.html" target="_blank" rel="noopener">Essayer →</a></div>
+      </div>
+    </article>
+  </div>
+
+  <section class="notes">
+    <h3>Bon à savoir</h3>
+    <ul>
+      <li><b>Comment l'équipe valide un cadeau&nbsp;:</b> le client montre un bon sur son téléphone. Une horloge défile dessus (une capture d'écran ne bouge pas), et l'équipe le valide d'un appui long&nbsp;: il passe alors en « utilisé ».</li>
+      <li><b>Les cadeaux sont des propositions&nbsp;:</b> café offert, chouquettes, −10&nbsp;%, Soleillou du passeport… On les ajuste ensemble avant la mise en ligne, chacun se change en une ligne.</li>
+      <li><b>Sur cette maquette,</b> tu peux rejouer à volonté (bouton « Recommencer » en bas à gauche). Sur le vrai site, ce sera une fois par jour et par téléphone.</li>
+      <li><b>Rien n'est enregistré chez nous&nbsp;:</b> la progression des clients reste sur leur téléphone, sans compte à créer.</li>
+    </ul>
+  </section>
+
+  <footer class="pied">Maquettes réalisées par <em>Filigrane</em>, studio de création numérique. Lien privé, merci de ne pas le diffuser.</footer>
+</main>
+</body>
+</html>

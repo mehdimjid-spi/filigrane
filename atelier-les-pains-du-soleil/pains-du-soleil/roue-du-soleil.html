@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La roue du soleil · Ta carte de fidélité · Les Pains du Soleil</title>
+<meta name="description" content="Fais tourner la roue du soleil, crée ta carte de fidélité des Pains du Soleil en une minute et récupère ton cadeau de bienvenue en boutique.">
+<meta name="theme-color" content="#F3E9D7">
+<link rel="canonical" href="https://www.lespainsdusoleil.com/roue-du-soleil.html">
+<!-- JEU MIS DE CÔTÉ (décision du 09/11/2026) : visible seulement sur la maquette, page « Jeux ».
+     Non relié au site, exclu de la mise en ligne (.github/workflows/deploy.yml) et non indexé. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta property="og:type" content="website">
+<meta property="og:title" content="La roue du soleil · Les Pains du Soleil">
+<meta property="og:description" content="Un cadeau de bienvenue à tous les coups quand tu crées ta carte de fidélité.">
+<meta property="og:url" content="https://www.lespainsdusoleil.com/roue-du-soleil.html">
+<meta property="og:image" content="https://www.lespainsdusoleil.com/assets/photos/plateau-croissants.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F3E9D7'/%3E%3Cg fill='%23C98A1E'%3E%3Ccircle cx='16' cy='16' r='5.4'/%3E%3Cg%3E%3Cpath d='M16 3l1.5 5H14.5z'/%3E%3Cpath d='M16 29l1.5-5H14.5z'/%3E%3Cpath d='M3 16l5 1.5v-3z'/%3E%3Cpath d='M29 16l-5 1.5v-3z'/%3E%3Cpath d='M6.5 6.5l4 2.6-1.9 1.9z'/%3E%3Cpath d='M25.5 25.5l-4-2.6 1.9-1.9z'/%3E%3Cpath d='M25.5 6.5l-2.6 4-1.9-1.9z'/%3E%3Cpath d='M6.5 25.5l2.6-4 1.9 1.9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..600;1,400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=6">
+<link rel="stylesheet" href="assets/jeux.css?v=5">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebPage","@id":"https://www.lespainsdusoleil.com/roue-du-soleil.html#page","url":"https://www.lespainsdusoleil.com/roue-du-soleil.html","name":"La roue du soleil · Les Pains du Soleil","inLanguage":"fr-FR","isPartOf":{"@id":"https://www.lespainsdusoleil.com/#website"}},
+ {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.lespainsdusoleil.com/"},{"@type":"ListItem","position":2,"name":"Le coin des jeux","item":"https://www.lespainsdusoleil.com/jeux.html"},{"@type":"ListItem","position":3,"name":"La roue du soleil","item":"https://www.lespainsdusoleil.com/roue-du-soleil.html"}]}
+]}
+</script>
+<style>
+.roue-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,60px);align-items:center}
+
+/* ---------- la roue ---------- */
+.roue-zone{position:relative;width:min(100%,460px);margin:0 auto;aspect-ratio:1}
+.roue-zone::before{content:"";position:absolute;inset:-6%;border-radius:50%;
+  background:radial-gradient(circle,rgba(246,208,107,.55) 30%,rgba(246,208,107,0) 70%);animation:halo 3s ease-in-out infinite}
+@keyframes halo{50%{transform:scale(1.04);opacity:.8}}
+.roue{position:relative;width:100%;height:100%;filter:drop-shadow(0 26px 40px rgba(80,52,8,.3))}
+.roue .tourne{transform-origin:0 0}
+.roue .seg-txt{font-family:var(--sf-body);font-weight:700;font-size:15px;letter-spacing:.01em}
+.roue .seg-em{font-size:30px}
+.roue .bord{fill:none;stroke:#A5700F;stroke-width:10}
+.roue .ampoule{fill:#FFF3D1;animation:ampoule 1.2s steps(2) infinite}
+.roue .ampoule:nth-of-type(2n){animation-delay:.6s}
+@keyframes ampoule{50%{fill:#E8A83A}}
+.moyeu{position:absolute;left:50%;top:50%;width:24%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#FFFDF8,#F3E2B8);box-shadow:0 8px 20px rgba(0,0,0,.25),inset 0 0 0 4px #E8A83A;
+  display:grid;place-items:center}
+.moyeu img{width:78%;height:auto}
+.pointeur{position:absolute;left:50%;top:-3%;width:13%;transform:translateX(-50%);transform-origin:50% 20%;z-index:3;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,.3))}
+.pointeur.tic{animation:tic .12s ease}
+@keyframes tic{50%{transform:translateX(-50%) rotate(-14deg)}}
+
+/* ---------- les étapes ---------- */
+.etapes-roue{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.etapes-roue li{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;background:var(--sand);border:2px solid transparent;
+  border-radius:20px;padding:16px 18px;transition:background .4s,border-color .4s,transform .4s var(--ease),opacity .4s;opacity:.55}
+.etapes-roue li.actif{opacity:1;background:#FFF7E6;border-color:var(--miel);transform:translateX(6px)}
+.etapes-roue li.fait{opacity:1}
+.etapes-roue .n{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:var(--sf-disp);font-weight:600;font-size:1.4rem;
+  background:var(--paper);border:2px solid var(--or);color:var(--or-deep)}
+.etapes-roue li.fait .n{background:var(--or);color:var(--noir)}
+.etapes-roue li.fait .n::after{content:"✓"}.etapes-roue li.fait .n span{display:none}
+.etapes-roue h3{font-size:1.25rem;margin:.1em 0 .2em}
+.etapes-roue p{color:var(--ink-soft);font-size:.92rem}
+.etapes-roue .btn{margin-top:12px}
+
+.gain-annonce{display:none;text-align:center;margin:18px 0 0}
+.gain-annonce.on{display:block;animation:gainIn .7s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes gainIn{from{opacity:0;transform:scale(.6)}}
+.gain-annonce .bravo{font-family:var(--sf-body);font-weight:700;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or-deep)}
+.gain-annonce .quoi{font-family:var(--sf-disp);font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;line-height:1.05;margin-top:4px}
+#bon{margin-top:20px}
+.deja{display:none;margin:0 0 16px;text-align:center;font-family:var(--sf-body);font-weight:600;color:var(--or-deep)}
+.deja.on{display:block}
+
+@media (max-width:1080px){.roue-grid{grid-template-columns:1fr}.roue-zone{width:min(100%,400px)}}
+@media (max-width:640px){
+  .etapes-roue li{grid-template-columns:42px 1fr;gap:12px;padding:14px}
+  .etapes-roue .n{width:42px;height:42px;font-size:1.15rem}
+  .etapes-roue li.actif{transform:none}
+  .etapes-roue .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){.roue-zone::before,.roue .ampoule{animation:none}}
+.etapes-roue .ticket{--fond-encoche:#FFF7E6}
+</style>
+</head>
+<body class="page-jeu">
+
+<header class="nav" id="nav">
+  <a href="index.html" class="brandmark" aria-label="Les Pains du Soleil, accueil">
+    <img class="bm-logo-full bm-sombre" src="assets/logo/logo-horizontal.png" alt="Les Pains du Soleil" width="925" height="270">
+  </a>
+  <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#raphael">La Maison</a>
+    <a href="index.html#maisons">Nos boutiques</a>
+    <a href="jeux.html" class="active">Jeux</a>
+    <a href="fidelite.html">Fidélité</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <a href="jeux.html" class="nav-cta">Tous les jeux</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="jeu-head">
+    <a class="jeu-retour" href="jeux.html">← Le coin des jeux</a>
+    <h1>La roue du <span class="serif-it">soleil</span></h1>
+    <p class="sous">Un cadeau de bienvenue à tous les coups.</p>
+    <p class="lead">Fais tourner la roue, crée ta carte de fidélité en une minute, et ton cadeau t'attend dans nos quatre maisons.</p>
+  </div>
+
+  <div class="scene chaude">
+    <p class="deja" id="deja">Tu as déjà fait tourner la roue sur ce téléphone : ton cadeau t'attend&nbsp;!</p>
+    <div class="roue-grid">
+      <div>
+        <div class="roue-zone">
+          <svg class="pointeur" id="pointeur" viewBox="0 0 60 76" aria-hidden="true">
+            <path d="M30 74 L6 22 A26 26 0 1 1 54 22 Z" fill="#C98A1E" stroke="#7A520B" stroke-width="3"/>
+            <circle cx="30" cy="25" r="11" fill="#FFF3D1"/>
+          </svg>
+          <svg class="roue" viewBox="-210 -210 420 420" role="img" aria-label="La roue du soleil et ses huit cadeaux">
+            <circle r="204" fill="#2A2015"/>
+            <g class="tourne" id="roue"></g>
+            <circle r="200" class="bord"/>
+            <g id="ampoules"></g>
+          </svg>
+          <div class="moyeu" aria-hidden="true"><img src="assets/logo/soleil-logo.png" alt="" width="569" height="438"></div>
+        </div>
+        <div class="gain-annonce" id="annonce" aria-live="polite">
+          <div class="bravo">Bravo, tu gagnes</div>
+          <div class="quoi" id="annonce-gain"></div>
+        </div>
+      </div>
+
+      <ol class="etapes-roue">
+        <li id="et1" class="actif"><span class="n"><span>1</span></span><div><h3>Fais tourner la roue</h3><p>Huit cases, huit cadeaux&nbsp;: il n'y a que des gagnants.</p>
+          <button class="btn btn-gold btn-jeu btn-rebond" type="button" id="lancer">Tourner la roue&nbsp;!</button></div></li>
+        <li id="et2"><span class="n"><span>2</span></span><div><h3>Crée ta carte de fidélité</h3><p>Une minute, depuis ton téléphone, sans appli à installer. Tu cumules ensuite des points à chaque passage.</p>
+          <a class="btn btn-gold" id="creer" href="https://les-pains-du-soleil-app.zerosix.com/#/signup" target="_blank" rel="noopener" hidden>Créer ma carte →</a>
+          <div><button class="btn btn-ghost btn-sm" type="button" id="dejacarte" hidden style="margin-top:10px">C'est fait, afficher mon bon</button></div></div></li>
+        <li id="et3"><span class="n"><span>3</span></span><div><h3>Montre ton bon en caisse</h3><p>Dans l'une de nos quatre maisons, avec ta nouvelle carte. Et voilà&nbsp;!</p>
+          <div id="bon"></div></div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="autres-jeux" aria-label="Les autres jeux">
+    <a href="quel-pain-es-tu.html"><span class="e" aria-hidden="true">🥖</span>Quel pain es-tu&nbsp;?</a>
+    <a href="passeport-4-maisons.html"><span class="e" aria-hidden="true">🛂</span>Le passeport</a>
+    <a href="calendrier-avent.html"><span class="e" aria-hidden="true">🎄</span>Le calendrier de l'Avent</a>
+    <a href="tirer-les-rois.html"><span class="e" aria-hidden="true">👑</span>Tirer les rois</a>
+  </div>
+  <p class="regles-jeu" style="margin-bottom:clamp(50px,8vh,90px)">Cadeau de bienvenue réservé à la création d'une carte de fidélité, une seule fois par personne, à retirer en boutique sur présentation de la carte. Jeu gratuit sans obligation d'achat. <a href="fidelite.html" style="color:var(--or-deep);font-weight:600">Tout savoir sur la carte de fidélité</a></p>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="footer-logo" src="assets/logo/soleil-logo.png" alt="Les Pains du Soleil" width="569" height="438" loading="lazy">
+    <p class="footer-tag">Cuit au soleil de Catalogne.</p>
+    <p class="footer-brand">Les Pains du Soleil</p>
+    <nav class="footer-nav" aria-label="Pied de page">
+      <a href="index.html">Accueil</a><a href="boulangerie-perpignan.html">Perpignan</a><a href="boulangerie-saint-esteve.html">Saint-Estève</a>
+      <a href="boulangerie-cabestany.html">Cabestany</a><a href="boulangerie-sainte-marie-la-mer.html">Sainte-Marie-la-Mer</a><a href="noel-galettes-des-rois.html">Noël &amp; galettes</a><a href="jeux.html">Jeux</a><a href="fidelite.html">Fidélité</a><a href="vu-a-m6.html">Presse</a><a href="recrutement.html">Recrutement</a>
+      <a href="https://www.instagram.com/lespainsdusoleil/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <div class="footer-flag" aria-hidden="true" title="Sang et or, les couleurs catalanes"></div>
+    <p class="footer-fine">
+      Saint-Estève · Cabestany · Perpignan Halles Vauban · Sainte-Marie-la-Mer · Ouvert 7j/7<br>
+      Boulangeries artisanales · 100&nbsp;% fait maison · Maître Artisan<br>
+      © <span id="yr">2026</span> Les Pains du Soleil. Tous droits réservés. · <a href="mentions-legales.html">Mentions légales</a><br>Site réalisé par <a href="https://www.filigrane-site.fr" target="_blank" rel="noopener" style="color:rgba(243,233,215,.82);font-weight:600">Filigrane</a>, studio de création numérique
+    </p>
+  </div>
+</footer>
+<button class="totop" id="totop" aria-label="Haut de page">↑</button>
+
+<script src="assets/site.js?v=6"></script>
+<script src="assets/jeux.js?v=3"></script>
+<script>
+(function(){
+  "use strict";
+  var J=PDSJeux, $=function(id){ return document.getElementById(id); };
+
+  /* ============ LES CADEAUX : PROPOSITIONS À VALIDER AVEC RAPHAËL AVANT LA MISE EN LIGNE ============
+     « poids » = chance relative de tomber dessus (ici : café 30 %, -10 % 30 %, viennoiserie 20 %, points doublés 15 %, chouquettes 5 %). */
+  var GAINS={
+    cafe:       {l1:"Café",        l2:"offert",     em:"☕", gain:"Un café offert",                 poids:30},
+    moins10:    {l1:"−10 %",       l2:"ton achat",  em:"🏷️", gain:"10 % sur ton prochain achat",    poids:30},
+    vienno:     {l1:"Viennoiserie",l2:"offerte",    em:"🥐", gain:"Une viennoiserie offerte",       poids:20},
+    double:     {l1:"Points",      l2:"doublés",    em:"⭐", gain:"Tes points doublés",             poids:15},
+    chouquettes:{l1:"Chouquettes", l2:"offertes",   em:"🎁", gain:"Un sachet de chouquettes offert", poids:5}
+  };
+  var CASES=["cafe","moins10","vienno","double","cafe","moins10","chouquettes","vienno"];
+  var COUL=[["#E8A83A","#2A1D08"],["#FFF7E6","#2A1D08"],["#2A2015","#F6D06B"],["#F6D06B","#2A1D08"]];
+  var LIEN_ZEROSIX="https://les-pains-du-soleil-app.zerosix.com/#/signup";
+
+  /* ---------- dessin de la roue ---------- */
+  var R=196, N=CASES.length, A=360/N, NS="http://www.w3.org/2000/svg";
+  function pt(deg,r){ var a=deg*Math.PI/180; return [r*Math.sin(a),-r*Math.cos(a)]; }
+  var g=$("roue");
+  CASES.forEach(function(id,i){
+    var c=COUL[i%COUL.length], a1=i*A-A/2, a2=i*A+A/2, p1=pt(a1,R), p2=pt(a2,R);
+    var path=document.createElementNS(NS,"path");
+    path.setAttribute("d","M0 0 L"+p1[0].toFixed(2)+" "+p1[1].toFixed(2)+" A"+R+" "+R+" 0 0 1 "+p2[0].toFixed(2)+" "+p2[1].toFixed(2)+" Z");
+    path.setAttribute("fill",c[0]); path.setAttribute("stroke","#A5700F"); path.setAttribute("stroke-width","2");
+    g.appendChild(path);
+    /* les cases du bas sont retournées pour rester lisibles */
+    var bas=(i*A>90 && i*A<270), t=document.createElementNS(NS,"g");
+    t.setAttribute("transform","rotate("+(bas?i*A+180:i*A)+")");
+    var yE=bas?150:-150, y1=bas?96:-112, y2=bas?115:-93;
+    t.innerHTML='<text class="seg-em" y="'+yE+'" text-anchor="middle" dominant-baseline="middle"></text>'+
+      '<text class="seg-txt" y="'+y1+'" text-anchor="middle" fill="'+c[1]+'"></text><text class="seg-txt" y="'+y2+'" text-anchor="middle" fill="'+c[1]+'" opacity=".8"></text>';
+    var tx=t.querySelectorAll("text"); tx[0].textContent=GAINS[id].em; tx[1].textContent=GAINS[id].l1; tx[2].textContent=GAINS[id].l2;
+    if(GAINS[id].l1.length>9) tx[1].setAttribute("style","font-size:12.5px");
+    g.appendChild(t);
+  });
+  var amp=$("ampoules");
+  for(var k=0;k<24;k++){ var q=pt(k*15,200), c=document.createElementNS(NS,"circle"); c.setAttribute("cx",q[0]); c.setAttribute("cy",q[1]); c.setAttribute("r","4.5"); c.setAttribute("class","ampoule"); amp.appendChild(c); }
+
+  /* ---------- tirage pondéré ---------- */
+  function tirer(){
+    var tot=0, ids=Object.keys(GAINS); ids.forEach(function(id){ tot+=GAINS[id].poids; });
+    var x=Math.random()*tot; for(var i=0;i<ids.length;i++){ x-=GAINS[ids[i]].poids; if(x<0) return ids[i]; } return ids[0];
+  }
+
+  /* ---------- la rotation ---------- */
+  var rot=0, enCours=false;
+  function poser(r){ g.setAttribute("transform","rotate("+r+")"); }
+  function lancer(){
+    if(enCours) return; enCours=true; $("lancer").disabled=true; $("lancer").classList.remove("btn-rebond");
+    var id=tirer(), choix=[]; CASES.forEach(function(c,i){ if(c===id) choix.push(i); });
+    var i=choix[Math.floor(Math.random()*choix.length)];
+    var cible=-i*A + (Math.random()*.6-.3)*A;
+    var depart=rot, fin=depart + 360*6 + (((cible-depart)%360)+360)%360;
+    var duree=J.reduce?600:5200, t0=performance.now(), dernierSeg=Math.floor((depart+A/2)/A);
+    (function pas(now){
+      var t=Math.min(1,(now-t0)/duree), e=1-Math.pow(1-t,4);
+      rot=depart+(fin-depart)*e; poser(rot);
+      var seg=Math.floor((rot+A/2)/A);
+      if(seg!==dernierSeg){ dernierSeg=seg; var p=$("pointeur"); p.classList.remove("tic"); void p.offsetWidth; p.classList.add("tic"); if(t<.85) J.vibrer(4); }
+      if(t<1) requestAnimationFrame(pas); else fini(id);
+    })(t0);
+  }
+
+  function fini(id){
+    enCours=false;
+    J.store.set("roue",{gain:id,le:J.dateLongue()});
+    J.confettis(); J.vibrer(60);
+    resultat(id,false);
+  }
+
+  function resultat(id,deja){
+    var G=GAINS[id];
+    $("annonce-gain").textContent=G.em+" "+G.gain;
+    $("annonce").classList.add("on");
+    $("deja").classList.toggle("on",!!deja);
+    $("lancer").hidden=true;
+    $("et1").classList.remove("actif"); $("et1").classList.add("fait");
+    $("et2").classList.add("actif");
+    $("creer").hidden=false; $("dejacarte").hidden=false;
+    var etat=J.store.get("roue",{});
+    if(etat.carte) montrerBon(id);
+  }
+
+  function montrerBon(id){
+    var G=GAINS[id], etat=J.store.get("roue",{}); etat.carte=true; J.store.set("roue",etat);
+    $("et2").classList.remove("actif"); $("et2").classList.add("fait"); $("et3").classList.add("actif");
+    $("creer").hidden=true; $("dejacarte").hidden=true;
+    J.ticket($("bon"),{titre:"Cadeau de bienvenue",gain:G.gain,cond:"Avec ta nouvelle carte de fidélité, lors de ton prochain passage.",
+      code:J.code("ROUE",id),cle:"roue"});
+    setTimeout(function(){ var b=$("bon"); if(b.getBoundingClientRect().top>innerHeight*.7) b.scrollIntoView({behavior:J.reduce?"auto":"smooth",block:"center"}); },200);
+  }
+
+  $("lancer").addEventListener("click",lancer);
+  $("creer").addEventListener("click",function(){ var id=(J.store.get("roue",{})).gain; setTimeout(function(){ montrerBon(id); },600); });
+  $("dejacarte").addEventListener("click",function(){ montrerBon((J.store.get("roue",{})).gain); });
+
+  /* ---------- déjà joué sur ce téléphone ? ---------- */
+  var etat=J.store.get("roue",null);
+  if(etat && etat.gain && GAINS[etat.gain]){
+    var i=CASES.indexOf(etat.gain); rot=-i*A; poser(rot); resultat(etat.gain,true);
+  }
+
+  J.demoBarre("la roue peut être relancée à volonté",function(){ J.store.del("roue"); J.store.del("utilise:roue"); location.reload(); });
+})();
+</script>
+</body>
+</html>

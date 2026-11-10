@@ -164,7 +164,7 @@ p{margin:0}
 .map-open:hover{transform:translateY(-2px)}
 
 /* ===================== AUTRES MAISONS ===================== */
-.autres{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2vw,24px);margin-top:36px}
+.autres{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px);margin-top:36px}
 .autre-card{position:relative;border-radius:20px;overflow:hidden;min-height:230px;display:flex;align-items:flex-end;color:var(--sand)}
 .autre-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
 .autre-card:hover img{transform:scale(1.06)}
@@ -216,6 +216,23 @@ p{margin:0}
 .mobilebar .m-call{color:var(--ink);border:1.5px solid var(--line)}
 .mobilebar .m-cc{color:var(--noir);background:var(--or)}
 
+/* ===================== STATUT « OUVERT MAINTENANT » =====================
+   Rempli par site.js à partir de l'attribut data-horaires (heure de Paris).
+   Tant que le script n'a pas tourné, la pastille reste invisible. */
+.statut{display:inline-flex;align-items:center;gap:8px;font-family:var(--sf-body);font-weight:600;
+  font-size:.78rem;letter-spacing:.02em;border-radius:100px;padding:6px 13px 6px 11px;line-height:1.2;
+  background:rgba(255,253,248,.94);color:var(--ink);box-shadow:0 4px 14px rgba(35,26,15,.12)}
+.statut:empty{display:none}
+.statut::before{content:"";width:8px;height:8px;border-radius:50%;background:#9A8F80;flex:none}
+.statut.ouvert::before{background:#3E8E4E;box-shadow:0 0 0 0 rgba(62,142,78,.5);animation:statutPulse 2.4s ease-out infinite}
+.statut.bientot::before{background:var(--or-bright)}
+@keyframes statutPulse{70%{box-shadow:0 0 0 7px rgba(62,142,78,0)}100%{box-shadow:0 0 0 0 rgba(62,142,78,0)}}
+.loc-hero .h-info .statut{background:rgba(255,253,248,.16);color:#FFF9ED;box-shadow:none;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,250,238,.28)}
+.autre-card .badge-new{position:absolute;top:16px;left:16px;z-index:2;font-family:var(--sf-body);font-weight:700;
+  font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--noir);
+  background:linear-gradient(135deg,var(--miel),var(--or-bright));border-radius:100px;padding:6px 12px}
+
 /* ===================== RESPONSIVE ===================== */
 @media (max-width:1080px){
   .navlinks{display:none}
@@ -226,6 +243,13 @@ p{margin:0}
   .loc-portrait{max-width:460px;margin-inline:auto}
   .feature-grid,.crea-grid{grid-template-columns:1fr}
   .autres{grid-template-columns:1fr}
+}
+@media (min-width:641px) and (max-width:1080px){
+  .autres{grid-template-columns:repeat(3,1fr)}
+  .autre-card{min-height:200px}
+  .autre-card .lbl{padding:18px}
+  .autre-card .lbl h3{font-size:1.3rem}
+  .autre-card .lbl .go{display:none}
 }
 @media (max-width:640px){
   .mobilebar{display:flex}

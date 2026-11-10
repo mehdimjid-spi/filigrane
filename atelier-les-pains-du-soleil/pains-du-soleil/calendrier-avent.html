@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le calendrier de l'Avent du Soleil · Les Pains du Soleil</title>
+<meta name="description" content="Du 1er au 24 décembre, ouvre chaque jour une case du calendrier de l'Avent des Pains du Soleil : surprises en boutique, défis, petits secrets de la maison.">
+<meta name="theme-color" content="#F3E9D7">
+<link rel="canonical" href="https://www.lespainsdusoleil.com/calendrier-avent.html">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Le calendrier de l'Avent du Soleil">
+<meta property="og:description" content="Une case par jour du 1er au 24 décembre, et des surprises à récupérer en boutique.">
+<meta property="og:url" content="https://www.lespainsdusoleil.com/calendrier-avent.html">
+<meta property="og:image" content="https://www.lespainsdusoleil.com/assets/photos/plateau-croissants.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F3E9D7'/%3E%3Cg fill='%23C98A1E'%3E%3Ccircle cx='16' cy='16' r='5.4'/%3E%3Cg%3E%3Cpath d='M16 3l1.5 5H14.5z'/%3E%3Cpath d='M16 29l1.5-5H14.5z'/%3E%3Cpath d='M3 16l5 1.5v-3z'/%3E%3Cpath d='M29 16l-5 1.5v-3z'/%3E%3Cpath d='M6.5 6.5l4 2.6-1.9 1.9z'/%3E%3Cpath d='M25.5 25.5l-4-2.6 1.9-1.9z'/%3E%3Cpath d='M25.5 6.5l-2.6 4-1.9-1.9z'/%3E%3Cpath d='M6.5 25.5l2.6-4 1.9 1.9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..600;1,400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=6">
+<link rel="stylesheet" href="assets/jeux.css?v=5">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebPage","@id":"https://www.lespainsdusoleil.com/calendrier-avent.html#page","url":"https://www.lespainsdusoleil.com/calendrier-avent.html","name":"Le calendrier de l'Avent du Soleil · Les Pains du Soleil","inLanguage":"fr-FR","isPartOf":{"@id":"https://www.lespainsdusoleil.com/#website"}},
+ {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.lespainsdusoleil.com/"},{"@type":"ListItem","position":2,"name":"Le coin des jeux","item":"https://www.lespainsdusoleil.com/jeux.html"},{"@type":"ListItem","position":3,"name":"Le calendrier de l'Avent","item":"https://www.lespainsdusoleil.com/calendrier-avent.html"}]}
+]}
+</script>
+<style>
+/* ---------- bandeau d'état (compte à rebours / case du jour) ---------- */
+.etat{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,30px);flex-wrap:wrap;text-align:center;margin:0 auto 22px;
+  background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:16px 22px;max-width:760px;box-shadow:0 14px 34px rgba(35,26,15,.08)}
+.etat .t{font-family:var(--sf-disp);font-size:clamp(1.1rem,2.4vw,1.4rem)}
+.rebours{display:flex;gap:8px}
+.rebours div{min-width:62px;background:var(--noir);color:var(--sand);border-radius:14px;padding:8px 6px}
+.rebours b{display:block;font-family:var(--sf-disp);font-weight:600;font-size:1.7rem;line-height:1;color:var(--miel)}
+.rebours span{font-family:var(--sf-body);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.compteur{font-family:var(--sf-body);font-weight:600;font-size:.88rem;color:var(--or-deep)}
+
+/* ---------- le panneau doré ---------- */
+.tableau{position:relative;border-radius:30px;padding:clamp(14px,2.4vw,26px);isolation:isolate;overflow:hidden;
+  background:
+    radial-gradient(80% 60% at 50% 0%,rgba(255,246,222,.55),rgba(255,246,222,0) 70%),
+    repeating-linear-gradient(90deg,#E6BE6E 0 9px,#F2D693 9px 15px,#E9C47A 15px 19px,#D3A651 19px 24px);
+  box-shadow:inset 0 0 0 1px rgba(150,100,20,.18),0 34px 80px rgba(110,72,12,.25)}
+.tableau canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.plaque{position:relative;z-index:1;display:flex;justify-content:center;margin:0 0 clamp(12px,2vw,20px)}
+.plaque span{font-family:var(--sf-disp);font-weight:600;font-size:clamp(1.1rem,2.6vw,1.6rem);color:var(--noir);background:#FFF8E6;
+  border-radius:100px;padding:8px 22px;box-shadow:0 8px 18px rgba(90,60,10,.2);letter-spacing:-.01em}
+.portes{position:relative;z-index:1;display:grid;grid-template-columns:repeat(9,1fr);grid-auto-rows:1fr;grid-auto-flow:dense;gap:clamp(8px,1.2vw,14px)}
+.porte{position:relative;aspect-ratio:1;border:none;padding:0;cursor:pointer;background:none;perspective:900px;border-radius:16px;font:inherit}
+.porte.grand{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.porte .dedans{position:absolute;inset:0;border-radius:16px;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 40%,#FFFDF5,#F4E2B9);box-shadow:inset 0 4px 14px rgba(90,60,10,.35)}
+.porte .dedans .em{font-size:clamp(1.6rem,3.4vw,2.4rem);transform:scale(.6);opacity:0;transition:transform .6s cubic-bezier(.34,1.56,.64,1) .35s,opacity .3s .35s}
+.porte.grand .dedans .em{font-size:clamp(2.6rem,6vw,4rem)}
+.porte .battant{position:absolute;inset:0;border-radius:16px;transform-origin:left center;transition:transform .9s cubic-bezier(.6,.05,.25,1);
+  display:grid;place-items:center;box-shadow:0 8px 16px rgba(80,50,8,.28),inset 0 0 0 2px rgba(255,255,255,.25);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.porte .battant::after{content:"";position:absolute;right:9px;top:50%;width:6px;height:16px;margin-top:-8px;border-radius:4px;background:rgba(255,255,255,.55)}
+.porte .num{font-family:var(--sf-disp);font-weight:700;font-size:clamp(1.5rem,3.6vw,2.4rem);line-height:1;letter-spacing:-.03em}
+.porte.grand .num{font-size:clamp(3rem,7vw,5rem)}
+.porte .deco{position:absolute;left:10px;top:8px;font-size:.85rem;opacity:.85}
+.c-or .battant{background:linear-gradient(145deg,#F6D06B,#C98A1E);color:#2A1D08}
+.c-creme .battant{background:linear-gradient(145deg,#FFFDF8,#F1E3C4);color:#A5700F}
+.c-noir .battant{background:linear-gradient(145deg,#3A2C17,#1C150D);color:#F6D06B}
+.c-rouge .battant{background:linear-gradient(145deg,#D9534A,#9E1E24);color:#FFF3D1}
+.c-vert .battant{background:linear-gradient(145deg,#87A55E,#4E6E2E);color:#FFF8E6}
+.porte.ouverte .battant{transform:rotateY(-112deg)}
+.porte.ouverte .dedans .em{transform:scale(1);opacity:1}
+.porte.verrouillee .battant{filter:saturate(.85)}
+.porte.verrouillee .battant .cadenas{position:absolute;right:8px;bottom:6px;font-size:.8rem;opacity:.7}
+.porte.du-jour .battant{animation:jour 1.6s ease-in-out infinite}
+@keyframes jour{0%,100%{box-shadow:0 8px 16px rgba(80,50,8,.28),0 0 0 0 rgba(255,250,220,.0)}50%{box-shadow:0 8px 16px rgba(80,50,8,.28),0 0 0 6px rgba(255,250,220,.9)}}
+.porte.du-jour .battant .ouvre{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-family:var(--sf-body);font-weight:700;font-size:.55rem;
+  letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.25);color:#fff;border-radius:100px;padding:3px 7px;white-space:nowrap}
+.porte.secoue{animation:secoue .45s ease}
+@keyframes secoue{20%{transform:rotate(-4deg)}40%{transform:rotate(4deg)}60%{transform:rotate(-3deg)}80%{transform:rotate(2deg)}}
+.porte:focus-visible{outline:3px solid var(--noir);outline-offset:3px}
+
+@media (max-width:1080px){.portes{grid-template-columns:repeat(6,1fr)}}
+@media (max-width:820px){.portes{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:640px){
+  .rebours div{min-width:54px}.rebours b{font-size:1.4rem}
+  .porte .deco{left:6px;top:4px;font-size:.7rem}
+  .porte .battant::after{right:5px;width:4px;height:12px}
+  .porte.du-jour .battant .ouvre{display:none}
+}
+@media (prefers-reduced-motion:reduce){.porte .battant{transition:none}.porte.du-jour .battant{animation:none}}
+</style>
+</head>
+<body class="page-jeu">
+
+<header class="nav" id="nav">
+  <a href="index.html" class="brandmark" aria-label="Les Pains du Soleil, accueil">
+    <img class="bm-logo-full bm-sombre" src="assets/logo/logo-horizontal.png" alt="Les Pains du Soleil" width="925" height="270">
+  </a>
+  <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#raphael">La Maison</a>
+    <a href="index.html#maisons">Nos boutiques</a>
+    <a href="jeux.html" class="active">Jeux</a>
+    <a href="fidelite.html">Fidélité</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <a href="noel-galettes-des-rois.html#precommande" class="nav-cta">Précommander ma bûche</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="jeu-head">
+    <a class="jeu-retour" href="jeux.html">← Le coin des jeux</a>
+    <h1>Le calendrier de l'<span class="serif-it">Avent</span></h1>
+    <p class="sous">Une case par jour, du 1er au 24 décembre.</p>
+  </div>
+
+  <div class="etat" id="etat" aria-live="polite"></div>
+
+  <div class="tableau">
+    <canvas id="neige" aria-hidden="true"></canvas>
+    <div class="plaque"><span id="plaque">Avent 2026 · Les Pains du Soleil</span></div>
+    <div class="portes" id="portes" role="grid" aria-label="Les 24 cases du calendrier"></div>
+  </div>
+
+  <section style="margin-top:clamp(36px,5vw,56px)" aria-labelledby="cmt">
+    <h2 id="cmt" class="sec-title" style="font-size:clamp(1.6rem,3.4vw,2.4rem);text-align:center;margin-inline:auto">Comment ça <span class="serif-it">marche</span>&nbsp;?</h2>
+    <ol class="etapes-jeu">
+      <li><span class="n">1</span><span class="ic" aria-hidden="true">📅</span><b>Une case par jour</b><span>Chaque matin à minuit, une nouvelle case s'ouvre, jusqu'au 24 décembre.</span></li>
+      <li><span class="n">2</span><span class="ic" aria-hidden="true">🎁</span><b>Des surprises</b><span>Des cadeaux en boutique, des défis, des petits secrets de la maison.</span></li>
+      <li><span class="n">3</span><span class="ic" aria-hidden="true">🧾</span><b>Le jour même, en caisse</b><span>Les cadeaux sont valables le jour de leur case : montre ton écran en boutique.</span></li>
+    </ol>
+  </section>
+
+  <div class="autres-jeux autres-2" aria-label="À découvrir aussi">
+    <a href="passeport-4-maisons.html"><span class="e" aria-hidden="true">🛂</span>Le passeport des 4 maisons</a>
+    <a href="index.html#maisons"><span class="e" aria-hidden="true">📍</span>Nos quatre maisons</a>
+  </div>
+  <p class="regles-jeu" style="margin-bottom:clamp(50px,8vh,90px)">Jeu gratuit, sans obligation d'achat. Chaque cadeau est valable uniquement le jour de sa case, une fois par personne, dans nos quatre maisons et dans la limite des conditions affichées en caisse.</p>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="footer-logo" src="assets/logo/soleil-logo.png" alt="Les Pains du Soleil" width="569" height="438" loading="lazy">
+    <p class="footer-tag">Cuit au soleil de Catalogne.</p>
+    <p class="footer-brand">Les Pains du Soleil</p>
+    <nav class="footer-nav" aria-label="Pied de page">
+      <a href="index.html">Accueil</a><a href="boulangerie-perpignan.html">Perpignan</a><a href="boulangerie-saint-esteve.html">Saint-Estève</a>
+      <a href="boulangerie-cabestany.html">Cabestany</a><a href="boulangerie-sainte-marie-la-mer.html">Sainte-Marie-la-Mer</a><a href="noel-galettes-des-rois.html">Noël &amp; galettes</a><a href="jeux.html">Jeux</a><a href="fidelite.html">Fidélité</a><a href="vu-a-m6.html">Presse</a><a href="recrutement.html">Recrutement</a>
+      <a href="https://www.instagram.com/lespainsdusoleil/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <div class="footer-flag" aria-hidden="true" title="Sang et or, les couleurs catalanes"></div>
+    <p class="footer-fine">
+      Saint-Estève · Cabestany · Perpignan Halles Vauban · Sainte-Marie-la-Mer · Ouvert 7j/7<br>
+      Boulangeries artisanales · 100&nbsp;% fait maison · Maître Artisan<br>
+      © <span id="yr">2026</span> Les Pains du Soleil. Tous droits réservés. · <a href="mentions-legales.html">Mentions légales</a><br>Site réalisé par <a href="https://www.filigrane-site.fr" target="_blank" rel="noopener" style="color:rgba(243,233,215,.82);font-weight:600">Filigrane</a>, studio de création numérique
+    </p>
+  </div>
+</footer>
+<button class="totop" id="totop" aria-label="Haut de page">↑</button>
+
+<script src="assets/site.js?v=6"></script>
+<script src="assets/jeux.js?v=3"></script>
+<script src="assets/avent.js?v=1"></script>
+<script>
+(function(){
+  "use strict";
+  var J=PDSJeux, $=function(id){ return document.getElementById(id); };
+
+  /* Les 24 cases et la fenêtre de surprise sont dans assets/avent.js (partagé avec l'accueil). */
+  var AV=PDSAvent, CASES=AV.CASES;
+  var POSITIONS=[12,7,19,3,24,15,1,9,21,6,17,4,13,22,10,2,18,8,23,14,5,20,11,16];
+  var COULEURS=["c-rouge","c-or","c-creme","c-vert","c-noir"];
+  var DECOS=["✦","☀","❄","★","✧","❅"];
+
+  var E=AV.etat(), P=E.P, annee=E.annee, jour=E.jour, apresNoel=E.apresNoel;
+  $("plaque").textContent="Avent "+annee+" · Les Pains du Soleil";
+
+  var ouvertes=AV.ouvertes, marquer=AV.marquer;
+
+  /* ---------- les portes ---------- */
+  var box=$("portes");
+  function dessiner(){
+    box.innerHTML=""; var o=ouvertes();
+    POSITIONS.forEach(function(n,i){
+      var C=CASES[n], b=document.createElement("button");
+      var etat = o.indexOf(n)>=0 ? "ouverte" : (n<=jour ? (n===jour && !apresNoel && !J.DEMO ? "du-jour" : "") : "verrouillee");
+      b.type="button"; b.className="porte "+COULEURS[(n*7+i)%COULEURS.length]+(C.grand?" grand":"")+(etat?" "+etat:"");
+      b.dataset.n=n;
+      b.setAttribute("aria-label","Case "+n+(etat==="verrouillee"?", fermée jusqu'au "+n+" décembre":etat==="ouverte"?", déjà ouverte":", à ouvrir"));
+      b.innerHTML='<span class="dedans"><span class="em" aria-hidden="true"></span></span>'+
+        '<span class="battant"><span class="deco" aria-hidden="true">'+DECOS[n%DECOS.length]+'</span><span class="num">'+n+'</span>'+
+        (etat==="verrouillee"?'<span class="cadenas" aria-hidden="true">🔒</span>':'')+(etat==="du-jour"?'<span class="ouvre">Ouvre-moi</span>':'')+'</span>';
+      b.querySelector(".em").textContent=C.em;
+      b.addEventListener("click",function(){ cliquer(b,n); });
+      box.appendChild(b);
+    });
+    var nb=o.length;
+    var c=document.querySelector(".compteur"); if(c) c.textContent=nb+" case"+(nb>1?"s":"")+" ouverte"+(nb>1?"s":"")+" sur 24";
+  }
+
+  function cliquer(b,n){
+    if(n>jour){
+      b.classList.remove("secoue"); void b.offsetWidth; b.classList.add("secoue"); J.vibrer(20);
+      var reste=(P.m===12)?(n-P.d):null;
+      J.toast(reste?("Patience ! La case "+n+" s'ouvre dans "+reste+" jour"+(reste>1?"s":"")+"."):("Patience ! La case "+n+" s'ouvre le "+n+" décembre."));
+      return;
+    }
+    var deja=b.classList.contains("ouverte");
+    b.classList.remove("du-jour"); b.classList.add("ouverte"); marquer(n);
+    var c=document.querySelector(".compteur"); if(c){ var nb=ouvertes().length; c.textContent=nb+" case"+(nb>1?"s":"")+" ouverte"+(nb>1?"s":"")+" sur 24"; }
+    setTimeout(function(){ montrer(n,!deja); }, deja?0:650);
+  }
+
+  var montrer=AV.montrer;
+
+  /* ---------- bandeau d'état ---------- */
+  function etat(){
+    var el=$("etat"); var p=J.paris();
+    if(J.DEMO){ el.innerHTML='<div class="t">Aperçu de la maquette : toutes les cases sont ouvrables.</div><div class="compteur"></div>'; return; }
+    if(p.m===12 && p.d<=24){
+      el.innerHTML='<div class="t">Aujourd\'hui, la case n°'+p.d+' t\'attend&nbsp;!</div><div class="compteur"></div>'; return;
+    }
+    if(apresNoel){ el.innerHTML='<div class="t">Joyeux Noël ! Tu peux revoir toutes les cases, et on se retrouve l\'an prochain.</div><div class="compteur"></div>'; return; }
+    /* avant le 1er décembre : compte à rebours */
+    var auj=Date.UTC(p.y,p.m-1,p.d), cible=Date.UTC(p.y,11,1);
+    var jours=Math.round((cible-auj)/864e5)-1, secJour=p.h*3600+p.mi*60+p.s, reste=jours*86400+(86400-secJour);
+    var d=Math.floor(reste/86400), h=Math.floor(reste%86400/3600), m=Math.floor(reste%3600/60), s=reste%60;
+    el.innerHTML='<div class="t">Le calendrier ouvre le 1er décembre</div><div class="rebours" aria-label="Compte à rebours">'+
+      '<div><b>'+d+'</b><span>jours</span></div><div><b>'+h+'</b><span>h</span></div><div><b>'+("0"+m).slice(-2)+'</b><span>min</span></div><div><b>'+("0"+s).slice(-2)+'</b><span>s</span></div></div>';
+    setTimeout(etat,1000);
+  }
+
+  /* ---------- neige de farine sur le panneau ---------- */
+  function neige(){
+    var cv=$("neige"); if(!cv.getContext||J.reduce) return;
+    var ctx=cv.getContext("2d"), dpr=Math.min(2,devicePixelRatio||1), W,H, F=[], vis=true;
+    function taille(){ W=cv.width=cv.offsetWidth*dpr; H=cv.height=cv.offsetHeight*dpr; }
+    taille(); addEventListener("resize",taille,{passive:true});
+    for(var i=0;i<60;i++) F.push({x:Math.random()*W,y:Math.random()*H,r:(.8+Math.random()*2.2)*dpr,v:(.2+Math.random()*.5)*dpr,ph:Math.random()*6});
+    if("IntersectionObserver" in window) new IntersectionObserver(function(e){ vis=e[0].isIntersecting; }).observe(cv);
+    (function pas(){ if(vis){ ctx.clearRect(0,0,W,H); ctx.fillStyle="rgba(255,255,255,.85)";
+      F.forEach(function(f){ f.y+=f.v; f.ph+=.02; f.x+=Math.sin(f.ph)*.3*dpr; if(f.y>H){ f.y=-5; f.x=Math.random()*W; } ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,6.283); ctx.fill(); }); }
+      requestAnimationFrame(pas); })();
+  }
+
+  etat(); dessiner(); neige();
+  J.demoBarre("toutes les cases sont ouvrables",function(){ J.store.del("avent:"+annee); J.store.vider("utilise:avent"); location.reload(); });
+})();
+</script>
+</body>
+</html>

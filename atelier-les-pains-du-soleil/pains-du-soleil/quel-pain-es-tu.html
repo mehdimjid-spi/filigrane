@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quel pain es-tu ? · Le quiz des Pains du Soleil</title>
+<meta name="description" content="Six questions pour découvrir le pain qui te ressemble : le Soleillou, la Ruche, le Rayon d'Or, l'Albercoc ou un croissant tout en couleur ? Le quiz des Pains du Soleil, à partager en story.">
+<meta name="theme-color" content="#F3E9D7">
+<link rel="canonical" href="https://www.lespainsdusoleil.com/quel-pain-es-tu.html">
+<!-- JEU MIS DE CÔTÉ (décision du 09/11/2026) : visible seulement sur la maquette, page « Jeux ».
+     Non relié au site, exclu de la mise en ligne (.github/workflows/deploy.yml) et non indexé. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quel pain es-tu ? · Les Pains du Soleil">
+<meta property="og:description" content="Six questions, une minute, et le pain qui te ressemble. Et toi, quel pain es-tu ?">
+<meta property="og:url" content="https://www.lespainsdusoleil.com/quel-pain-es-tu.html">
+<meta property="og:image" content="https://www.lespainsdusoleil.com/assets/photos/plateau-croissants.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F3E9D7'/%3E%3Cg fill='%23C98A1E'%3E%3Ccircle cx='16' cy='16' r='5.4'/%3E%3Cg%3E%3Cpath d='M16 3l1.5 5H14.5z'/%3E%3Cpath d='M16 29l1.5-5H14.5z'/%3E%3Cpath d='M3 16l5 1.5v-3z'/%3E%3Cpath d='M29 16l-5 1.5v-3z'/%3E%3Cpath d='M6.5 6.5l4 2.6-1.9 1.9z'/%3E%3Cpath d='M25.5 25.5l-4-2.6 1.9-1.9z'/%3E%3Cpath d='M25.5 6.5l-2.6 4-1.9-1.9z'/%3E%3Cpath d='M6.5 25.5l2.6-4 1.9 1.9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..600;1,400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=6">
+<link rel="stylesheet" href="assets/jeux.css?v=5">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebPage","@id":"https://www.lespainsdusoleil.com/quel-pain-es-tu.html#page","url":"https://www.lespainsdusoleil.com/quel-pain-es-tu.html","name":"Quel pain es-tu ? · Les Pains du Soleil","inLanguage":"fr-FR","isPartOf":{"@id":"https://www.lespainsdusoleil.com/#website"}},
+ {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.lespainsdusoleil.com/"},{"@type":"ListItem","position":2,"name":"Le coin des jeux","item":"https://www.lespainsdusoleil.com/jeux.html"},{"@type":"ListItem","position":3,"name":"Quel pain es-tu ?","item":"https://www.lespainsdusoleil.com/quel-pain-es-tu.html"}]}
+]}
+</script>
+<style>
+.quiz{max-width:760px;margin:0 auto}
+.quiz .autres-jeux{grid-template-columns:repeat(2,1fr)}
+@media (max-width:640px){.quiz .autres-jeux{grid-template-columns:1fr}}
+.ecran{display:none}
+.ecran.on{display:block;animation:entre .55s var(--ease) both}
+@keyframes entre{from{opacity:0;transform:translateY(18px) scale(.985)}}
+.ecran.sort{animation:sort .3s ease both}
+@keyframes sort{to{opacity:0;transform:translateX(-30px)}}
+
+/* ---------- intro : le soleil et ses pains en orbite ---------- */
+.orbite{position:relative;width:min(300px,72vw);aspect-ratio:1;margin:6px auto 20px}
+.orbite::before{content:"";position:absolute;inset:6%;border-radius:50%;
+  background:radial-gradient(circle,rgba(246,208,107,.55) 0%,rgba(246,208,107,0) 70%)}
+.orbite .rayons{position:absolute;inset:0;border-radius:50%;
+  background:repeating-conic-gradient(from 0deg,rgba(201,138,30,.16) 0 8deg,transparent 8deg 16deg);
+  -webkit-mask:radial-gradient(circle,transparent 30%,#000 32%,#000 70%,transparent 71%);mask:radial-gradient(circle,transparent 30%,#000 32%,#000 70%,transparent 71%);
+  animation:tourne 50s linear infinite}
+@keyframes tourne{to{transform:rotate(360deg)}}
+.orbite img{position:absolute;inset:27%;width:46%;height:auto;filter:drop-shadow(0 10px 22px rgba(140,90,10,.3));animation:souffle 5s ease-in-out infinite}
+@keyframes souffle{50%{transform:scale(1.05)}}
+.orbite .anneau{position:absolute;inset:0}
+.orbite .anneau span{--r:clamp(104px,26vw,132px);position:absolute;left:50%;top:50%;font-size:2rem;line-height:1;margin:-1rem;
+  transform:rotate(var(--a)) translate(var(--r)) rotate(calc(var(--a) * -1));animation:orbite 18s linear infinite}
+@keyframes orbite{from{transform:rotate(var(--a)) translate(var(--r)) rotate(calc(var(--a) * -1))}
+  to{transform:rotate(calc(var(--a) + 360deg)) translate(var(--r)) rotate(calc(var(--a) * -1 - 360deg))}}
+.intro{text-align:center}
+.intro .lead{margin:0 auto 1.6em}
+.intro-infos{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.intro-infos span{font-family:var(--sf-body);font-weight:600;font-size:.8rem;background:var(--sand);border-radius:100px;padding:7px 13px}
+
+/* ---------- questions ---------- */
+.progression{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.progression .barre{flex:1;height:10px;border-radius:100px;background:var(--sand-2);position:relative;overflow:visible}
+.progression .barre i{position:absolute;left:0;top:0;bottom:0;border-radius:100px;background:linear-gradient(90deg,var(--miel),var(--or));
+  width:0;transition:width .6s var(--ease)}
+.progression .barre b{position:absolute;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;left:0;transition:left .6s var(--ease);
+  background:url('assets/logo/soleil-logo.png') center/contain no-repeat;filter:drop-shadow(0 3px 6px rgba(140,90,10,.35))}
+.progression .num{font-family:var(--sf-body);font-weight:700;font-size:.8rem;color:var(--or-deep);white-space:nowrap}
+.question{font-family:var(--sf-disp);font-weight:500;font-size:clamp(1.6rem,4.4vw,2.5rem);letter-spacing:-.03em;line-height:1.08;text-align:center;margin:0 auto 26px;max-width:20ch}
+.reponses{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.reponse{display:flex;align-items:center;gap:14px;text-align:left;font-family:var(--sf-body);font-size:1rem;font-weight:600;color:var(--ink);
+  background:var(--sand);border:2px solid transparent;border-radius:20px;padding:18px 18px;cursor:pointer;min-height:84px;
+  transition:transform .25s var(--ease),background .25s,border-color .25s,box-shadow .25s}
+.reponse .e{font-size:2rem;flex:none;transition:transform .35s var(--ease)}
+.reponse:hover{transform:translateY(-3px);background:#FFF7E6;border-color:var(--miel);box-shadow:0 12px 26px rgba(201,138,30,.16)}
+.reponse:hover .e{transform:scale(1.15) rotate(-8deg)}
+.reponse:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.reponse.choisie{background:linear-gradient(135deg,#FFF3D1,#F6D06B);border-color:var(--or);transform:scale(1.03)}
+.reponse.choisie .e{transform:scale(1.3) rotate(10deg)}
+
+/* ---------- le four ---------- */
+.four{text-align:center;padding:40px 0}
+.four .soleil-tourne{width:120px;height:auto;margin:0 auto 18px;animation:tourne 1.4s linear infinite;filter:drop-shadow(0 0 24px rgba(232,168,58,.6))}
+.four p{font-family:var(--sf-disp);font-size:1.5rem}
+.four .points span{animation:clign 1.2s infinite}.four .points span:nth-child(2){animation-delay:.2s}.four .points span:nth-child(3){animation-delay:.4s}
+@keyframes clign{0%,100%{opacity:.2}50%{opacity:1}}
+
+/* ---------- le résultat ---------- */
+.carte-pain{position:relative;border-radius:28px;overflow:hidden;color:var(--c-texte,#241C12);text-align:center;
+  background:linear-gradient(160deg,var(--c1),var(--c2));padding:clamp(26px,5vw,44px) clamp(20px,4vw,40px) clamp(24px,4vw,36px);
+  box-shadow:0 30px 70px rgba(60,40,8,.25)}
+.carte-pain::before{content:"";position:absolute;left:50%;top:-30%;width:150%;aspect-ratio:1;transform:translateX(-50%);
+  background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.16) 0 9deg,transparent 9deg 18deg);animation:tourne 60s linear infinite;pointer-events:none}
+.carte-pain>*{position:relative}
+.medaillon{width:clamp(130px,30vw,170px);aspect-ratio:1;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
+  background:rgba(255,253,248,.92);box-shadow:0 18px 40px rgba(0,0,0,.18),inset 0 0 0 6px rgba(255,255,255,.6);
+  font-size:clamp(4rem,10vw,5.4rem);animation:pop .8s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes pop{from{transform:scale(.2) rotate(-30deg);opacity:0}}
+.carte-pain .tu-es{font-family:var(--sf-body);font-weight:700;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;opacity:.8}
+.carte-pain .nom{font-family:var(--sf-disp);font-weight:600;font-size:clamp(2.2rem,7vw,3.6rem);letter-spacing:-.045em;line-height:.95;margin:.15em 0 .12em}
+.carte-pain .tag{font-family:var(--sf-disp);font-style:italic;font-size:clamp(1.15rem,2.6vw,1.5rem);opacity:.92}
+.traits{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:18px 0}
+.traits span{font-family:var(--sf-body);font-weight:700;font-size:.82rem;background:rgba(255,253,248,.85);color:#241C12;border-radius:100px;padding:7px 14px}
+.carte-pain .desc{max-width:46ch;margin:0 auto;font-size:1.02rem;line-height:1.6}
+.produit{margin-top:18px;background:rgba(255,253,248,.88);color:#241C12;border-radius:18px;padding:14px 16px;font-size:.92rem;text-align:left;display:flex;gap:12px;align-items:center}
+.produit b{display:block;font-family:var(--sf-body);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or-deep)}
+.produit .e{font-size:1.8rem}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.tous{margin-top:30px;text-align:center}
+.tous .t{font-family:var(--sf-body);font-weight:700;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.tous-grille{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:12px}
+.tous-grille button{display:grid;justify-items:center;gap:6px;font-family:var(--sf-body);font-size:.72rem;font-weight:600;color:var(--ink);
+  background:var(--sand);border:2px solid transparent;border-radius:16px;padding:10px 4px;cursor:pointer;transition:transform .25s var(--ease),border-color .25s}
+.tous-grille button span{font-size:1.6rem}
+.tous-grille button:hover{transform:translateY(-3px)}
+.tous-grille button.moi{border-color:var(--or);background:#FFF3D1}
+
+@media (max-width:640px){
+  .reponses{grid-template-columns:1fr;gap:10px}
+  .reponse{min-height:66px;padding:14px 16px}
+  .reponse .e{font-size:1.7rem}
+  .question{margin-bottom:20px}
+  .tous-grille{grid-template-columns:repeat(3,1fr)}
+  .actions .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){.orbite *,.carte-pain::before{animation:none!important}}
+</style>
+</head>
+<body class="page-jeu">
+
+<header class="nav" id="nav">
+  <a href="index.html" class="brandmark" aria-label="Les Pains du Soleil, accueil">
+    <img class="bm-logo-full bm-sombre" src="assets/logo/logo-horizontal.png" alt="Les Pains du Soleil" width="925" height="270">
+  </a>
+  <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#raphael">La Maison</a>
+    <a href="index.html#maisons">Nos boutiques</a>
+    <a href="jeux.html" class="active">Jeux</a>
+    <a href="fidelite.html">Fidélité</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <a href="jeux.html" class="nav-cta">Tous les jeux</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<main>
+<div class="wrap quiz">
+  <div class="jeu-head" style="padding-bottom:10px">
+    <a class="jeu-retour" href="jeux.html">← Le coin des jeux</a>
+  </div>
+
+  <div class="scene chaude">
+    <!-- 1. intro -->
+    <section class="ecran intro on" id="e-intro" aria-labelledby="q-h1">
+      <div class="orbite" aria-hidden="true">
+        <div class="rayons"></div>
+        <img src="assets/logo/soleil-logo.png" alt="" width="569" height="438">
+        <div class="anneau">
+          <span style="--a:0deg">🥐</span>
+          <span style="--a:60deg">🍯</span>
+          <span style="--a:120deg">🍞</span>
+          <span style="--a:180deg">🍑</span>
+          <span style="--a:240deg">🌅</span>
+          <span style="--a:300deg">🥖</span>
+        </div>
+      </div>
+      <h1 id="q-h1" style="font-size:clamp(2.4rem,7vw,4.2rem);letter-spacing:-.045em;line-height:.95">Quel pain <span class="serif-it">es-tu</span>&nbsp;?</h1>
+      <p class="lead" style="margin-top:.6em">Six questions pour découvrir le pain qui te ressemble. Réponds à l'instinct, il n'y a pas de mauvaise réponse&nbsp;!</p>
+      <div class="intro-infos"><span>⏱ 1 minute</span><span>❓ 6 questions</span><span>📸 Résultat à partager</span></div>
+      <button class="btn btn-gold btn-jeu btn-rebond" type="button" id="go">C'est parti&nbsp;!</button>
+    </section>
+
+    <!-- 2. questions -->
+    <section class="ecran" id="e-question" aria-live="polite">
+      <div class="progression" aria-hidden="true"><div class="barre"><i id="barre"></i><b id="soleil-barre"></b></div><span class="num" id="num">1/6</span></div>
+      <h2 class="question" id="question"></h2>
+      <div class="reponses" id="reponses"></div>
+    </section>
+
+    <!-- 3. le four -->
+    <section class="ecran four" id="e-four" aria-live="polite">
+      <img class="soleil-tourne" src="assets/logo/soleil-logo.png" alt="" width="569" height="438">
+      <p>Le four chauffe<span class="points"><span>.</span><span>.</span><span>.</span></span></p>
+      <p style="font-family:var(--sf-body);font-size:.95rem;color:var(--ink-soft);margin-top:6px">On pétrit tes réponses.</p>
+    </section>
+
+    <!-- 4. résultat -->
+    <section class="ecran" id="e-resultat" aria-live="polite">
+      <div class="carte-pain" id="carte">
+        <div class="medaillon" id="r-emoji" aria-hidden="true"></div>
+        <div class="tu-es" id="r-tues">Tu es…</div>
+        <h2 class="nom" id="r-nom"></h2>
+        <div class="tag" id="r-tag"></div>
+        <div class="traits" id="r-traits"></div>
+        <p class="desc" id="r-desc"></p>
+        <div class="produit"><span class="e" aria-hidden="true">📍</span><div><b>Ton pain en vrai</b><span id="r-produit"></span> À goûter dans nos <a href="index.html#maisons" style="font-weight:700;text-decoration:underline">quatre maisons</a>.</div></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-gold" type="button" id="partager">Partager mon résultat</button>
+        <button class="btn btn-ghost" type="button" id="story">Image pour ma story</button>
+        <button class="btn btn-ghost" type="button" id="rejouer">Rejouer</button>
+      </div>
+      <div class="tous">
+        <div class="t">Découvre les autres pains</div>
+        <div class="tous-grille" id="tous"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="autres-jeux" aria-label="Les autres jeux">
+    <a href="roue-du-soleil.html"><span class="e" aria-hidden="true">🎡</span>La roue du soleil</a>
+    <a href="passeport-4-maisons.html"><span class="e" aria-hidden="true">🛂</span>Le passeport</a>
+    <a href="calendrier-avent.html"><span class="e" aria-hidden="true">🎄</span>Le calendrier de l'Avent</a>
+    <a href="tirer-les-rois.html"><span class="e" aria-hidden="true">👑</span>Tirer les rois</a>
+  </div>
+  <p class="regles-jeu" style="margin-bottom:clamp(50px,8vh,90px)">Un jeu pour s'amuser, sans cadeau ni inscription. Tes réponses restent sur ton téléphone.</p>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="footer-logo" src="assets/logo/soleil-logo.png" alt="Les Pains du Soleil" width="569" height="438" loading="lazy">
+    <p class="footer-tag">Cuit au soleil de Catalogne.</p>
+    <p class="footer-brand">Les Pains du Soleil</p>
+    <nav class="footer-nav" aria-label="Pied de page">
+      <a href="index.html">Accueil</a><a href="boulangerie-perpignan.html">Perpignan</a><a href="boulangerie-saint-esteve.html">Saint-Estève</a>
+      <a href="boulangerie-cabestany.html">Cabestany</a><a href="boulangerie-sainte-marie-la-mer.html">Sainte-Marie-la-Mer</a><a href="noel-galettes-des-rois.html">Noël &amp; galettes</a><a href="jeux.html">Jeux</a><a href="fidelite.html">Fidélité</a><a href="vu-a-m6.html">Presse</a><a href="recrutement.html">Recrutement</a>
+      <a href="https://www.instagram.com/lespainsdusoleil/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <div class="footer-flag" aria-hidden="true" title="Sang et or, les couleurs catalanes"></div>
+    <p class="footer-fine">
+      Saint-Estève · Cabestany · Perpignan Halles Vauban · Sainte-Marie-la-Mer · Ouvert 7j/7<br>
+      Boulangeries artisanales · 100&nbsp;% fait maison · Maître Artisan<br>
+      © <span id="yr">2026</span> Les Pains du Soleil. Tous droits réservés. · <a href="mentions-legales.html">Mentions légales</a><br>Site réalisé par <a href="https://www.filigrane-site.fr" target="_blank" rel="noopener" style="color:rgba(243,233,215,.82);font-weight:600">Filigrane</a>, studio de création numérique
+    </p>
+  </div>
+</footer>
+<button class="totop" id="totop" aria-label="Haut de page">↑</button>
+
+<script src="assets/site.js?v=6"></script>
+<script src="assets/jeux.js?v=3"></script>
+<script>
+(function(){
+  "use strict";
+  var J=PDSJeux;
+
+  /* ================= LES PAINS (descriptions tirées des produits réels de la maison) ================= */
+  var PAINS={
+    soleillou:{phrase:"le Soleillou",emoji:"🍞",c1:"#F8D981",c2:"#D9982C",texte:"#2A1D08",tag:"Solaire et fidèle",
+      traits:["Généreux","Fiable","Rayonnant"],
+      desc:"Tu es le pilier de la bande : on peut toujours compter sur toi, et ta bonne humeur réchauffe tout le monde. Simple, vrai, et franchement irrésistible.",
+      produit:"Notre pain-signature, mie généreuse et croûte dorée, celui qui porte le nom de la maison."},
+    ruche:{phrase:"la Ruche",emoji:"🍯",c1:"#F6C35A",c2:"#B9741A",texte:"#2A1D08",tag:"Le cœur de la bande",
+      traits:["Sociable","Doux","Travailleur"],
+      desc:"Toujours entouré, tu fais le lien entre tout le monde. Tu travailles dur, mais toujours avec le sourire, et ta douceur fait un bien fou.",
+      produit:"Une couronne aux noisettes torréfiées, miel et zestes d'agrumes, présentée sur M6."},
+    rayon:{phrase:"le Rayon d'Or",emoji:"🌅",c1:"#FBE2B0",c2:"#DDA04A",texte:"#2A1D08",tag:"Tendre et réconfortant",
+      traits:["Câlin","Rêveur","Raffiné"],
+      desc:"Tu es le réconfort de fin de journée : doux, attentionné, un brin rêveur. Avec toi, tout le monde se sent bien.",
+      produit:"Une brioche moelleuse et ambrée au miel de châtaignier, présentée sur M6."},
+    albercoc:{phrase:"l'Albercoc",emoji:"🍑",c1:"#F9B46E",c2:"#C8562A",texte:"#2A1406",tag:"Audacieux et surprenant",
+      traits:["Audacieux","Surprenant","Gourmet"],
+      desc:"Tu oses ce que les autres n'osent pas, et ça marche à tous les coups. Le sucré-salé ne te fait pas peur, la routine, si.",
+      produit:"Une tarte à l'abricot rouge, jambon Serrano, roquette et fromage, notée 9/10 par le jury de M6."},
+    pistache:{phrase:"un croissant pistache",emoji:"🥐",c1:"#C5DB9C",c2:"#5B7A3A",texte:"#1B2410",tag:"Original et pétillant",
+      traits:["Créatif","Pétillant","Tendance"],
+      desc:"Tu ne passes jamais inaperçu : une idée nouvelle par minute et un style bien à toi. Et sous la couleur, du vrai fond, comme un bon feuilletage.",
+      produit:"Un classique revisité d'un vert franc, sans jamais trahir le beurre et le feuilletage."},
+    framboise:{phrase:"un croissant framboise",emoji:"🥐",c1:"#F29AA0",c2:"#B4232A",texte:"#2A0A0C",tag:"Passionné et spontané",
+      traits:["Passionné","Spontané","Joyeux"],
+      desc:"Tu croques la vie à pleines dents ! Spontané, plein d'énergie, tu mets de la couleur partout où tu passes.",
+      produit:"Le croissant rouge framboise qui réveille la vitrine."}
+  };
+  var ORDRE=["soleillou","ruche","rayon","albercoc","pistache","framboise"];
+
+  /* ================= LES QUESTIONS (points attribués à chaque pain) ================= */
+  var QUESTIONS=[
+    {q:"Ton réveil idéal, c'est…",r:[
+      {e:"☀️",t:"Au chant du coq, prêt à attaquer",p:{soleillou:2}},
+      {e:"🥞",t:"Un brunch qui dure jusqu'à midi",p:{rayon:2,ruche:1}},
+      {e:"☕",t:"Un café en terrasse avec les copains",p:{ruche:2,framboise:1}},
+      {e:"🎲",t:"Une surprise : jamais deux fois pareil",p:{albercoc:2,pistache:1}}]},
+    {q:"Ta couleur préférée ?",r:[
+      {e:"🟡",t:"Or soleil",p:{soleillou:2,rayon:1}},
+      {e:"🟢",t:"Vert pistache",p:{pistache:3}},
+      {e:"🔴",t:"Rouge framboise",p:{framboise:3}},
+      {e:"🟠",t:"Orange abricot",p:{albercoc:2,ruche:1}}]},
+    {q:"Un week-end dans le Roussillon, tu files…",r:[
+      {e:"🏖️",t:"À la plage de Sainte-Marie",p:{framboise:2,pistache:1}},
+      {e:"⛰️",t:"Au sommet du Canigou",p:{soleillou:2}},
+      {e:"🎨",t:"Dans les ruelles de Collioure",p:{rayon:2,pistache:1}},
+      {e:"🧺",t:"Au marché, pour goûter à tout",p:{albercoc:2,ruche:1}}]},
+    {q:"Dans ta bande d'amis, tu es plutôt…",r:[
+      {e:"📋",t:"Celui ou celle qui organise tout",p:{soleillou:2,ruche:1}},
+      {e:"😂",t:"Celui ou celle qui fait rire",p:{framboise:2,pistache:1}},
+      {e:"🤗",t:"Celui ou celle qui écoute et rassure",p:{rayon:2,ruche:1}},
+      {e:"🚀",t:"Celui ou celle qui lance les idées folles",p:{pistache:2,albercoc:1}}]},
+    {q:"Sucré ou salé ?",r:[
+      {e:"🍯",t:"Sucré, sans hésiter",p:{ruche:1,rayon:1,framboise:1}},
+      {e:"🧀",t:"Salé, toujours",p:{albercoc:2,soleillou:1}},
+      {e:"🤩",t:"Les deux en même temps !",p:{albercoc:2,pistache:1}},
+      {e:"🥖",t:"Le bon pain tout simple, c'est la vie",p:{soleillou:3}}]},
+    {q:"Ta devise ?",r:[
+      {e:"✨",t:"Simple et bon, c'est tout",p:{soleillou:2}},
+      {e:"🤝",t:"Ensemble, on va plus loin",p:{ruche:2}},
+      {e:"🌙",t:"La douceur avant tout",p:{rayon:2}},
+      {e:"🔥",t:"Croquer la vie, oser toujours",p:{framboise:2,albercoc:1,pistache:1}}]}
+  ];
+
+  var etape=0, score={}, dernier=null, resultat=null;
+  var $=function(id){ return document.getElementById(id); };
+
+  function montre(id){
+    document.querySelectorAll(".ecran").forEach(function(e){ e.classList.remove("on"); });
+    var el=$(id); el.classList.add("on");
+    var top=document.querySelector(".scene").getBoundingClientRect().top+scrollY-90;
+    if(scrollY>top) window.scrollTo({top:top,behavior:J.reduce?"auto":"smooth"});
+  }
+
+  function poserQuestion(){
+    var Q=QUESTIONS[etape];
+    $("num").textContent=(etape+1)+"/"+QUESTIONS.length;
+    var pc=(etape/QUESTIONS.length)*100;
+    $("barre").style.width=pc+"%"; $("soleil-barre").style.left=pc+"%";
+    $("question").textContent=Q.q;
+    var box=$("reponses"); box.innerHTML="";
+    Q.r.forEach(function(r,i){
+      var b=document.createElement("button"); b.type="button"; b.className="reponse";
+      b.innerHTML='<span class="e" aria-hidden="true"></span><span></span>';
+      b.firstChild.textContent=r.e; b.lastChild.textContent=r.t;
+      b.style.animation="entre .45s var(--ease) both "+(i*70)+"ms";
+      b.addEventListener("click",function(){ choisir(b,r); });
+      box.appendChild(b);
+    });
+  }
+
+  function choisir(btn,r){
+    if(btn.parentNode.classList.contains("verrou")) return;
+    btn.parentNode.classList.add("verrou");
+    btn.classList.add("choisie"); J.vibrer(10);
+    Object.keys(r.p).forEach(function(k){ score[k]=(score[k]||0)+r.p[k]; });
+    dernier=r.p;
+    setTimeout(function(){
+      $("reponses").classList.remove("verrou");
+      etape++;
+      if(etape<QUESTIONS.length){ poserQuestion(); }
+      else { $("barre").style.width="100%"; $("soleil-barre").style.left="100%"; cuire(); }
+    },420);
+  }
+
+  function cuire(){
+    montre("e-four");
+    var max=-1, gagnant=null;
+    ORDRE.forEach(function(k){
+      var s=(score[k]||0)+((dernier&&dernier[k])?.5:0); /* égalité : la dernière réponse départage */
+      if(s>max){ max=s; gagnant=k; }
+    });
+    setTimeout(function(){ afficher(gagnant,true); },1700);
+  }
+
+  function afficher(k,vrai){
+    resultat=k; var P=PAINS[k];
+    var c=$("carte"); c.style.setProperty("--c1",P.c1); c.style.setProperty("--c2",P.c2); c.style.setProperty("--c-texte",P.texte);
+    $("r-emoji").textContent=P.emoji;
+    $("r-emoji").style.animation="none"; void $("r-emoji").offsetWidth; $("r-emoji").style.animation="";
+    $("r-tues").textContent=vrai?"Tu es…":"Et si tu étais…";
+    $("r-nom").textContent=P.phrase.charAt(0).toUpperCase()+P.phrase.slice(1)+" !";
+    $("r-tag").textContent=P.tag;
+    $("r-traits").innerHTML=""; P.traits.forEach(function(t){ var s=document.createElement("span"); s.textContent=t; $("r-traits").appendChild(s); });
+    $("r-desc").textContent=P.desc; $("r-produit").textContent=P.produit;
+    document.querySelectorAll("#tous button").forEach(function(b){ b.classList.toggle("moi",b.dataset.k===k); });
+    montre("e-resultat");
+    if(vrai){ J.store.set("quiz:dernier",k); setTimeout(function(){ J.confettis({couleurs:[P.c1,P.c2,"#FFF3D1","#E8A83A"]}); },350); }
+  }
+
+  /* grille « les autres pains » */
+  ORDRE.forEach(function(k){
+    var b=document.createElement("button"); b.type="button"; b.dataset.k=k;
+    b.innerHTML='<span aria-hidden="true"></span>'; b.firstChild.textContent=PAINS[k].emoji;
+    var t=PAINS[k].phrase.replace(/^(le |la |un |l')/,""); b.appendChild(document.createTextNode(t.charAt(0).toUpperCase()+t.slice(1)));
+    b.addEventListener("click",function(){ afficher(k,false); });
+    $("tous").appendChild(b);
+  });
+
+  $("go").addEventListener("click",function(){ etape=0; score={}; dernier=null; poserQuestion(); montre("e-question"); });
+  $("rejouer").addEventListener("click",function(){ etape=0; score={}; dernier=null; poserQuestion(); montre("e-question"); });
+
+  /* ================= IMAGE POUR LA STORY (1080 × 1920) ================= */
+  function dessinerStory(k){
+    var P=PAINS[k], cv=document.createElement("canvas"); cv.width=1080; cv.height=1920;
+    var x=cv.getContext("2d");
+    var g=x.createLinearGradient(0,0,1080,1920); g.addColorStop(0,P.c1); g.addColorStop(1,P.c2);
+    x.fillStyle=g; x.fillRect(0,0,1080,1920);
+    x.save(); x.translate(540,700); x.fillStyle="rgba(255,255,255,.14)";
+    for(var i=0;i<20;i++){ x.rotate(Math.PI/10); x.beginPath(); x.moveTo(0,0); x.lineTo(1400,-70); x.lineTo(1400,70); x.closePath(); x.fill(); }
+    x.restore();
+    x.beginPath(); x.arc(540,700,250,0,6.283); x.fillStyle="rgba(255,253,248,.95)"; x.fill();
+    x.font='260px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; x.textAlign="center"; x.textBaseline="middle";
+    x.fillText(P.emoji,540,715);
+    x.fillStyle=P.texte; x.textBaseline="alphabetic";
+    x.font='700 44px "Instrument Sans",sans-serif'; x.fillText("JE SUIS…",540,1080);
+    var nom=P.phrase.charAt(0).toUpperCase()+P.phrase.slice(1);
+    var taille=nom.length>14?104:136; x.font='600 '+taille+'px "Bricolage Grotesque",sans-serif'; x.fillText(nom,540,1220);
+    x.font='italic 500 62px "Bricolage Grotesque",sans-serif'; x.fillText(P.tag,540,1320);
+    x.font='700 40px "Instrument Sans",sans-serif'; x.fillText(P.traits.join("  ·  "),540,1420);
+    return new Promise(function(res){
+      var logo=new Image(); logo.onload=function(){ x.drawImage(logo,440,1540,200,154); fin(); }; logo.onerror=fin; logo.src="assets/logo/soleil-logo.png";
+      function fin(){
+        x.fillStyle=P.texte; x.font='600 54px "Bricolage Grotesque",sans-serif'; x.fillText("Les Pains du Soleil",540,1770);
+        x.font='500 38px "Instrument Sans",sans-serif'; x.fillText("Et toi, quel pain es-tu ? · @lespainsdusoleil",540,1840);
+        cv.toBlob(function(b){ res(b); },"image/png");
+      }
+    });
+  }
+  function avecPolices(fn){ (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(fn); }
+
+  $("story").addEventListener("click",function(){
+    if(!resultat) return;
+    avecPolices(function(){ dessinerStory(resultat).then(function(blob){
+      var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="quel-pain-es-tu-"+resultat+".png";
+      document.body.appendChild(a); a.click(); a.remove(); J.toast("Image enregistrée : il n'y a plus qu'à la poster en story !");
+    }); });
+  });
+  $("partager").addEventListener("click",function(){
+    if(!resultat) return;
+    var P=PAINS[resultat], texte="Je suis "+P.phrase+" ! Et toi, quel pain es-tu ?", url=location.href.split("?")[0];
+    avecPolices(function(){ dessinerStory(resultat).then(function(blob){
+      var f=null; try{ f=new File([blob],"quel-pain-es-tu.png",{type:"image/png"}); }catch(e){}
+      if(f && navigator.canShare && navigator.canShare({files:[f]})){ navigator.share({files:[f],title:"Quel pain es-tu ?",text:texte+" "+url}).catch(function(){}); }
+      else J.partager({title:"Quel pain es-tu ?",text:texte,url:url});
+    }); });
+  });
+})();
+</script>
+</body>
+</html>

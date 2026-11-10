@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tirer les rois en ligne · Les Pains du Soleil</title>
+<meta name="description" content="Choisis ta part de galette des rois ou de royaume : si la fève est dedans, tu es le roi ou la reine du jour, et un cadeau t'attend aux Pains du Soleil. Une partie par jour en janvier.">
+<meta name="theme-color" content="#F3E9D7">
+<link rel="canonical" href="https://www.lespainsdusoleil.com/tirer-les-rois.html">
+<!-- JEU MIS DE CÔTÉ (décision du 09/11/2026) : visible seulement sur la maquette, page « Jeux ».
+     Non relié au site, exclu de la mise en ligne (.github/workflows/deploy.yml) et non indexé. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tirer les rois en ligne · Les Pains du Soleil">
+<meta property="og:description" content="Choisis ta part : la fève est peut-être dedans !">
+<meta property="og:url" content="https://www.lespainsdusoleil.com/tirer-les-rois.html">
+<meta property="og:image" content="https://www.lespainsdusoleil.com/assets/photos/plateau-croissants.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F3E9D7'/%3E%3Cg fill='%23C98A1E'%3E%3Ccircle cx='16' cy='16' r='5.4'/%3E%3Cg%3E%3Cpath d='M16 3l1.5 5H14.5z'/%3E%3Cpath d='M16 29l1.5-5H14.5z'/%3E%3Cpath d='M3 16l5 1.5v-3z'/%3E%3Cpath d='M29 16l-5 1.5v-3z'/%3E%3Cpath d='M6.5 6.5l4 2.6-1.9 1.9z'/%3E%3Cpath d='M25.5 25.5l-4-2.6 1.9-1.9z'/%3E%3Cpath d='M25.5 6.5l-2.6 4-1.9-1.9z'/%3E%3Cpath d='M6.5 25.5l2.6-4 1.9 1.9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..600;1,400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=6">
+<link rel="stylesheet" href="assets/jeux.css?v=5">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebPage","@id":"https://www.lespainsdusoleil.com/tirer-les-rois.html#page","url":"https://www.lespainsdusoleil.com/tirer-les-rois.html","name":"Tirer les rois en ligne · Les Pains du Soleil","inLanguage":"fr-FR","isPartOf":{"@id":"https://www.lespainsdusoleil.com/#website"}},
+ {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.lespainsdusoleil.com/"},{"@type":"ListItem","position":2,"name":"Le coin des jeux","item":"https://www.lespainsdusoleil.com/jeux.html"},{"@type":"ListItem","position":3,"name":"Tirer les rois","item":"https://www.lespainsdusoleil.com/tirer-les-rois.html"}]}
+]}
+</script>
+<style>
+.saison{display:flex;justify-content:center;margin:-4px 0 18px}
+.saison span{display:inline-flex;align-items:center;gap:9px;font-family:var(--sf-body);font-weight:600;font-size:.84rem;border-radius:100px;padding:8px 16px;
+  background:var(--paper);border:1px solid var(--line)}
+.saison span.chaud{background:linear-gradient(135deg,var(--miel),var(--or-bright));border-color:transparent;color:var(--noir)}
+
+/* ---------- choix du gâteau ---------- */
+.choix{display:flex;justify-content:center;gap:8px;margin-bottom:8px}
+.choix button{font-family:var(--sf-body);font-weight:600;font-size:.9rem;border:2px solid var(--line);background:var(--paper);color:var(--ink);
+  border-radius:100px;padding:10px 18px;cursor:pointer;transition:all .25s var(--ease)}
+.choix button[aria-pressed="true"]{background:var(--noir);border-color:var(--noir);color:var(--miel)}
+.consigne{text-align:center;font-family:var(--sf-disp);font-size:clamp(1.2rem,2.6vw,1.6rem);margin:14px 0 6px}
+.consigne small{display:block;font-family:var(--sf-body);font-size:.86rem;color:var(--ink-soft);margin-top:2px}
+
+/* ---------- la galette ---------- */
+.plat{position:relative;width:min(100%,520px);margin:0 auto;aspect-ratio:1}
+.plat::before{content:"";position:absolute;inset:4%;border-radius:50%;background:radial-gradient(circle at 50% 45%,#FFFFFF 0%,#F4EBDA 62%,#E3D2B0 100%);
+  box-shadow:0 30px 60px rgba(80,52,8,.22),inset 0 -6px 14px rgba(120,90,40,.15)}
+.plat svg{position:relative;width:100%;height:100%;overflow:visible}
+.part{cursor:pointer;transition:transform .5s var(--ease),filter .3s,opacity .4s}
+.part .contour{fill:none;stroke:#7A4E0E;stroke-width:1.6;stroke-opacity:.55}
+.part:hover,.part:focus-visible{filter:brightness(1.08) drop-shadow(0 8px 10px rgba(80,52,8,.35))}
+.part:focus-visible{outline:none}
+.plat.joue .part{cursor:default}
+.plat.joue .part:not(.choisie){opacity:.45;filter:saturate(.7)}
+.part.feve-ici{opacity:1!important;filter:none!important}
+.couronne-plat{transform-origin:center;animation:balance 4s ease-in-out infinite}
+@keyframes balance{50%{transform:rotate(3deg) translateY(-4px)}}
+
+/* ---------- le résultat ---------- */
+.revele{display:none;max-width:560px;margin:10px auto 0;text-align:center;position:relative}
+.revele.on{display:block;animation:revIn .6s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes revIn{from{opacity:0;transform:scale(.8)}}
+.zoom{width:min(240px,62vw);margin:0 auto;display:block;overflow:visible}
+.zoom .feve{transform-box:fill-box;transform-origin:center;animation:fevePop .9s cubic-bezier(.34,1.8,.5,1) .35s both}
+@keyframes fevePop{from{transform:scale(0) rotate(-60deg)}}
+.zoom .miettes circle{animation:miette 1s ease-out both}
+@keyframes miette{from{opacity:0;transform:translateY(-14px)}}
+.couronne-tombe{position:absolute;left:50%;top:-34px;width:150px;margin-left:-75px;z-index:3;animation:tombe 1.1s cubic-bezier(.3,1.5,.5,1) .5s both;
+  filter:drop-shadow(0 10px 16px rgba(120,80,10,.4))}
+@keyframes tombe{from{transform:translateY(-260px) rotate(-30deg);opacity:0}to{transform:none;opacity:1}}
+.revele h2{font-size:clamp(2rem,5vw,3rem);letter-spacing:-.04em;margin:.3em 0 .15em}
+.revele p{color:var(--ink-soft);font-size:1.02rem;max-width:44ch;margin:0 auto}
+.revele .boutons{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:20px}
+#bon{margin-top:20px}
+.essai{display:inline-block;margin-top:14px;font-family:var(--sf-body);font-weight:600;font-size:.85rem;color:var(--or-deep);background:#FBF0D6;border-radius:12px;padding:10px 14px}
+
+@media (max-width:640px){.choix button{padding:9px 14px;font-size:.84rem}.revele .boutons .btn{width:100%;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.couronne-plat,.zoom .feve,.couronne-tombe{animation:none}}
+</style>
+</head>
+<body class="page-jeu">
+
+<header class="nav" id="nav">
+  <a href="index.html" class="brandmark" aria-label="Les Pains du Soleil, accueil">
+    <img class="bm-logo-full bm-sombre" src="assets/logo/logo-horizontal.png" alt="Les Pains du Soleil" width="925" height="270">
+  </a>
+  <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#raphael">La Maison</a>
+    <a href="index.html#maisons">Nos boutiques</a>
+    <a href="jeux.html" class="active">Jeux</a>
+    <a href="fidelite.html">Fidélité</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <a href="noel-galettes-des-rois.html#precommande" class="nav-cta">Précommander ma galette</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="jeu-head">
+    <a class="jeu-retour" href="jeux.html">← Le coin des jeux</a>
+    <h1>Tirer les <span class="serif-it">rois</span></h1>
+    <p class="sous">Choisis ta part : la fève est peut-être dedans&nbsp;!</p>
+  </div>
+  <div class="saison"><span id="saison">👑 Une partie par jour en janvier</span></div>
+
+  <div class="scene chaude">
+    <div id="jeu">
+      <div class="choix" role="group" aria-label="Ta galette préférée">
+        <button type="button" data-g="frangipane" aria-pressed="true">🥧 Galette frangipane</button>
+        <button type="button" data-g="royaume" aria-pressed="false">👑 Royaume</button>
+      </div>
+      <p class="consigne" id="consigne">Touche la part que tu veux&nbsp;!<small>Huit parts, une seule fève.</small></p>
+      <div class="plat" id="plat">
+        <svg viewBox="-215 -215 430 430" id="galette" role="group" aria-label="La galette, découpée en huit parts">
+          <defs>
+            <radialGradient id="gF" cx=".46" cy=".42" r=".62"><stop offset="0" stop-color="#F3C969"/><stop offset=".72" stop-color="#E6AC45"/><stop offset=".92" stop-color="#CF8E28"/><stop offset="1" stop-color="#AE6E17"/></radialGradient>
+            <radialGradient id="gR" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#F7D58E"/><stop offset=".7" stop-color="#E5A84A"/><stop offset="1" stop-color="#B9761A"/></radialGradient>
+            <linearGradient id="gCour" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE29A"/><stop offset=".6" stop-color="#E8AE3E"/><stop offset="1" stop-color="#C88A1F"/></linearGradient>
+            <g id="art-frangipane">
+              <circle r="172" fill="#A86A14"/><circle r="170" cy="-2" fill="url(#gF)"/>
+              <g fill="none" stroke="#8A5410" stroke-width="2.6" stroke-linecap="round" opacity=".42"><path d="M16.0 0.0Q91.7 20.5 78.6 137.1 M15.2 4.9Q80.9 47.9 32.4 154.6 M12.9 9.4Q62.2 70.5 -17.0 157.1 M9.4 12.9Q37.3 86.3 -64.7 144.2 M4.9 15.2Q8.8 93.6 -106.1 117.1 M0.0 16.0Q-20.5 91.7 -137.1 78.6 M-4.9 15.2Q-47.9 80.9 -154.6 32.4 M-9.4 12.9Q-70.5 62.2 -157.1 -17.0 M-12.9 9.4Q-86.3 37.3 -144.2 -64.7 M-15.2 4.9Q-93.6 8.8 -117.1 -106.1 M-16.0 0.0Q-91.7 -20.5 -78.6 -137.1 M-15.2 -4.9Q-80.9 -47.9 -32.4 -154.6 M-12.9 -9.4Q-62.2 -70.5 17.0 -157.1 M-9.4 -12.9Q-37.3 -86.3 64.7 -144.2 M-4.9 -15.2Q-8.8 -93.6 106.1 -117.1 M-0.0 -16.0Q20.5 -91.7 137.1 -78.6 M4.9 -15.2Q47.9 -80.9 154.6 -32.4 M9.4 -12.9Q70.5 -62.2 157.1 17.0 M12.9 -9.4Q86.3 -37.3 144.2 64.7 M15.2 -4.9Q93.6 -8.8 117.1 106.1"/></g>
+              <circle r="160" fill="none" stroke="#B87A1E" stroke-width="1.6" opacity=".45"/>
+            </g>
+            <g id="art-royaume">
+              <path d="M0 -172 A172 172 0 1 1 0 172 A172 172 0 1 1 0 -172 Z M0 -60 A60 60 0 1 0 0 60 A60 60 0 1 0 0 -60 Z" fill="url(#gR)" fill-rule="evenodd" stroke="#9C6414" stroke-width="3"/>
+              <g fill="#FFF8EA"><circle cx="-116.3" cy="35.9" r="3"/><circle cx="-138.1" cy="43.1" r="2.6"/><circle cx="47.1" cy="108.1" r="3.4"/><circle cx="-69.8" cy="-60.7" r="3"/><circle cx="-28.0" cy="80.3" r="3.4"/><circle cx="-82.6" cy="-93.1" r="3"/><circle cx="125.9" cy="-28.3" r="3.4"/><circle cx="-74.4" cy="-102.5" r="3.4"/><circle cx="74.5" cy="31.2" r="2.6"/><circle cx="-112.4" cy="-81.3" r="3"/><circle cx="-133.8" cy="52.5" r="3.4"/><circle cx="10.4" cy="100.4" r="2.6"/><circle cx="-59.4" cy="-96.9" r="3"/><circle cx="-100.8" cy="66.9" r="2.6"/><circle cx="-26.9" cy="-99.0" r="2.6"/><circle cx="-80.1" cy="-6.5" r="3.4"/><circle cx="11.2" cy="-108.7" r="3"/><circle cx="-115.5" cy="99.9" r="3.4"/><circle cx="94.4" cy="0.3" r="2.6"/><circle cx="-151.7" cy="29.0" r="3"/><circle cx="-107.0" cy="59.0" r="2.6"/><circle cx="17.6" cy="-97.5" r="2.6"/><circle cx="-29.7" cy="73.4" r="3"/><circle cx="4.4" cy="-87.1" r="2.6"/><circle cx="-21.0" cy="-76.0" r="3"/><circle cx="26.7" cy="-87.9" r="3.4"/><circle cx="44.4" cy="109.0" r="3.4"/><circle cx="13.5" cy="-109.9" r="3"/><circle cx="82.4" cy="74.1" r="2.6"/><circle cx="145.4" cy="0.4" r="3.4"/><circle cx="-49.1" cy="138.6" r="2.6"/><circle cx="59.7" cy="143.8" r="3.4"/><circle cx="-53.9" cy="-66.8" r="2.6"/><circle cx="22.5" cy="95.5" r="3.4"/><circle cx="-48.1" cy="88.9" r="2.6"/><circle cx="84.2" cy="42.4" r="3.4"/><circle cx="5.5" cy="124.8" r="3"/><circle cx="-63.3" cy="-61.0" r="3.4"/><circle cx="-122.2" cy="12.5" r="3"/><circle cx="36.9" cy="82.1" r="2.6"/><circle cx="40.3" cy="-88.7" r="2.6"/><circle cx="69.1" cy="106.6" r="3.4"/><circle cx="50.1" cy="143.6" r="3"/><circle cx="-88.2" cy="-67.1" r="2.6"/><circle cx="91.3" cy="74.6" r="3"/><circle cx="9.7" cy="132.6" r="3"/></g>
+              <g><rect x="134.8" y="-6.7" width="12" height="8" rx="2.5" fill="#B4232A" transform="rotate(2 140.8 -2.7)"/><rect x="91.0" y="25.9" width="12" height="8" rx="2.5" fill="#5B7A3A" transform="rotate(32 97.0 29.9)"/><rect x="61.9" y="67.8" width="12" height="8" rx="2.5" fill="#E8762A" transform="rotate(1 67.9 71.8)"/><rect x="61.3" y="116.5" width="12" height="8" rx="2.5" fill="#B4232A" transform="rotate(18 67.3 120.5)"/><rect x="22.3" y="95.5" width="12" height="8" rx="2.5" fill="#5B7A3A" transform="rotate(57 28.3 99.5)"/><rect x="-15.6" y="88.4" width="12" height="8" rx="2.5" fill="#B4232A" transform="rotate(-26 -9.6 92.4)"/><rect x="-56.8" y="88.4" width="12" height="8" rx="2.5" fill="#5B7A3A" transform="rotate(-55 -50.8 92.4)"/><rect x="-85.9" y="74.4" width="12" height="8" rx="2.5" fill="#E8762A" transform="rotate(13 -79.9 78.4)"/><rect x="-100.3" y="18.6" width="12" height="8" rx="2.5" fill="#B4232A" transform="rotate(-43 -94.3 22.6)"/><rect x="-150.3" y="-17.6" width="12" height="8" rx="2.5" fill="#5B7A3A" transform="rotate(24 -144.3 -13.6)"/><rect x="-116.5" y="-51.4" width="12" height="8" rx="2.5" fill="#B4232A" transform="rotate(-43 -110.5 -47.4)"/><rect x="-112.7" y="-97.5" width="12" height="8" rx="2.5" fill="#5B7A3A" transform="rotate(0 -106.7 -93.5)"/><rect x="-59.6" y="-122.3" width="12" height="8" rx="2.5" fill="#E8762A" transform="rotate(-56 -53.6 -118.3)"/><rect x="-42.1" y="-125.1" width="12" height="8" rx="2.5" fill="#B4232A" transform="rotate(1 -36.1 -121.1)"/><rect x="1.7" y="-112.5" width="12" height="8" rx="2.5" fill="#5B7A3A" transform="rotate(-43 7.7 -108.5)"/><rect x="51.6" y="-80.9" width="12" height="8" rx="2.5" fill="#B4232A" transform="rotate(9 57.6 -76.9)"/><rect x="64.4" y="-66.9" width="12" height="8" rx="2.5" fill="#5B7A3A" transform="rotate(59 70.4 -62.9)"/><rect x="118.5" y="-41.4" width="12" height="8" rx="2.5" fill="#E8762A" transform="rotate(41 124.5 -37.4)"/></g>
+            </g>
+            <g id="feve-art">
+              <ellipse rx="22" ry="17" fill="#FFFFFF" stroke="#C9B48C" stroke-width="1.5"/>
+              <ellipse rx="22" ry="17" fill="url(#gFeve)"/>
+              <circle r="6" fill="#E8A83A"/>
+              <g fill="#E8A83A"><rect x="-1.3" y="-13" width="2.6" height="4.4" rx="1" transform="rotate(0)"/><rect x="-1.3" y="-13" width="2.6" height="4.4" rx="1" transform="rotate(45)"/><rect x="-1.3" y="-13" width="2.6" height="4.4" rx="1" transform="rotate(90)"/><rect x="-1.3" y="-13" width="2.6" height="4.4" rx="1" transform="rotate(135)"/><rect x="-1.3" y="-13" width="2.6" height="4.4" rx="1" transform="rotate(180)"/><rect x="-1.3" y="-13" width="2.6" height="4.4" rx="1" transform="rotate(225)"/><rect x="-1.3" y="-13" width="2.6" height="4.4" rx="1" transform="rotate(270)"/><rect x="-1.3" y="-13" width="2.6" height="4.4" rx="1" transform="rotate(315)"/></g>
+            </g>
+            <radialGradient id="gFeve" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#E9E1D2" stop-opacity=".6"/></radialGradient>
+          </defs>
+          <g id="parts"></g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="revele" id="revele" aria-live="polite">
+      <svg class="couronne-tombe" id="couronne-tombe" viewBox="0 0 170 90" aria-hidden="true" hidden>
+        <path d="M10 80 L18 24 L44 56 L68 12 L85 50 L102 12 L126 56 L152 24 L160 80 Z" fill="url(#gCour)" stroke="#A86A14" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="8" y="72" width="154" height="16" rx="4" fill="#E6A93A" stroke="#A86A14" stroke-width="3"/>
+        <circle cx="18" cy="22" r="6" fill="#B4232A"/><circle cx="68" cy="10" r="6" fill="#5B7A3A"/><circle cx="102" cy="10" r="6" fill="#5B7A3A"/><circle cx="152" cy="22" r="6" fill="#B4232A"/>
+      </svg>
+      <svg class="zoom" id="zoom" viewBox="-95 -10 190 200" aria-hidden="true"></svg>
+      <h2 id="r-titre"></h2>
+      <p id="r-texte"></p>
+      <div id="bon"></div>
+      <div id="r-essai"></div>
+      <div class="boutons" id="r-boutons"></div>
+    </div>
+  </div>
+
+  <section style="margin-top:clamp(36px,5vw,56px)" aria-labelledby="cmt">
+    <h2 id="cmt" class="sec-title" style="font-size:clamp(1.6rem,3.4vw,2.4rem);text-align:center;margin-inline:auto">Comment ça <span class="serif-it">marche</span>&nbsp;?</h2>
+    <ol class="etapes-jeu">
+      <li><span class="n">1</span><span class="ic" aria-hidden="true">🥧</span><b>Choisis ta part</b><span>Galette frangipane ou royaume : une seule part cache la fève.</span></li>
+      <li><span class="n">2</span><span class="ic" aria-hidden="true">👑</span><b>La fève est dedans ?</b><span>Bravo, tu es le roi ou la reine du jour, et un cadeau t'attend.</span></li>
+      <li><span class="n">3</span><span class="ic" aria-hidden="true">🧾</span><b>Montre ton écran</b><span>Le jour même, en caisse, dans l'une de nos quatre maisons.</span></li>
+    </ol>
+  </section>
+
+  <div class="autres-jeux" aria-label="Les autres jeux">
+    <a href="quel-pain-es-tu.html"><span class="e" aria-hidden="true">🥖</span>Quel pain es-tu&nbsp;?</a>
+    <a href="roue-du-soleil.html"><span class="e" aria-hidden="true">🎡</span>La roue du soleil</a>
+    <a href="passeport-4-maisons.html"><span class="e" aria-hidden="true">🛂</span>Le passeport</a>
+    <a href="calendrier-avent.html"><span class="e" aria-hidden="true">🎄</span>Le calendrier de l'Avent</a>
+  </div>
+  <p class="regles-jeu" style="margin-bottom:clamp(50px,8vh,90px)">Jeu gratuit, sans obligation d'achat, du 1er au 31 janvier. Une partie par jour et par téléphone. Le cadeau est valable le jour même, une fois par personne, dans nos quatre maisons et dans la limite des conditions affichées en caisse.</p>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="footer-logo" src="assets/logo/soleil-logo.png" alt="Les Pains du Soleil" width="569" height="438" loading="lazy">
+    <p class="footer-tag">Cuit au soleil de Catalogne.</p>
+    <p class="footer-brand">Les Pains du Soleil</p>
+    <nav class="footer-nav" aria-label="Pied de page">
+      <a href="index.html">Accueil</a><a href="boulangerie-perpignan.html">Perpignan</a><a href="boulangerie-saint-esteve.html">Saint-Estève</a>
+      <a href="boulangerie-cabestany.html">Cabestany</a><a href="boulangerie-sainte-marie-la-mer.html">Sainte-Marie-la-Mer</a><a href="noel-galettes-des-rois.html">Noël &amp; galettes</a><a href="jeux.html">Jeux</a><a href="fidelite.html">Fidélité</a><a href="vu-a-m6.html">Presse</a><a href="recrutement.html">Recrutement</a>
+      <a href="https://www.instagram.com/lespainsdusoleil/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <div class="footer-flag" aria-hidden="true" title="Sang et or, les couleurs catalanes"></div>
+    <p class="footer-fine">
+      Saint-Estève · Cabestany · Perpignan Halles Vauban · Sainte-Marie-la-Mer · Ouvert 7j/7<br>
+      Boulangeries artisanales · 100&nbsp;% fait maison · Maître Artisan<br>
+      © <span id="yr">2026</span> Les Pains du Soleil. Tous droits réservés. · <a href="mentions-legales.html">Mentions légales</a><br>Site réalisé par <a href="https://www.filigrane-site.fr" target="_blank" rel="noopener" style="color:rgba(243,233,215,.82);font-weight:600">Filigrane</a>, studio de création numérique
+    </p>
+  </div>
+</footer>
+<button class="totop" id="totop" aria-label="Haut de page">↑</button>
+
+<script src="assets/site.js?v=6"></script>
+<script src="assets/jeux.js?v=3"></script>
+<script>
+(function(){
+  "use strict";
+  var J=PDSJeux, $=function(id){ return document.getElementById(id); };
+
+  /* ============ RÉGLAGES (à valider avec Raphaël) ============ */
+  var NB_PARTS=8;                 /* une seule fève par galette : 1 chance sur 8 */
+  var CADEAU={gain:"Une viennoiserie offerte",cond:"Aujourd'hui, dans l'une de nos quatre maisons. Vive le roi, vive la reine !"};
+
+  var P=J.paris();
+  var enJanvier = P.m===1;
+  var pourDeVrai = enJanvier || J.DEMO;      /* hors janvier : partie d'entraînement, sans cadeau */
+  var s=$("saison");
+  if(J.DEMO){ s.textContent="🎬 Maquette : parties illimitées, cadeau affiché"; s.className="chaud"; }
+  else if(enJanvier){ s.textContent="👑 C'est l'Épiphanie : une partie par jour, jusqu'au 31 janvier"; s.className="chaud"; }
+  else { s.textContent="🗓️ Le jeu avec cadeau ouvre le 1er janvier · tu peux t'entraîner"; }
+
+  var NS="http://www.w3.org/2000/svg", A=360/NB_PARTS, gateau="frangipane";
+  function pt(deg,r){ var a=deg*Math.PI/180; return [r*Math.sin(a),-r*Math.cos(a)]; }
+  function f(n){ return n.toFixed(2); }
+  function forme(i,g){
+    var a1=i*A, a2=(i+1)*A, R=172;
+    if(g==="royaume"){ var r=60, p1=pt(a1,R),p2=pt(a2,R),p3=pt(a2,r),p4=pt(a1,r);
+      return "M"+f(p1[0])+" "+f(p1[1])+" A"+R+" "+R+" 0 0 1 "+f(p2[0])+" "+f(p2[1])+" L"+f(p3[0])+" "+f(p3[1])+" A"+r+" "+r+" 0 0 0 "+f(p4[0])+" "+f(p4[1])+" Z"; }
+    var q1=pt(a1,R),q2=pt(a2,R); return "M0 0 L"+f(q1[0])+" "+f(q1[1])+" A"+R+" "+R+" 0 0 1 "+f(q2[0])+" "+f(q2[1])+" Z";
+  }
+
+  /* ---------- dessiner la galette en parts ---------- */
+  var defs=document.querySelector("#galette defs");
+  function dessiner(){
+    var box=$("parts"); box.innerHTML="";
+    document.querySelectorAll("clipPath.cp").forEach(function(c){ c.remove(); });
+    for(var i=0;i<NB_PARTS;i++){
+      var cp=document.createElementNS(NS,"clipPath"); cp.setAttribute("id","cp"+i); cp.setAttribute("class","cp");
+      var pa=document.createElementNS(NS,"path"); pa.setAttribute("d",forme(i,gateau)); cp.appendChild(pa); defs.appendChild(cp);
+      var g=document.createElementNS(NS,"g"); g.setAttribute("class","part"); g.setAttribute("tabindex","0"); g.setAttribute("role","button");
+      g.setAttribute("aria-label","Part numéro "+(i+1)); g.dataset.i=i;
+      g.innerHTML='<g clip-path="url(#cp'+i+')"><use href="#art-'+gateau+'"/></g><path class="contour" d="'+forme(i,gateau)+'"/>';
+      (function(i,g){
+        g.addEventListener("click",function(){ choisir(i); });
+        g.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); choisir(i); } });
+      })(i,g);
+      box.appendChild(g);
+    }
+    /* la couronne en papier posée sur le plat */
+    var c=document.createElementNS(NS,"g"); c.setAttribute("transform","translate(150,-160) rotate(28) scale(.62)");
+    c.innerHTML='<g class="couronne-plat"><path d="M-75 30 L-67 -26 L-41 6 L-17 -38 L0 0 L17 -38 L41 6 L67 -26 L75 30 Z" fill="url(#gCour)" stroke="#A86A14" stroke-width="3" stroke-linejoin="round"/>'+
+      '<rect x="-77" y="22" width="154" height="16" rx="4" fill="#E6A93A" stroke="#A86A14" stroke-width="3"/>'+
+      '<circle cx="-67" cy="-28" r="6" fill="#B4232A"/><circle cx="-17" cy="-40" r="6" fill="#5B7A3A"/><circle cx="17" cy="-40" r="6" fill="#5B7A3A"/><circle cx="67" cy="-28" r="6" fill="#B4232A"/></g>';
+    box.appendChild(c);
+  }
+
+  document.querySelectorAll(".choix button").forEach(function(b){
+    b.addEventListener("click",function(){
+      if($("plat").classList.contains("joue")) return;
+      gateau=b.dataset.g; document.querySelectorAll(".choix button").forEach(function(x){ x.setAttribute("aria-pressed",String(x===b)); });
+      dessiner(); J.vibrer(8);
+    });
+  });
+
+  /* ---------- jouer ---------- */
+  var cleJour="rois:"+P.cle;
+  function choisir(i){
+    var plat=$("plat"); if(plat.classList.contains("joue")) return;
+    var feve=Math.floor(Math.random()*NB_PARTS), gagne=(feve===i);
+    plat.classList.add("joue");
+    var g=document.querySelector('.part[data-i="'+i+'"]'); g.classList.add("choisie");
+    var mid=(i+.5)*A, d=pt(mid,40); g.style.transform="translate("+f(d[0])+"px,"+f(d[1])+"px)";
+    J.vibrer(15);
+    if(enJanvier && !J.DEMO) J.store.set(cleJour,{part:i,feve:feve,gagne:gagne,gateau:gateau});
+    setTimeout(function(){ resultat(i,feve,gagne,false); },900);
+  }
+
+  function zoom(i,feve,gagne){
+    var mid=(i+.5)*A, z=$("zoom");
+    z.innerHTML='<g transform="rotate('+(180-mid)+')"><g clip-path="url(#cp'+i+')"><use href="#art-'+gateau+'"/></g><path d="'+forme(i,gateau)+'" fill="none" stroke="#7A4E0E" stroke-width="2" stroke-opacity=".5"/></g>'+
+      (gagne?'<g transform="translate(0,'+(gateau==="royaume"?118:112)+')"><g class="feve"><use href="#feve-art"/></g></g>'
+            :'<g class="miettes" fill="#C98A1E" opacity=".7"><circle cx="-14" cy="120" r="3"/><circle cx="9" cy="132" r="2.4"/><circle cx="20" cy="108" r="2"/><circle cx="-4" cy="146" r="2.6"/></g>');
+  }
+
+  function resultat(i,feve,gagne,deja){
+    zoom(i,feve,gagne);
+    if(!gagne){ var fg=document.querySelector('.part[data-i="'+feve+'"]'); if(fg){ fg.classList.add("feve-ici");
+      var m=(feve+.5)*A, pf=pt(m,gateau==="royaume"?118:110), u=document.createElementNS(NS,"g");
+      u.setAttribute("transform","translate("+f(pf[0])+","+f(pf[1])+") scale(.8)"); u.innerHTML='<use href="#feve-art"/>'; fg.appendChild(u); } }
+    $("couronne-tombe").hidden=!gagne;
+    $("r-titre").innerHTML=gagne?'Vive le <span class="serif-it">roi</span>, vive la <span class="serif-it">reine</span>&nbsp;!':'Pas de fève dans cette part…';
+    $("r-texte").textContent=gagne?"La fève était dans ta part : tu es le roi, ou la reine, du jour !"
+      :"Elle était juste à côté, regarde la galette ! Mais tu restes royal à nos yeux."+(pourDeVrai&&!J.DEMO?" Reviens demain pour retenter ta chance.":"");
+    $("bon").innerHTML=""; $("r-essai").innerHTML="";
+    if(gagne && pourDeVrai){ J.ticket($("bon"),{titre:"La fève est à toi",gain:CADEAU.gain,cond:CADEAU.cond,code:J.code("ROIS",String(i)),cle:"rois-"+P.cle}); }
+    if(gagne && !pourDeVrai){ var e=document.createElement("div"); e.className="essai"; e.textContent="C'était une partie d'entraînement : le vrai jeu, avec un cadeau à la clé, ouvre le 1er janvier !"; $("r-essai").appendChild(e); }
+    var bt=$("r-boutons"); bt.innerHTML="";
+    if(!pourDeVrai || J.DEMO){ var r=document.createElement("button"); r.type="button"; r.className="btn btn-gold"; r.textContent="Rejouer"; r.addEventListener("click",rejouer); bt.appendChild(r); }
+    var a=document.createElement("a"); a.className="btn btn-ghost"; a.href="noel-galettes-des-rois.html#precommande"; a.textContent="Précommander ma vraie galette"; bt.appendChild(a);
+    var sh=document.createElement("button"); sh.type="button"; sh.className="btn btn-ghost"; sh.textContent="Défier un ami";
+    sh.addEventListener("click",function(){ J.partager({title:"Tirer les rois",text:gagne?"J'ai trouvé la fève aux Pains du Soleil ! À ton tour :":"Je n'ai pas eu la fève… à ton tour de tirer les rois :",url:location.href.split("?")[0]}); });
+    bt.appendChild(sh);
+    $("revele").classList.add("on");
+    $("consigne").innerHTML=deja?"Tu as déjà tiré les rois aujourd'hui&nbsp;!<small>Reviens demain pour une nouvelle part.</small>":"Et voilà ta part&nbsp;!<small>&nbsp;</small>";
+    if(gagne && !deja){ setTimeout(function(){ J.confettis(); J.vibrer(80); },700); }
+    setTimeout(function(){ var rv=$("revele"); if(rv.getBoundingClientRect().top>innerHeight*.6) rv.scrollIntoView({behavior:J.reduce?"auto":"smooth",block:"start"}); },deja?0:400);
+  }
+
+  function rejouer(){
+    $("revele").classList.remove("on"); $("plat").classList.remove("joue");
+    $("consigne").innerHTML="Touche la part que tu veux&nbsp;!<small>Huit parts, une seule fève.</small>";
+    dessiner(); $("plat").scrollIntoView({behavior:J.reduce?"auto":"smooth",block:"center"});
+  }
+
+  dessiner();
+  /* déjà joué aujourd'hui (janvier) ? */
+  var dejaJoue = enJanvier && !J.DEMO ? J.store.get(cleJour,null) : null;
+  if(dejaJoue){
+    gateau=dejaJoue.gateau||"frangipane";
+    document.querySelectorAll(".choix button").forEach(function(x){ x.setAttribute("aria-pressed",String(x.dataset.g===gateau)); });
+    dessiner(); $("plat").classList.add("joue");
+    var g=document.querySelector('.part[data-i="'+dejaJoue.part+'"]'); g.classList.add("choisie");
+    var d=pt((dejaJoue.part+.5)*A,40); g.style.transform="translate("+f(d[0])+"px,"+f(d[1])+"px)";
+    resultat(dejaJoue.part,dejaJoue.feve,dejaJoue.gagne,true);
+  }
+  J.demoBarre("parties illimitées",function(){ J.store.vider("rois"); J.store.vider("utilise:rois"); location.reload(); });
+})();
+</script>
+</body>
+</html>

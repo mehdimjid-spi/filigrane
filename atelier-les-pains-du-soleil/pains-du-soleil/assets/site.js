@@ -61,6 +61,44 @@
   var totop=document.getElementById("totop");
   if(totop) totop.addEventListener("click",function(){ window.scrollTo({top:0,behavior:reduce?"auto":"smooth"}); });
 
+  /* statut « ouvert maintenant » : heure de Paris, quel que soit le fuseau du visiteur.
+     data-horaires = 7 plages lun→dim séparées par des virgules ("06:30-20:00"),
+     ou une seule plage si elle vaut pour tous les jours. Plage vide = fermé ce jour-là. */
+  window.PDSStatut=function(scope){
+    var els=(scope||document).querySelectorAll("[data-horaires]"); if(!els.length) return;
+    var JOURS=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
+    function hm(s){ var p=s.split(":"); return (+p[0])*60+(+p[1]); }
+    function lbl(m){ var h=Math.floor(m/60), mi=m%60; return h+"h"+(mi?String(mi).padStart(2,"0"):""); }
+    function maintenant(){
+      try{
+        var parts=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Paris",weekday:"short",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date());
+        var o={}; parts.forEach(function(p){ o[p.type]=p.value; });
+        return {j:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].indexOf(o.weekday), m:(+o.hour%24)*60+(+o.minute)};
+      }catch(e){ var d=new Date(); return {j:(d.getDay()+6)%7, m:d.getHours()*60+d.getMinutes()}; }
+    }
+    function plages(attr){
+      var t=attr.split(","); if(t.length===1){ t=[t[0],t[0],t[0],t[0],t[0],t[0],t[0]]; }
+      return t.map(function(s){ s=s.trim(); if(!s) return null; var x=s.split("-"); return [hm(x[0]),hm(x[1])]; });
+    }
+    var now=maintenant();
+    els.forEach(function(el){
+      var P=plages(el.getAttribute("data-horaires")), auj=P[now.j], txt="", cls="";
+      if(auj && now.m>=auj[0] && now.m<auj[1]){
+        if(auj[1]-now.m<=30){ cls="bientot"; txt="Ferme bientôt · "+lbl(auj[1]); }
+        else { cls="ouvert"; txt="Ouvert · jusqu'à "+lbl(auj[1]); }
+      } else if(auj && now.m<auj[0]){
+        if(auj[0]-now.m<=60){ cls="bientot"; txt="Ouvre bientôt · "+lbl(auj[0]); }
+        else { txt="Fermé · ouvre à "+lbl(auj[0]); }
+      } else {
+        for(var k=1;k<=7;k++){ var j=(now.j+k)%7; if(P[j]){ txt="Fermé · ouvre "+(k===1?"demain":JOURS[j])+" à "+lbl(P[j][0]); break; } }
+      }
+      el.textContent=txt; el.classList.remove("ouvert","bientot"); if(cls) el.classList.add(cls);
+      el.setAttribute("title","Selon nos horaires habituels (jours fériés non pris en compte)");
+    });
+  };
+  window.PDSStatut();
+  setInterval(function(){ window.PDSStatut(); },60000);
+
   /* year */
   var yr=document.getElementById("yr"); if(yr) yr.textContent=new Date().getFullYear();
 })();

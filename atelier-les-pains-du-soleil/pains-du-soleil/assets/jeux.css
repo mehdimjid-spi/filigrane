@@ -1,0 +1,136 @@
+/* ============================================================
+   Les Pains du Soleil · le coin des jeux · styles partagés
+   (s'ajoute à assets/site.css, même charte crème & or)
+   ============================================================ */
+
+/* l'attribut hidden doit gagner sur les display des boutons (.btn est en inline-flex) */
+[hidden]{display:none!important}
+
+.page-jeu{background:var(--sand)}
+.page-jeu main{padding-top:clamp(92px,12vh,118px)}
+
+/* ---------- en-tête de jeu ---------- */
+.jeu-head{text-align:center;padding:clamp(18px,3vh,34px) 0 clamp(18px,3vh,28px)}
+.jeu-retour{display:inline-flex;align-items:center;gap:8px;font-family:var(--sf-body);font-weight:600;font-size:.82rem;
+  color:var(--or-deep);background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:7px 14px 7px 11px;
+  transition:transform .25s var(--ease),border-color .25s}
+.jeu-retour:hover{transform:translateX(-3px);border-color:var(--or)}
+.jeu-head h1{font-size:clamp(2.3rem,6vw,4.4rem);letter-spacing:-.045em;line-height:.95;margin:.4em auto .18em;max-width:16ch}
+.jeu-head .sous{font-family:var(--sf-disp);font-style:italic;color:var(--or-deep);font-size:clamp(1.1rem,2vw,1.5rem)}
+.jeu-head .lead{margin:.9em auto 0;text-align:center}
+
+/* ---------- la scène où l'on joue ---------- */
+.scene{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:30px;
+  box-shadow:0 30px 70px rgba(35,26,15,.12);padding:clamp(22px,4vw,48px);overflow:hidden}
+.scene.chaude{background:radial-gradient(90% 70% at 50% 0%,#FFF8E6 0%,#FFFDF8 60%)}
+
+/* ---------- gros boutons de jeu ---------- */
+.btn-jeu{font-size:1.02rem;padding:18px 34px}
+.btn-jeu[disabled]{opacity:.55;pointer-events:none}
+@keyframes rebond{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.btn-rebond{animation:rebond 1.8s var(--ease) infinite}
+
+/* ---------- 3 étapes « comment ça marche » ---------- */
+.etapes-jeu{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,20px)}
+.etapes-jeu li{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px 20px 18px;position:relative}
+.etapes-jeu .n{position:absolute;right:16px;top:12px;font-family:var(--sf-disp);font-weight:600;font-size:2.2rem;color:var(--sand-2);line-height:1}
+.etapes-jeu .ic{font-size:1.7rem}
+.etapes-jeu b{display:block;font-family:var(--sf-disp);font-weight:500;font-size:1.12rem;margin:.4em 0 .15em}
+.etapes-jeu span{color:var(--ink-soft);font-size:.9rem}
+
+/* ---------- le bon à montrer en caisse ---------- */
+.ticket{position:relative;max-width:420px;margin:0 auto;border-radius:22px;overflow:hidden;text-align:center;
+  background:linear-gradient(160deg,#241B10 0%,#3A2B15 100%);color:var(--sand);
+  box-shadow:0 26px 60px rgba(60,40,8,.35);isolation:isolate}
+.ticket::before,.ticket::after{content:"";position:absolute;top:58%;width:26px;height:26px;border-radius:50%;background:var(--fond-encoche,var(--paper));z-index:2}
+.ticket::before{left:-13px}.ticket::after{right:-13px}
+.ticket .t-haut{padding:22px 24px 18px;border-bottom:2px dashed rgba(243,233,215,.25);position:relative}
+.ticket .t-logo{width:46px;height:auto;margin:0 auto 6px;filter:drop-shadow(0 0 12px rgba(232,168,58,.5))}
+.ticket .t-lbl{font-family:var(--sf-body);font-weight:600;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--miel)}
+.ticket .t-gain{font-family:var(--sf-disp);font-size:clamp(1.5rem,5vw,2rem);line-height:1.08;letter-spacing:-.02em;margin:.25em 0 .1em;color:#FFF7E4}
+.ticket .t-cond{font-size:.84rem;color:rgba(243,233,215,.75)}
+.ticket .t-bas{padding:16px 20px 20px;display:grid;gap:10px;justify-items:center}
+.ticket .t-montre{font-family:var(--sf-body);font-weight:600;font-size:.88rem;color:var(--miel)}
+.ticket .t-vivant{display:inline-flex;align-items:center;gap:8px;font-family:var(--sf-body);font-size:.8rem;color:rgba(243,233,215,.85);
+  background:rgba(255,255,255,.06);border:1px solid rgba(243,233,215,.18);border-radius:100px;padding:6px 12px}
+.ticket .t-vivant i{width:8px;height:8px;border-radius:50%;background:#62C46F;box-shadow:0 0 0 0 rgba(98,196,111,.6);animation:vivant 1.6s ease-out infinite}
+@keyframes vivant{70%{box-shadow:0 0 0 7px rgba(98,196,111,0)}100%{box-shadow:0 0 0 0 rgba(98,196,111,0)}}
+.ticket .t-code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:1.05rem;letter-spacing:.14em;color:#FFF7E4;
+  background:rgba(232,168,58,.14);border:1px solid rgba(232,168,58,.35);border-radius:10px;padding:6px 12px}
+.ticket .t-reflet{position:absolute;inset:-40% -60%;z-index:-1;pointer-events:none;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,236,190,.16) 50%,transparent 60%);animation:reflet 3.6s ease-in-out infinite}
+@keyframes reflet{0%{transform:translateX(-40%)}60%,100%{transform:translateX(40%)}}
+.ticket .t-equipe{margin-top:4px;font-family:var(--sf-body);font-size:.72rem;letter-spacing:.06em;color:rgba(243,233,215,.6);
+  background:none;border:1px dashed rgba(243,233,215,.3);border-radius:100px;padding:8px 14px;cursor:pointer;position:relative;overflow:hidden;
+  -webkit-user-select:none;user-select:none;touch-action:none}
+.ticket .t-equipe .jauge{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(98,196,111,.35);transition:width .1s linear}
+.ticket .t-equipe span{position:relative}
+.ticket.utilise{filter:grayscale(.9) brightness(.85)}
+.ticket.utilise .t-vivant,.ticket.utilise .t-equipe{display:none}
+.ticket .t-tampon-utilise{display:none;position:absolute;inset:0;z-index:3;place-items:center;pointer-events:none}
+.ticket.utilise .t-tampon-utilise{display:grid}
+.t-tampon-utilise span{font-family:var(--sf-disp);font-weight:700;font-size:1.6rem;letter-spacing:.06em;color:#E0503F;border:4px solid #E0503F;
+  border-radius:12px;padding:6px 16px;transform:rotate(-14deg);background:rgba(36,27,16,.6)}
+
+/* ---------- petit message flottant ---------- */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));z-index:300;transform:translate(-50%,20px);opacity:0;
+  background:var(--noir);color:var(--sand);font-family:var(--sf-body);font-weight:600;font-size:.9rem;border-radius:100px;padding:12px 20px;
+  box-shadow:0 14px 34px rgba(0,0,0,.3);transition:opacity .3s ease,transform .35s var(--ease);pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- confettis ---------- */
+#confettis{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:250}
+
+/* ---------- barre du mode démo (maquette uniquement) ---------- */
+.demo-barre{position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:200;display:flex;align-items:center;gap:8px;
+  background:rgba(28,21,13,.88);color:var(--sand);font-family:var(--sf-body);font-size:.74rem;border-radius:100px;padding:6px 6px 6px 12px;
+  box-shadow:0 10px 26px rgba(0,0,0,.25);backdrop-filter:blur(8px)}
+.demo-barre b{color:var(--miel);letter-spacing:.08em;text-transform:uppercase;font-size:.66rem}
+.demo-barre button{font:inherit;font-weight:600;color:var(--noir);background:var(--miel);border:none;border-radius:100px;padding:6px 11px;cursor:pointer}
+
+/* ---------- mentions de jeu ---------- */
+.regles-jeu{max-width:62ch;margin:26px auto 0;text-align:center;font-size:.78rem;color:var(--ink-soft);line-height:1.6}
+
+/* ---------- calendrier de l'Avent : la fenêtre de surprise (assets/avent.js) ---------- */
+.av-voile{position:fixed;inset:0;z-index:220;background:rgba(28,21,13,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.av-voile.on{opacity:1;pointer-events:auto}
+.av-surprise{position:relative;width:min(520px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:var(--paper);border-radius:28px;
+  padding:clamp(22px,4vw,34px);text-align:center;box-shadow:0 40px 90px rgba(0,0,0,.35);transform:scale(.85) translateY(20px);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.av-voile.on .av-surprise{transform:none}
+.av-fermer{position:absolute;right:14px;top:14px;width:40px;height:40px;border-radius:50%;border:none;background:var(--sand);font-size:1.2rem;cursor:pointer;color:var(--ink)}
+.av-jour{font-family:var(--sf-body);font-weight:700;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or-deep)}
+.av-gros{font-size:4rem;line-height:1;margin:10px 0 6px;animation:avPop .7s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes avPop{from{transform:scale(.2) rotate(-25deg);opacity:0}}
+.av-type{display:inline-block;font-family:var(--sf-body);font-weight:700;font-size:.72rem;letter-spacing:.06em;background:var(--sand);border-radius:100px;padding:6px 12px;color:var(--ink)}
+.av-surprise h2{font-family:var(--sf-disp);font-weight:500;font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:-.03em;margin:.4em 0 .3em;color:var(--ink)}
+.av-texte{color:var(--ink-soft);font-size:1rem}
+.av-bon,.av-action{margin-top:18px}
+.av-expire{margin-top:14px;font-family:var(--sf-body);font-weight:600;font-size:.86rem;color:var(--or-deep);background:#FBF0D6;border-radius:12px;padding:10px 12px}
+@media (prefers-reduced-motion:reduce){.av-surprise{transition:none}}
+
+/* ---------- autres jeux en bas de page ---------- */
+.autres-jeux{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.autres-jeux a{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:14px 16px;
+  font-family:var(--sf-disp);font-size:1.02rem;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.autres-jeux a:hover{transform:translateY(-4px);border-color:var(--or);box-shadow:0 16px 34px rgba(35,26,15,.1)}
+.autres-jeux .e{font-size:1.6rem;flex:none}
+
+.autres-jeux.autres-2{grid-template-columns:repeat(2,1fr);max-width:720px;margin-inline:auto}
+@media (max-width:1080px){
+  .nav .brandmark{margin-right:auto}
+  .autres-jeux{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .page-jeu main{padding-top:84px}
+  .etapes-jeu{grid-template-columns:1fr}
+  .etapes-jeu li{display:grid;grid-template-columns:40px 1fr;column-gap:12px;align-items:center;padding:14px 16px}
+  .etapes-jeu .ic{grid-row:span 2;font-size:1.5rem}
+  .etapes-jeu b{margin:0}
+  .etapes-jeu .n{display:none}
+  .autres-jeux,.autres-jeux.autres-2{grid-template-columns:1fr}
+  .btn-jeu{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  .btn-rebond,.ticket .t-reflet,.ticket .t-vivant i{animation:none}
+}
